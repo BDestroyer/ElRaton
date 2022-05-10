@@ -16,7 +16,6 @@
 
     <style name="Theme.ElRaton.NoActionBar">
         <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="Theme.ElRaton.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
