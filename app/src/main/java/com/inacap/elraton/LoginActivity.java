@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
                 {
                     if (usuarioIng.equals(user) && contraIng.equals(contrasenna))
                     {
-                        //aqui redireccion a crud productos
+                        //aqui redireccion a CRUD productos
                         Toast.makeText(LoginActivity.this, "admin", Toast.LENGTH_LONG).show();
                     } else {
                         Toast.makeText(LoginActivity.this, "usuario", Toast.LENGTH_LONG).show();
