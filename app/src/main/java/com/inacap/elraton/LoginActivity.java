@@ -2,11 +2,13 @@ package com.inacap.elraton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 
 public class LoginActivity extends AppCompatActivity {
     ImageView img;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -17,4 +19,6 @@ public class LoginActivity extends AppCompatActivity {
         img=findViewById(R.id.img);
         img.setImageResource(R.drawable.descarga);
     }
+    Intent a=new Intent();
+
 }
