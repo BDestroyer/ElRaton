@@ -14,14 +14,12 @@ public class LoginActivity extends AppCompatActivity {
     ImageView img;
     Button btnIngresar, btnLimpiar;
     TextView ingUsuario,ingContrasenna;
+    String user="admin",contrasenna="admin",usuarioIng,contraIng;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Intent a=new Intent();
-        String user="admin";
-        String contrasenna="admin";
         ingUsuario=findViewById(R.id.edt_Usuario);
         ingContrasenna=findViewById(R.id.edt_Contraseña);
         img=findViewById(R.id.img);
@@ -32,14 +30,34 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                    if (ingUsuario.getText().toString().equals(user)&&ingContrasenna.getText().toString().equals(contrasenna))
+                usuarioIng=ingUsuario.getText().toString();
+                contraIng=ingContrasenna.getText().toString();
+                if (usuarioIng.equals("")||contraIng.equals(""))
+                {
+                    Toast.makeText(LoginActivity.this, "Debe rellenar los campos antes de continuar", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    if (usuarioIng.equals(user) && contraIng.equals(contrasenna))
                     {
+                        //aqui redireccion a crud productos
                         Toast.makeText(LoginActivity.this, "admin", Toast.LENGTH_LONG).show();
-                    }
-                    else
-                    {
+                    } else {
                         Toast.makeText(LoginActivity.this, "usuario", Toast.LENGTH_LONG).show();
+                        Intent a = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(a);
                     }
+                }
+
+            }
+        });
+        btnLimpiar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                ingUsuario.setText("");
+                ingContrasenna.setText("");
+                ingUsuario.requestFocus();
             }
         });
     }
