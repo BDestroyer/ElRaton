@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">El raton se viste a la moda</string>
+    <string name="app_name">El ratón se viste a la moda</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
