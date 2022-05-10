@@ -9,17 +9,17 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.inacap.elraton.databinding.FragmentSlideshowBinding;
+import com.inacap.elraton.databinding.FragmentContactoBinding;
 
 public class ContactoFragment extends Fragment {
 
-    private FragmentSlideshowBinding binding;
+    private FragmentContactoBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         ContactoViewModel slideshowViewModel =
                 new ViewModelProvider(this).get(ContactoViewModel.class);
-        binding = FragmentSlideshowBinding.inflate(inflater, container, false);
+        binding = FragmentContactoBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         //final TextView textView = binding.textSlideshow;
         //slideshowViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
