@@ -15,7 +15,7 @@ public class LoginActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        String admin="admin21";
+        String admin="admin1";
         String contrasenna="admin";
         img=findViewById(R.id.img);
         img.setImageResource(R.drawable.descarga);
