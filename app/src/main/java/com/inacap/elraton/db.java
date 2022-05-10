@@ -12,7 +12,8 @@ public class db extends SQLiteOpenHelper {
     public db (Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
-    public void onCreate(SQLiteDatabase db) {
+    public void onCreate(SQLiteDatabase db)
+    {
         db.execSQL("CREATE TABLE producto(id int primary key autoincrement not null, descripcion string not null, precio int not null, cantidad int not null)");
     }
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
