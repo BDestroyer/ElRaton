@@ -1,14 +1,17 @@
-package com.inacap.elraton;
+package com.inacap.elraton.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.inacap.elraton.R;
 
 public class LoginActivity extends AppCompatActivity {
     ImageView img;

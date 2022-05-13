@@ -15,10 +15,9 @@ public class InicioFragment extends Fragment {
 
     private FragmentInicioBinding binding;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        InicioViewModel inicioViewModel =
-                new ViewModelProvider(this).get(InicioViewModel.class);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
+        InicioViewModel inicioViewModel = new ViewModelProvider(this).get(InicioViewModel.class);
         binding = FragmentInicioBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         return root;

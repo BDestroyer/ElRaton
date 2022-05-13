@@ -1,5 +1,6 @@
-package com.inacap.elraton;
+package com.inacap.elraton.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -13,6 +14,7 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.inacap.elraton.R;
 import com.inacap.elraton.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,10 +31,10 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(binding.appBarMain.toolbar);
         binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                //Bola flotante carrito
-                Snackbar.make(view, "Bola flotante carrito", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View view)
+            {
+                Intent a = new Intent(getApplicationContext(), Carrito.class);
+                startActivity(a);
             }
         });
         DrawerLayout drawer = binding.drawerLayout;
