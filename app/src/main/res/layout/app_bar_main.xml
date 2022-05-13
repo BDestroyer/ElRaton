@@ -29,7 +29,10 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="16dp"
-        app:srcCompat="@android:drawable/ic_dialog_email"
+        app:backgroundTint="#673AB7"
+        app:fabSize="auto"
+        app:srcCompat="@drawable/ic_carrito2_foreground"
+        app:maxImageSize="60dp"
         tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
