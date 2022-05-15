@@ -51,7 +51,6 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(a);
                     }
                 }
-
             }
         });
         btnLimpiar.setOnClickListener(new View.OnClickListener() {
