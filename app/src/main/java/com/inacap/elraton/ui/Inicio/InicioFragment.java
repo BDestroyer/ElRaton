@@ -7,25 +7,14 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
-import com.inacap.elraton.databinding.FragmentInicioBinding;
+import com.inacap.elraton.R;
 
 public class InicioFragment extends Fragment {
 
-    private FragmentInicioBinding binding;
-
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        InicioViewModel inicioViewModel = new ViewModelProvider(this).get(InicioViewModel.class);
-        binding = FragmentInicioBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-        return root;
-    }
+        return inflater.inflate(R.layout.fragment_inicio,container,false);
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
     }
 }

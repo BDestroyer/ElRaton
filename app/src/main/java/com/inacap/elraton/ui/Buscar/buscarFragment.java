@@ -1,4 +1,4 @@
-package com.inacap.elraton.ui.Contacto;
+package com.inacap.elraton.ui.Buscar;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,11 +10,11 @@ import androidx.fragment.app.Fragment;
 
 import com.inacap.elraton.R;
 
-public class ContactoFragment extends Fragment {
+public class buscarFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_contacto,container,false);
-
+                             ViewGroup container, Bundle savedInstanceState)
+    {
+     return inflater.inflate(R.layout.fragment_buscar,container,false);
     }
 }
