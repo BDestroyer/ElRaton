@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -25,13 +26,14 @@ public class LoginActivity extends AppCompatActivity {
     {
         db conexionUsuario=new db(getApplicationContext(),"elRaton.db",null,1);
         Metodo x= new Metodo();
-        SQLiteDatabase a=x.Conectar(conexionUsuario);
-        /*ContentValues r=new ContentValues();
+        SQLiteDatabase basedato=x.Conectar(conexionUsuario);
+        ContentValues r=new ContentValues();
         r.put("email","N.Araya@gmail.com");
-        r.put("",user);
-        r.put("",contrasenna);
+        r.put("nombre",user);
+        r.put("apellido",user);
+        r.put("contrasenna",contrasenna);
         long i;
-        i=a.insert("usuario",null,r);*/
+        i=basedato.insert("usuario",null,r);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         img=findViewById(R.id.img);
@@ -52,6 +54,15 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else
                 {
+                    Cursor cursor=basedato.rawQuery("select email, contrasenna from usuario",null);
+                    if (cursor.moveToFirst())
+                    {
+                        Toast.makeText(LoginActivity.this, "asdasdasd", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        Toast.makeText(LoginActivity.this, "ctm", Toast.LENGTH_SHORT).show();
+                    }
                     if (usuarioIng.equals(user) && contraIng.equals(contrasenna))
                     {
                         //aqui redirección a CRUD productos
