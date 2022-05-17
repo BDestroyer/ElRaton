@@ -26,10 +26,10 @@ public class LoginActivity extends AppCompatActivity {
         SQLiteDatabase a=x.Conectar(conexionUsuario);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        ingUsuario=findViewById(R.id.edt_Usuario);
-        ingContrasenna=findViewById(R.id.edt_Contraseña);
         img=findViewById(R.id.img);
         img.setImageResource(R.drawable.descarga);
+        ingUsuario=findViewById(R.id.edt_Usuario);
+        ingContrasenna=findViewById(R.id.edt_Contraseña);
         btnIngresar=findViewById(R.id.btn_ingresar);
         btnLimpiar=findViewById(R.id.btn_Limpiar);
         btnIngresar.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +48,8 @@ public class LoginActivity extends AppCompatActivity {
                     {
                         //aqui redirección a CRUD productos
                         Toast.makeText(LoginActivity.this, "admin", Toast.LENGTH_LONG).show();
+                        //Intent a = new Intent(getApplicationContext(), MainActivity.class);
+                        //startActivity(a);
                     } else {
                         Toast.makeText(LoginActivity.this, "usuario", Toast.LENGTH_LONG).show();
                         Intent a = new Intent(getApplicationContext(), MainActivity.class);
