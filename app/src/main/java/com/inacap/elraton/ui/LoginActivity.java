@@ -1,17 +1,17 @@
 package com.inacap.elraton.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.inacap.elraton.Metodo;
 import com.inacap.elraton.R;
+import com.inacap.elraton.db;
 
 public class LoginActivity extends AppCompatActivity {
     ImageView img;
@@ -21,6 +21,9 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        db conexionUsuario=new db(getApplicationContext(),"elRaton.db",null,1);
+        Metodo x= new Metodo();
+        SQLiteDatabase a=x.Conectar(conexionUsuario);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ingUsuario=findViewById(R.id.edt_Usuario);
@@ -43,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
                 {
                     if (usuarioIng.equals(user) && contraIng.equals(contrasenna))
                     {
-                        //aqui redireccion a CRUD productos
+                        //aqui redirección a CRUD productos
                         Toast.makeText(LoginActivity.this, "admin", Toast.LENGTH_LONG).show();
                     } else {
                         Toast.makeText(LoginActivity.this, "usuario", Toast.LENGTH_LONG).show();
