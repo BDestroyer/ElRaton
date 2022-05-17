@@ -9,4 +9,5 @@ public class Metodo
         SQLiteDatabase b = cn.getWritableDatabase();
         return b;
     }
+
 }
