@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Ingrese su nombre de usuario" />
+            android:text="Ingrese su correo electrónico:" />
 
         <EditText
             android:id="@+id/edt_Usuario"
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Ingrese su contraseña" />
+            android:text="Ingrese su contraseña:" />
 
         <EditText
             android:id="@+id/edt_Contraseña"

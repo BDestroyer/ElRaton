@@ -54,16 +54,17 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Cursor cursor=basedato.rawQuery("select email, contrasenna from usuario",null);
+                    Cursor cursor=basedato.rawQuery("select email, contrasenna from usuario where email='"+usuarioIng+"' and contrasenna='"+contraIng+"'",null);
                     if (cursor.moveToFirst())
                     {
-                        Toast.makeText(LoginActivity.this, "asdasdasd", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "encontrado", Toast.LENGTH_SHORT).show();
+
                     }
                     else
                     {
-                        Toast.makeText(LoginActivity.this, "ctm", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Usuario no encontrado, por favor registrese", Toast.LENGTH_SHORT).show();
                     }
-                    if (usuarioIng.equals(user) && contraIng.equals(contrasenna))
+                    /*if (usuarioIng.equals(user) && contraIng.equals(contrasenna))
                     {
                         //aqui redirección a CRUD productos
                         Toast.makeText(LoginActivity.this, "admin", Toast.LENGTH_LONG).show();
@@ -73,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, "usuario", Toast.LENGTH_LONG).show();
                         Intent a = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(a);
-                    }
+                    }*/
                 }
             }
         });
