@@ -1,6 +1,8 @@
 package com.inacap.elraton.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -24,6 +26,12 @@ public class LoginActivity extends AppCompatActivity {
         db conexionUsuario=new db(getApplicationContext(),"elRaton.db",null,1);
         Metodo x= new Metodo();
         SQLiteDatabase a=x.Conectar(conexionUsuario);
+        /*ContentValues r=new ContentValues();
+        r.put("email","N.Araya@gmail.com");
+        r.put("",user);
+        r.put("",contrasenna);
+        long i;
+        i=a.insert("usuario",null,r);*/
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         img=findViewById(R.id.img);
