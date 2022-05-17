@@ -26,14 +26,14 @@ public class LoginActivity extends AppCompatActivity {
     {
         db conexionUsuario=new db(getApplicationContext(),"elRaton.db",null,1);
         Metodo x= new Metodo();
-        SQLiteDatabase basedato=x.Conectar(conexionUsuario);
-        ContentValues r=new ContentValues();
+        /*ContentValues r=new ContentValues();
         r.put("email","N.Araya@gmail.com");
         r.put("nombre",user);
         r.put("apellido",user);
         r.put("contrasenna",contrasenna);
+        r.put("rol","true");
         long i;
-        i=basedato.insert("usuario",null,r);
+        i=basedato.insert("usuario",null,r);*/
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         img=findViewById(R.id.img);
@@ -54,16 +54,20 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else
                 {
+                    SQLiteDatabase basedato=x.Conectar(conexionUsuario);
                     Cursor cursor=basedato.rawQuery("select email, contrasenna from usuario where email='"+usuarioIng+"' and contrasenna='"+contraIng+"'",null);
                     if (cursor.moveToFirst())
                     {
-                        Cursor cursorAdmin=basedato.rawQuery(" ",null);
+                        Cursor cursorAdmin=basedato.rawQuery("select email, contrasenna, rol from usuario where email='"+usuarioIng+"' and contrasenna='"+contraIng+"' and rol='true'",null);
                         if( cursorAdmin.moveToFirst())
+                        {
+                            Toast.makeText(LoginActivity.this, "Weeeeeeeeeeeeeeeeeeeeeena", Toast.LENGTH_SHORT).show();
+                        }
+                        else
                         {
                             Intent a=new Intent(getApplicationContext(),MainActivity.class);
                             startActivity(a);
                         }
-                        Toast.makeText(LoginActivity.this, "encontrado", Toast.LENGTH_SHORT).show();
                     }
                     else
                     {
