@@ -13,7 +13,7 @@ public class db extends SQLiteOpenHelper
 
     public void onCreate(SQLiteDatabase db)
     {
-        db.execSQL("CREATE TABLE usuario(email email primary key not null, contrasenna text not null, nombre text not null, apellido text not null)");
+        db.execSQL("CREATE TABLE usuario(email email primary key not null, contrasenna text not null, nombre text not null, apellido text not null, rol boolean not null)");
         db.execSQL("CREATE TABLE producto(id integer primary key autoincrement not null, descripcion text not null, precio integer not null, cantidad integer not null)");
     }
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -21,7 +21,7 @@ public class db extends SQLiteOpenHelper
         // to simply to discard the data and start over
         db.execSQL("drop table if exists usuario");
         db.execSQL("drop table if exists producto");
-        db.execSQL("CREATE TABLE usuario(email email primary key not null, nombre text not null, apellido text not null)");
+        db.execSQL("CREATE TABLE usuario(email email primary key not null, nombre text not null, apellido text not null, rol boolean not null)");
         db.execSQL("CREATE TABLE producto(id integer primary key autoincrement not null, descripcion text not null, precio integer not null, cantidad integer not null)");
         onCreate(db);
     }

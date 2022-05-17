@@ -15,9 +15,13 @@
         <ImageView
             android:id="@+id/img"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            tools:srcCompat="@drawable/descarga" />
+            android:background="#202020"
+            android:scaleType="fitCenter"
+            android:visibility="visible"
+            tools:srcCompat="@drawable/ic_round_people_24"
+            tools:visibility="visible" />
     </LinearLayout>
 
     <LinearLayout

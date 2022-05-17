@@ -57,24 +57,18 @@ public class LoginActivity extends AppCompatActivity {
                     Cursor cursor=basedato.rawQuery("select email, contrasenna from usuario where email='"+usuarioIng+"' and contrasenna='"+contraIng+"'",null);
                     if (cursor.moveToFirst())
                     {
+                        Cursor cursorAdmin=basedato.rawQuery(" ",null);
+                        if( cursorAdmin.moveToFirst())
+                        {
+                            Intent a=new Intent(getApplicationContext(),MainActivity.class);
+                            startActivity(a);
+                        }
                         Toast.makeText(LoginActivity.this, "encontrado", Toast.LENGTH_SHORT).show();
-
                     }
                     else
                     {
                         Toast.makeText(LoginActivity.this, "Usuario no encontrado, por favor registrese", Toast.LENGTH_SHORT).show();
                     }
-                    /*if (usuarioIng.equals(user) && contraIng.equals(contrasenna))
-                    {
-                        //aqui redirección a CRUD productos
-                        Toast.makeText(LoginActivity.this, "admin", Toast.LENGTH_LONG).show();
-                        //Intent a = new Intent(getApplicationContext(), MainActivity.class);
-                        //startActivity(a);
-                    } else {
-                        Toast.makeText(LoginActivity.this, "usuario", Toast.LENGTH_LONG).show();
-                        Intent a = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(a);
-                    }*/
                 }
             }
         });
