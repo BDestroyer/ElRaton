@@ -21,7 +21,7 @@ public class LoginActivity extends AppCompatActivity {
     ImageView img;
     Button btnIngresar, btnLimpiar;
     TextView redireccion, ingUsuario,ingContrasenna;
-    String user="admin",contrasenna="admin",usuarioIng,contraIng;
+    String user,contrasenna,usuarioIng,contraIng;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -30,9 +30,9 @@ public class LoginActivity extends AppCompatActivity {
         SQLiteDatabase basedato=x.Conectar(conexionUsuario);
         ContentValues r=new ContentValues();
         r.put("email", "N.Araya@gmail.com");
-        r.put("nombre", user);
-        r.put("apellido", user);
-        r.put("contrasenna", contrasenna);
+        r.put("nombre", "admin");
+        r.put("apellido", "admin");
+        r.put("contrasenna", "admin");
         r.put("rol", "true");
         long i;
         i=basedato.insert("usuario",null,r);
