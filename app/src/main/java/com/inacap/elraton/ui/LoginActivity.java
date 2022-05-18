@@ -14,35 +14,39 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.inacap.elraton.Metodo;
 import com.inacap.elraton.R;
+import com.inacap.elraton.RegistroActivity;
 import com.inacap.elraton.db;
 
 public class LoginActivity extends AppCompatActivity {
     ImageView img;
     Button btnIngresar, btnLimpiar;
-    TextView ingUsuario,ingContrasenna;
+    TextView redireccion, ingUsuario,ingContrasenna;
     String user="admin",contrasenna="admin",usuarioIng,contraIng;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         db conexionUsuario=new db(getApplicationContext(),"elRaton.db",null,1);
         Metodo x= new Metodo();
-        /*ContentValues r=new ContentValues();
-        r.put("email","N.Araya@gmail.com");
-        r.put("nombre",user);
-        r.put("apellido",user);
-        r.put("contrasenna",contrasenna);
-        r.put("rol","true");
+        SQLiteDatabase basedato=x.Conectar(conexionUsuario);
+        ContentValues r=new ContentValues();
+        r.put("email", "N.Araya@gmail.com");
+        r.put("nombre", user);
+        r.put("apellido", user);
+        r.put("contrasenna", contrasenna);
+        r.put("rol", "true");
         long i;
-        i=basedato.insert("usuario",null,r);*/
+        i=basedato.insert("usuario",null,r);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        redireccion=findViewById(R.id.txtRegistrar);
         img=findViewById(R.id.img);
         img.setImageResource(R.drawable.descarga);
         ingUsuario=findViewById(R.id.edt_Usuario);
         ingContrasenna=findViewById(R.id.edt_Contraseña);
         btnIngresar=findViewById(R.id.btn_ingresar);
         btnLimpiar=findViewById(R.id.btn_Limpiar);
-        btnIngresar.setOnClickListener(new View.OnClickListener() {
+        btnIngresar.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view)
             {
@@ -54,7 +58,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    SQLiteDatabase basedato=x.Conectar(conexionUsuario);
                     Cursor cursor=basedato.rawQuery("select email, contrasenna from usuario where email='"+usuarioIng+"' and contrasenna='"+contraIng+"'",null);
                     if (cursor.moveToFirst())
                     {
@@ -84,6 +87,14 @@ public class LoginActivity extends AppCompatActivity {
                 ingUsuario.setText("");
                 ingContrasenna.setText("");
                 ingUsuario.requestFocus();
+            }
+        });
+        redireccion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent a=new Intent(getApplicationContext(), RegistroActivity.class);
+                startActivity(a);
             }
         });
     }
