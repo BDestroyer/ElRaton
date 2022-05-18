@@ -61,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
                         Cursor cursorAdmin=basedato.rawQuery("select email, contrasenna, rol from usuario where email='"+usuarioIng+"' and contrasenna='"+contraIng+"' and rol='true'",null);
                         if( cursorAdmin.moveToFirst())
                         {
+                            //CRUD Admin
                             Toast.makeText(LoginActivity.this, "Weeeeeeeeeeeeeeeeeeeeeena", Toast.LENGTH_SHORT).show();
                         }
                         else
