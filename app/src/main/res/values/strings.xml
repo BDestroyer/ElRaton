@@ -3,4 +3,10 @@
     <string name="menu_inicio">Inicio</string>
     <string name="menu_buscar">Buscar</string>
     <string name="menu_contacto">Contacto</string>
+    <string name="ingNom_Registrar">Ingrese su nombre:</string>
+    <string name="ingApe_Registrar">Ingrese su apellido:</string>
+    <string name="ingEmail_Registrar">Ingrese su email:</string>
+    <string name="ingContrasenna_Registrar">Ingrese su contraseña:</string>
+    <string name="btnRegresar_Registrar">Regresar</string>
+    <string name="btnInsertar">Insertar</string>
 </resources>

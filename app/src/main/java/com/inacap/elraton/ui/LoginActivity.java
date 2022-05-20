@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
         Metodo x= new Metodo();
         SQLiteDatabase basedato=x.Conectar(conexionUsuario);
         ContentValues r=new ContentValues();
-        r.put("email", "N.Araya@gmail.com");
+        r.put("email", "N.Araya");
         r.put("nombre", "admin");
         r.put("apellido", "admin");
         r.put("contrasenna", "admin");
