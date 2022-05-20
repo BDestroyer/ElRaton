@@ -37,7 +37,7 @@ public class ContactoFragment extends Fragment {
                 NombreContc=txtNombreContc.getText().toString();
                 CorreoContc=txtCorreoContc.getText().toString();
                 Consulta=txtConsulta.getText().toString();
-                if(Consulta.equals("") || NombreContc.equals("")|| CorreoContc.equals(""))
+                if(!(Consulta.equals("") || NombreContc.equals("")|| CorreoContc.equals("")))
                 {
                     Toast.makeText(getContext(), "Datos llenados", Toast.LENGTH_SHORT).show();
 
@@ -46,6 +46,15 @@ public class ContactoFragment extends Fragment {
                 {
                     Toast.makeText(getContext(), "Debe ingresar los datos validos", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+        btnLimpiar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                txtNombreContc.setText("");
+                txtCorreoContc.setText("");
+                txtConsulta.setText("");
+                txtNombreContc.requestFocus();
             }
         });
 
