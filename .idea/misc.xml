@@ -59,7 +59,10 @@
         <entry key="..\:/Users/informatica7/StudioProjects/ElRatonOfi1/app/src/main/res/layout/fragment_buscar.xml" value="0.358695652173913" />
         <entry key="..\:/Users/informatica7/StudioProjects/ElRatonOfi1/app/src/main/res/layout/fragment_contacto.xml" value="0.33" />
         <entry key="..\:/Users/informatica7/StudioProjects/ElRatonOfi1/app/src/main/res/layout/fragment_inicio.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/nko19/AndroidStudioProjects/ElRaton/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.2285" />
         <entry key="..\:/Users/nko19/AndroidStudioProjects/ElRaton/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1825" />
+        <entry key="..\:/Users/nko19/AndroidStudioProjects/ElRaton/app/src/main/res/drawable/ic_lock.xml" value="0.2285" />
+        <entry key="..\:/Users/nko19/AndroidStudioProjects/ElRaton/app/src/main/res/drawable/ic_pass.xml" value="0.2285" />
         <entry key="..\:/Users/nko19/AndroidStudioProjects/ElRaton/app/src/main/res/drawable/side_nav_bar.xml" value="0.143" />
         <entry key="..\:/Users/nko19/AndroidStudioProjects/ElRaton/app/src/main/res/layout/activity_carrito.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/nko19/AndroidStudioProjects/ElRaton/app/src/main/res/layout/activity_login.xml" value="0.33" />
@@ -76,8 +79,15 @@
         <entry key="..\:/Users/nko19/AndroidStudioProjects/ElRaton/app/src/main/res/menu/activity_main_drawer.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/nko19/AndroidStudioProjects/ElRaton/app/src/main/res/menu/main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/nko19/AndroidStudioProjects/ElRaton/app/src/main/res/mipmap-anydpi-v26/ic_ElRaton.xml" value="0.134" />
+        <entry key="..\:/Users/nko19/AndroidStudioProjects/ElRaton/app/src/main/res/mipmap-anydpi-v26/ic_carrito2_round.xml" value="0.2285" />
         <entry key="..\:/Users/nko19/AndroidStudioProjects/ElRaton/app/src/main/res/mipmap-anydpi-v26/ic_carrito_round.xml" value="0.192" />
+        <entry key="..\:/Users/nko19/AndroidStudioProjects/ElRaton/app/src/main/res/mipmap-anydpi-v26/ic_elraton.xml" value="0.2285" />
+        <entry key="..\:/Users/nko19/AndroidStudioProjects/ElRaton/app/src/main/res/mipmap-anydpi-v26/ic_elraton_round.xml" value="0.2285" />
         <entry key="..\:/Users/nko19/AndroidStudioProjects/ElRaton/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1825" />
+        <entry key="..\:/Users/nko19/AndroidStudioProjects/ElRaton/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2285" />
+        <entry key="..\:/Users/nko19/AndroidStudioProjects/ElRaton/app/src/main/res/mipmap-anydpi-v26/ic_logo.xml" value="0.2285" />
+        <entry key="..\:/Users/nko19/AndroidStudioProjects/ElRaton/app/src/main/res/mipmap-anydpi-v26/ic_logo4K.xml" value="0.2285" />
+        <entry key="..\:/Users/nko19/AndroidStudioProjects/ElRaton/app/src/main/res/mipmap-anydpi-v26/ic_logo_round.xml" value="0.2285" />
       </map>
     </option>
   </component>
