@@ -10,9 +10,12 @@
 
     <ImageView
         android:id="@+id/img"
-        android:layout_width="413dp"
-        android:layout_height="386dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:adjustViewBounds="true"
+        android:background="@drawable/side_nav_bar"
         android:cropToPadding="false"
         android:scaleType="centerCrop"
         android:visibility="visible"
@@ -30,6 +33,10 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         android:text="Hola! Debe iniciar sesión para continuar"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/edt_Usuario"
@@ -41,9 +48,9 @@
         android:id="@+id/edt_Usuario"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:drawableLeft="@drawable/ic_email"
         android:ems="10"
         android:gravity="center"
@@ -54,16 +61,16 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img"
-        app:layout_constraintVertical_bias="0.112"
+        app:layout_constraintVertical_bias="0.077"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/edt_Contraseña"
         android:layout_width="0dp"
         android:layout_height="44dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:drawableLeft="@drawable/ic_pass"
         android:ems="10"
         android:gravity="center"
@@ -75,44 +82,41 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_Usuario"
-        app:layout_constraintVertical_bias="0.093"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-    <Button
-        android:id="@+id/btn_Limpiar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Limpiar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_ingresar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_Contraseña"
-        app:layout_constraintVertical_bias="0.596" />
-
-    <Button
-        android:id="@+id/btn_ingresar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Ingresar"
-        app:layout_constraintBaseline_toBaselineOf="@+id/btn_Limpiar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_Limpiar" />
 
     <TextView
         android:id="@+id/txtRegistrar"
-        android:layout_width="413dp"
-        android:layout_height="91dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         android:text="Usuario no registrado?\nRegistrese aquí!"
         android:textAlignment="center"
-        android:textAllCaps="true"
+        android:textAllCaps="false"
         android:textSize="20sp"
-        android:textStyle="bold"
+        android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_Limpiar"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_Contraseña"
+        app:layout_constraintVertical_bias="0.074" />
+
+    <Button
+        android:id="@+id/btn_ingresar"
+        android:layout_width="411dp"
+        android:layout_height="59dp"
+        android:drawableLeft="@drawable/ic_baseline_arrow_forward_24"
+        android:text="Ingresar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtRegistrar"
+        app:layout_constraintVertical_bias="0.315" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

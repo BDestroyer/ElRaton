@@ -17,7 +17,7 @@ import com.inacap.elraton.R;
 
 public class ContactoFragment extends Fragment {
     private EditText txtNombreContc,txtConsulta,txtCorreoContc;
-    private Button btnEnviar,btnLimpiar;
+    private Button btnEnviar;
     String NombreContc,CorreoContc,Consulta;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -30,33 +30,24 @@ public class ContactoFragment extends Fragment {
         txtCorreoContc=view.findViewById(R.id.edtCorreoContc);
         txtConsulta=view.findViewById(R.id.edtConsulta);
         btnEnviar=view.findViewById(R.id.btnEnviar);
-        btnLimpiar=view.findViewById(R.id.btnLimpiar);
         btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 NombreContc=txtNombreContc.getText().toString();
                 CorreoContc=txtCorreoContc.getText().toString();
                 Consulta=txtConsulta.getText().toString();
                 if(!(Consulta.equals("") || NombreContc.equals("")|| CorreoContc.equals("")))
                 {
-                    Toast.makeText(getContext(), "Datos llenados", Toast.LENGTH_SHORT).show();
-
+                    Toast.makeText(getContext(), "Datos envíados al administrador", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
-                    Toast.makeText(getContext(), "Debe ingresar los datos validos", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Debe ingresar los datos válidos", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        btnLimpiar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                txtNombreContc.setText("");
-                txtCorreoContc.setText("");
-                txtConsulta.setText("");
-                txtNombreContc.requestFocus();
-            }
-        });
+
 
     }
 

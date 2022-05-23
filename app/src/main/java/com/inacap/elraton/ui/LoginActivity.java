@@ -18,9 +18,9 @@ import com.inacap.elraton.RegistroActivity;
 import com.inacap.elraton.db;
 
 public class LoginActivity extends AppCompatActivity {
-    Button btnIngresar, btnLimpiar;
+    Button btnIngresar;
     TextView redireccion, ingUsuario,ingContrasenna;
-    String user,contrasenna,usuarioIng,contraIng;
+    String usuarioIng,contraIng;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -41,7 +41,6 @@ public class LoginActivity extends AppCompatActivity {
         ingUsuario=findViewById(R.id.edt_Usuario);
         ingContrasenna=findViewById(R.id.edt_Contraseña);
         btnIngresar=findViewById(R.id.btn_ingresar);
-        btnLimpiar=findViewById(R.id.btn_Limpiar);
         btnIngresar.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -75,15 +74,6 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, "Usuario no encontrado, por favor registrese", Toast.LENGTH_SHORT).show();
                     }
                 }
-            }
-        });
-        btnLimpiar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view)
-            {
-                ingUsuario.setText("");
-                ingContrasenna.setText("");
-                ingUsuario.requestFocus();
             }
         });
         redireccion.setOnClickListener(new View.OnClickListener() {
