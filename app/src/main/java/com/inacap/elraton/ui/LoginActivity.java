@@ -18,7 +18,6 @@ import com.inacap.elraton.RegistroActivity;
 import com.inacap.elraton.db;
 
 public class LoginActivity extends AppCompatActivity {
-    ImageView img;
     Button btnIngresar, btnLimpiar;
     TextView redireccion, ingUsuario,ingContrasenna;
     String user,contrasenna,usuarioIng,contraIng;
@@ -39,8 +38,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         redireccion=findViewById(R.id.txtRegistrar);
-        img=findViewById(R.id.img);
-        img.setImageResource(R.drawable.descarga);
         ingUsuario=findViewById(R.id.edt_Usuario);
         ingContrasenna=findViewById(R.id.edt_Contraseña);
         btnIngresar=findViewById(R.id.btn_ingresar);

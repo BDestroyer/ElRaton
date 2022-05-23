@@ -20,7 +20,7 @@
             android:background="#202020"
             android:scaleType="fitCenter"
             android:visibility="visible"
-            tools:srcCompat="@drawable/ic_round_people_24"
+            tools:srcCompat="@drawable/ic_menu_gallery"
             tools:visibility="visible" />
     </LinearLayout>
 
@@ -81,18 +81,19 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/btn_Limpiar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Limpiar" />
+
+            <Button
                 android:id="@+id/btn_ingresar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Ingresar" />
 
-            <Button
-                android:id="@+id/btn_Limpiar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Limpiar" />
         </LinearLayout>
 
         <LinearLayout
