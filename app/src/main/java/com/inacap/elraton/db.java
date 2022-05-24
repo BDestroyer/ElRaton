@@ -27,4 +27,5 @@ public class db extends SQLiteOpenHelper
         db.execSQL("CREATE TABLE carrito(id integer primary key not null)");
         onCreate(db);
     }
+    //https://www.youtube.com/watch?v=e7yQHjWiiLM
 }
