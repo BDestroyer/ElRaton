@@ -48,6 +48,7 @@ public class InicioFragment extends Fragment
     }
     public void init()
     {
+
         elements = new ArrayList<>();
         elements.add(new producto("este es un uno","15000", "1", "#775447"));
         elements.add(new producto("este es un dos","5000", "2", "#705447"));

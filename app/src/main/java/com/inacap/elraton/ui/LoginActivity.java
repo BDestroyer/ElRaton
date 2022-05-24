@@ -83,7 +83,6 @@ public class LoginActivity extends AppCompatActivity {
                                     startActivity(a);
                                 }while (cursor.moveToNext());
                             }
-
                         }
                     }
                     else
