@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.inacap.elraton.R;
 
 public class ContactoFragment extends Fragment {
@@ -25,7 +26,8 @@ public class ContactoFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_contacto, container, false);
     }
     @MainThread
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
+    {
         txtNombreContc=view.findViewById(R.id.edtNombreContc);
         txtCorreoContc=view.findViewById(R.id.edtCorreoContc);
         txtConsulta=view.findViewById(R.id.edtConsulta);

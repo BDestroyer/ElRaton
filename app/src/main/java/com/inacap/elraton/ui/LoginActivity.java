@@ -27,14 +27,18 @@ public class LoginActivity extends AppCompatActivity {
         db conexionUsuario=new db(getApplicationContext(),"elRaton.db",null,1);
         Metodo x= new Metodo();
         SQLiteDatabase basedato=x.Conectar(conexionUsuario);
-        ContentValues r=new ContentValues();
-        r.put("email", "N.Araya");
-        r.put("nombre", "admin");
-        r.put("apellido", "admin");
-        r.put("contrasenna", "admin");
-        r.put("rol", "true");
         long i;
-        i=basedato.insert("usuario",null,r);
+        Cursor cursor=basedato.rawQuery("select email from usuario",null);
+        if (!(cursor.moveToFirst()))
+        {
+            ContentValues r=new ContentValues();
+            r.put("email", "N.Araya");
+            r.put("nombre", "admin");
+            r.put("apellido", "admin");
+            r.put("contrasenna", "admin");
+            r.put("rol", "true");
+            i=basedato.insert("usuario",null,r);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         redireccion=findViewById(R.id.txtRegistrar);
@@ -65,8 +69,21 @@ public class LoginActivity extends AppCompatActivity {
                         }
                         else
                         {
-                            Intent a=new Intent(getApplicationContext(),MainActivity.class);
-                            startActivity(a);
+                            cursor=basedato.rawQuery("select email, nombre, apellido from usuario",null);
+                            if (cursor.moveToFirst())
+                            {
+                                do
+                                {
+                                    Intent a=new Intent(getApplicationContext(),MainActivity.class);
+                                    String email=cursor.getString(0);
+                                    String nom=cursor.getString(1);
+                                    String ape=cursor.getString(2);
+                                    a.putExtra("nombre completo",nom+" "+ape);
+                                    a.putExtra("correo",email);
+                                    startActivity(a);
+                                }while (cursor.moveToNext());
+                            }
+
                         }
                     }
                     else

@@ -1,7 +1,11 @@
 package com.inacap.elraton.ui;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -11,9 +15,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import com.inacap.elraton.R;
 import com.inacap.elraton.databinding.ActivityMainBinding;
+
 public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+    FloatingActionButton fab;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -21,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setSupportActionBar(binding.appBarMain.toolbar);
-        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener()
+        fab=findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
@@ -44,4 +52,26 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)|| super.onSupportNavigateUp();
     }
+/*Preguntar*****************************
+    public void llenarDatos()
+    {
+        setContentView(R.layout.nav_header_main);
+        TextView nom, corr;
+        String nombre, correo;
+        nom=findViewById(R.id.txtNombre);
+        corr=findViewById(R.id.txtCorreo);
+        Bundle bundle=getIntent().getExtras();
+        if (bundle==null)
+        {
+            nom.setText("Error");
+            corr.setText("Error");
+        }
+        else
+        {
+            nombre=bundle.getString("nombre completo");
+            correo=bundle.getString("correo");
+            nom.setText(nombre);
+            corr.setText(correo);
+        }
+    }*/
 }
