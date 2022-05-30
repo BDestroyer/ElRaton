@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -13,10 +12,12 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.inacap.elraton.R;
 import com.inacap.elraton.databinding.ActivityMainBinding;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+{
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
@@ -27,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setSupportActionBar(binding.appBarMain.toolbar);
-
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
@@ -36,32 +36,27 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        loadData();
     }
     @Override
-    public boolean onSupportNavigateUp() {
+    public boolean onSupportNavigateUp()
+    {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)|| super.onSupportNavigateUp();
     }
-/*Preguntar*****************************
-    public void llenarDatos()
+    private void loadData()
     {
-        setContentView(R.layout.nav_header_main);
-        TextView nom, corr;
         String nombre, correo;
-        nom=findViewById(R.id.txtNombre);
-        corr=findViewById(R.id.txtCorreo);
-        Bundle bundle=getIntent().getExtras();
-        if (bundle==null)
+        Bundle bundle = getIntent().getExtras();
+        if(bundle!=null)
         {
-            nom.setText("Error");
-            corr.setText("Error");
+            View vistaHeader=binding.navView.getHeaderView(0);
+            final TextView txtNombr = vistaHeader.findViewById(R.id.txtNombre);
+            final TextView txtCorr = vistaHeader.findViewById(R.id.txtCorreo);
+            nombre = bundle.getString("nombre completo");
+            correo = bundle.getString("correo");
+            txtNombr.setText(nombre);
+            txtCorr.setText(correo);
         }
-        else
-        {
-            nombre=bundle.getString("nombre completo");
-            correo=bundle.getString("correo");
-            nom.setText(nombre);
-            corr.setText(correo);
-        }
-    }*/
+    }
 }
