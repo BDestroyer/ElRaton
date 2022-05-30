@@ -49,11 +49,14 @@ public class InicioFragment extends Fragment
     {
 
         elements = new ArrayList<>();
-        elements.add(new producto("este es un uno","15000", "1", "#775447"));
-        elements.add(new producto("este es un dos","5000", "2", "#705447"));
-        elements.add(new producto("este es un tres","1000", "1", "#775007"));
-        elements.add(new producto("este es un cuatro","14000", "1", "#d55447"));
-        elements.add(new producto("este es un cinco","1000", "1", "#77d447"));
+
+        elements.add(new producto("ola","$"+"10000","1","Este es  un producto muy bueno pq ola que talca muy buenas jajsja "));
+        elements.add(new producto("ola","$"+"10000","1","Este es  un producto muy bueno pq ola que talca muy buenas jajsja "));
+        elements.add(new producto("ola","$"+"10000","1","Este es  un producto muy bueno pq ola que talca muy buenas jajsja "));
+        elements.add(new producto("ola","$"+"10000","1","Este es  un producto muy bueno pq ola que talca muy buenas jajsja "));
+        elements.add(new producto("ola","$"+"10000","1","Este es  un producto muy bueno pq ola que talca muy buenas jajsja "));
+        elements.add(new producto("ola","$"+"10000","1","Este es  un producto muy bueno pq ola que talca muy buenas jajsja "));
+        elements.add(new producto("ola","$"+"10000","1","Este es  un producto muy bueno pq ola que talca muy buenas jajsja "));
 
         ListAdapter listAdapter=new ListAdapter(elements, getContext());
         RecyclerView recyclerView=getView().findViewById(R.id.listRecyclerView);

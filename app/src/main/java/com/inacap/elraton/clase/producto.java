@@ -2,24 +2,24 @@ package com.inacap.elraton.clase;
 
 public class producto
 {
-    private String descripcion ,precio, cantidad, color;
+    private String nombre, precio,cantidad, descripcion;
 
     public producto() {
     }
 
-    public producto(String descripcion, String precio, String cantidad, String color) {
-        this.descripcion = descripcion;
+    public producto(String nombre, String precio, String cantidad, String descripcion) {
+        this.nombre = nombre;
         this.precio = precio;
         this.cantidad = cantidad;
-        this.color = color;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getPrecio() {
@@ -38,11 +38,11 @@ public class producto
         this.cantidad = cantidad;
     }
 
-    public String getColor() {
-        return color;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }

@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-        loadData();
+        cargarDatos();
     }
     @Override
     public boolean onSupportNavigateUp()
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)|| super.onSupportNavigateUp();
     }
-    private void loadData()
+    public void cargarDatos()
     {
         String nombre, correo;
         Bundle bundle = getIntent().getExtras();

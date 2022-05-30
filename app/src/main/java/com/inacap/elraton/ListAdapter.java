@@ -55,22 +55,21 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
     public class ViewHolder extends RecyclerView.ViewHolder
     {
         ImageView iconImage;
-        TextView cantidad, descripcion, precio;
+        TextView nombre, descripcion, precio;
 
         ViewHolder(View itemView)
         {
             super(itemView);
-            iconImage = itemView.findViewById(R.id.iconImageView);
-            descripcion = itemView.findViewById(R.id.nameTextView);
-            cantidad=itemView.findViewById(R.id.cityTextView);
-            precio=itemView.findViewById(R.id.statusTextView);
+            iconImage = itemView.findViewById(R.id.ImagenProd);
+            nombre=itemView.findViewById(R.id.txtNombreProd);
+            descripcion = itemView.findViewById(R.id.txtDescripcion);
+            precio=itemView.findViewById(R.id.txtPrecio);
         }
 
         void bindData(final producto item)
         {
-            iconImage.setColorFilter(Color.parseColor(item.getColor()), PorterDuff.Mode.SRC_IN);
+            nombre.setText(item.getNombre());
             descripcion.setText(item.getDescripcion());
-            cantidad.setText(item.getCantidad());
             precio.setText(item.getPrecio());
         }
     }

@@ -101,7 +101,6 @@ public class LoginActivity extends AppCompatActivity {
                 {
                     Toast.makeText(LoginActivity.this, "Error de la base de datos"+ex, Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
         redireccion.setOnClickListener(new View.OnClickListener() {
