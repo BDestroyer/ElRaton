@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,8 @@ import com.inacap.elraton.Metodo;
 import com.inacap.elraton.R;
 import com.inacap.elraton.RegistroActivity;
 import com.inacap.elraton.db;
+
+
 
 public class LoginActivity extends AppCompatActivity {
     Button btnIngresar;
@@ -49,46 +52,56 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                usuarioIng=ingUsuario.getText().toString();
-                contraIng=ingContrasenna.getText().toString();
-                if (usuarioIng.equals("")||contraIng.equals(""))
+                try
                 {
-                    Toast.makeText(LoginActivity.this, "Debe rellenar los campos antes de continuar", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    Cursor cursor=basedato.rawQuery("select email, contrasenna from usuario where email='"+usuarioIng+"' and contrasenna='"+contraIng+"'",null);
-                    if (cursor.moveToFirst())
+                    usuarioIng=ingUsuario.getText().toString();
+                    contraIng=ingContrasenna.getText().toString();
+                    if (usuarioIng.equals("")||contraIng.equals(""))
                     {
-                        Cursor cursorAdmin=basedato.rawQuery("select email, contrasenna, rol from usuario where email='"+usuarioIng+"' and contrasenna='"+contraIng+"' and rol='true'",null);
-                        if( cursorAdmin.moveToFirst())
-                        {
-                            //CRUD Admin
-                            Toast.makeText(LoginActivity.this, "Weeeeeeeeeeeeeeeeeeeeeena", Toast.LENGTH_SHORT).show();
-                        }
-                        else
-                        {
-                            cursor=basedato.rawQuery("select email, nombre, apellido from usuario",null);
-                            if (cursor.moveToFirst())
-                            {
-                                do
-                                {
-                                    Intent a=new Intent(getApplicationContext(),MainActivity.class);
-                                    String email=cursor.getString(0);
-                                    String nom=cursor.getString(1);
-                                    String ape=cursor.getString(2);
-                                    a.putExtra("nombre completo",nom+" "+ape);
-                                    a.putExtra("correo",email);
-                                    startActivity(a);
-                                }while (cursor.moveToNext());
-                            }
-                        }
+                        Toast.makeText(LoginActivity.this, "Debe rellenar los campos antes de continuar", Toast.LENGTH_SHORT).show();
                     }
                     else
                     {
-                        Toast.makeText(LoginActivity.this, "Usuario no encontrado, por favor registrese", Toast.LENGTH_SHORT).show();
+                        Cursor cursor=basedato.rawQuery("select email, contrasenna from usuario where email='"+usuarioIng+"' and contrasenna='"+contraIng+"'",null);
+                        if (cursor.moveToFirst())
+                        {
+                            Cursor cursorAdmin=basedato.rawQuery("select email, contrasenna, rol from usuario where email='"+usuarioIng+"' and contrasenna='"+contraIng+"' and rol='true'",null);
+                            if( cursorAdmin.moveToFirst())
+                            {
+                                //CRUD Admin
+                                Toast.makeText(LoginActivity.this, "Weeeeeeeeeeeeeeeeeeeeeena", Toast.LENGTH_SHORT).show();
+                                //Intent a=new Intent(getApplicationContext(), Activity.class);
+                                //startActivity(a);
+                            }
+                            else
+                            {
+                                cursor=basedato.rawQuery("select email, nombre, apellido from usuario",null);
+                                if (cursor.moveToFirst())
+                                {
+                                    do
+                                    {
+                                        Intent a=new Intent(getApplicationContext(),MainActivity.class);
+                                        String email=cursor.getString(0);
+                                        String nom=cursor.getString(1);
+                                        String ape=cursor.getString(2);
+                                        a.putExtra("nombre completo",nom+" "+ape);
+                                        a.putExtra("correo",email);
+                                        startActivity(a);
+                                    }while (cursor.moveToNext());
+                                }
+                            }
+                        }
+                        else
+                        {
+                            Toast.makeText(LoginActivity.this, "Usuario no encontrado, por favor registrese", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
+                catch (SQLException ex)
+                {
+                    Toast.makeText(LoginActivity.this, "Error de la base de datos"+ex, Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
         redireccion.setOnClickListener(new View.OnClickListener() {

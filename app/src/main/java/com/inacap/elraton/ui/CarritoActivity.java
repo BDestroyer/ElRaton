@@ -7,11 +7,12 @@ import android.widget.ListView;
 
 import com.inacap.elraton.R;
 
-public class Carrito extends AppCompatActivity {
+public class CarritoActivity extends AppCompatActivity {
     ListView Array;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carrito);
+
     }
 }

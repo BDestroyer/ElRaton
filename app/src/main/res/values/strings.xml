@@ -9,4 +9,5 @@
     <string name="ingContrasenna_Registrar">Ingrese su contraseña:</string>
     <string name="btnRegresar_Registrar">Regresar</string>
     <string name="btnInsertar">Insertar</string>
+    <string name="olvidar">¿Olvidó su contraseña?</string>
 </resources>

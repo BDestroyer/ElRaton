@@ -3,7 +3,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_logodefi"
+        android:icon="@mipmap/ic_logo3"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.Material3.Dark.NoActionBar">
@@ -11,7 +11,7 @@
             android:name=".RegistroActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.Carrito"
+            android:name=".ui.CarritoActivity"
             android:exported="false" />
         <activity
             android:name=".ui.MainActivity"

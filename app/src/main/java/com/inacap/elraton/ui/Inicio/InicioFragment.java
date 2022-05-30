@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
@@ -18,7 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.inacap.elraton.ListAdapter;
 import com.inacap.elraton.R;
 import com.inacap.elraton.clase.producto;
-import com.inacap.elraton.ui.Carrito;
+import com.inacap.elraton.ui.CarritoActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +40,7 @@ public class InicioFragment extends Fragment
             @Override
             public void onClick(View view)
             {
-                Intent a=new Intent(getContext(),Carrito.class);
+                Intent a=new Intent(getContext(), CarritoActivity.class);
                 startActivity(a);
             }
         });
