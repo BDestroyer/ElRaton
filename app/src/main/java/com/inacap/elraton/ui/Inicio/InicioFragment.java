@@ -47,7 +47,6 @@ public class InicioFragment extends Fragment
     }
     public void init()
     {
-
         elements = new ArrayList<>();
 
         elements.add(new producto("ola","$"+"10000","1","Este es  un producto muy bueno pq ola que talca muy buenas jajsja "));
