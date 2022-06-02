@@ -7,15 +7,20 @@
     tools:context=".ui.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/Theme.ElRaton.AppBarOverlay">
 
+        <SearchView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:layout_height="47dp"
+            android:background="#7E57C2"
             app:popupTheme="@style/Theme.AppCompat.NoActionBar" />
 
     </com.google.android.material.appbar.AppBarLayout>

@@ -16,7 +16,7 @@ public class db extends SQLiteOpenHelper
         db.execSQL("CREATE TABLE usuario(email email primary key not null, contrasenna text not null, nombre text not null, apellido text not null, rol boolean not null)");
         db.execSQL("CREATE TABLE producto(id integer primary key autoincrement not null, titulo text not null, descripcion text not null, precio integer not null, cantidad integer not null)");
         db.execSQL("CREATE TABLE carrito(id integer primary key not null)");
-        db.execSQL("CREATE TABLE contacto(id integer primary key autoincrement not null, email email not null, email email not null, dato text not null)");
+        db.execSQL("CREATE TABLE contacto(id integer primary key autoincrement not null, email email not null, dato text not null)");
     }
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // This database is only a cache for online data, so its upgrade policy is
@@ -25,7 +25,7 @@ public class db extends SQLiteOpenHelper
         db.execSQL("drop table if exists producto");
         db.execSQL("drop table if exists carrito");
         db.execSQL("drop table if exists contacto");
-        db.execSQL("CREATE TABLE contacto(id integer primary key autoincrement not null, email email not null, email email not null, dato text not null)");
+        db.execSQL("CREATE TABLE contacto(id integer primary key autoincrement not null, email email not null, dato text not null)");
         db.execSQL("CREATE TABLE usuario(email email primary key not null, email email not null, apellido text not null, rol boolean not null)");
         db.execSQL("CREATE TABLE producto(id integer primary key autoincrement not null, titulo text not null, descripcion text not null, precio integer not null, cantidad integer not null)");
         db.execSQL("CREATE TABLE carrito(id integer primary key not null)");
