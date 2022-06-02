@@ -3,8 +3,11 @@ package com.inacap.elraton.ui.Inicio;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
@@ -24,12 +27,15 @@ import java.util.List;
 
 public class InicioFragment extends Fragment
 {
+    private SearchView searchView = null;
+    private SearchView.OnQueryTextListener queryTextListener;
     FloatingActionButton fab;
     List<producto> elements;
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         return inflater.inflate(R.layout.fragment_inicio,container,false);
     }
+
     @MainThread
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
@@ -45,6 +51,7 @@ public class InicioFragment extends Fragment
             }
         });
     }
+
     public void init()
     {
         elements = new ArrayList<>();
@@ -63,4 +70,7 @@ public class InicioFragment extends Fragment
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(listAdapter);
     }
+
+
+
 }

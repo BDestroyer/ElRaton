@@ -2,6 +2,8 @@ package com.inacap.elraton.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.TextView;
 
@@ -58,5 +60,10 @@ public class MainActivity extends AppCompatActivity
             txtNombr.setText(nombre);
             txtCorr.setText(correo);
         }
+    }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.search_menu, menu);
+        return true;
     }
 }
