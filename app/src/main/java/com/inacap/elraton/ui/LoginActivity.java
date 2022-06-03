@@ -16,7 +16,6 @@ import android.widget.Toast;
 import com.inacap.elraton.AdminActivity.EntradaAdminActivity;
 import com.inacap.elraton.Metodo;
 import com.inacap.elraton.R;
-import com.inacap.elraton.RegistroActivity;
 import com.inacap.elraton.db;
 
 

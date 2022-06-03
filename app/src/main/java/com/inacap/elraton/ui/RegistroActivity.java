@@ -1,4 +1,4 @@
-package com.inacap.elraton;
+package com.inacap.elraton.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,7 +13,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.inacap.elraton.ui.LoginActivity;
+import com.inacap.elraton.Metodo;
+import com.inacap.elraton.R;
+import com.inacap.elraton.db;
 
 public class RegistroActivity extends AppCompatActivity {
     EditText nom, ape, email,pass;

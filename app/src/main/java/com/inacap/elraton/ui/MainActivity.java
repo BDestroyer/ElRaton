@@ -64,8 +64,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         txtBuscar=findViewById(R.id.SearchView);
         //txtBuscar.setOnQueryTextListener(this);
         return true;
-
     }
+
     @Override
     public boolean onSupportNavigateUp()
     {
