@@ -8,6 +8,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Material3.Dark.NoActionBar">
         <activity
+            android:name=".ui.EntradaAdminActivity"
+            android:exported="false" />
+        <activity
             android:name=".RegistroActivity"
             android:exported="false" />
         <activity
@@ -15,8 +18,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.MainActivity"
-            android:exported="false"
-            />
+            android:exported="false" />
         <activity
             android:name=".ui.LoginActivity"
             android:exported="true"

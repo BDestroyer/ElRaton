@@ -1,8 +1,6 @@
-package com.inacap.elraton;
+package com.inacap.elraton.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.inacap.elraton.R;
 import com.inacap.elraton.clase.producto;
 
 import java.util.List;
@@ -68,7 +67,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
 
         void bindData(final producto item)
         {
-            nombre.setText(item.getNombre());
+            nombre.setText(item.getTitulo());
             descripcion.setText(item.getDescripcion());
             precio.setText(item.getPrecio());
         }

@@ -1,10 +1,12 @@
 package com.inacap.elraton.ui;
 
-import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
@@ -14,14 +16,24 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.inacap.elraton.Metodo;
 import com.inacap.elraton.R;
+import com.inacap.elraton.adapter.ListAdapter;
+import com.inacap.elraton.clase.producto;
 import com.inacap.elraton.databinding.ActivityMainBinding;
+import com.inacap.elraton.db;
 
-public class MainActivity extends AppCompatActivity
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener
 {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+    SearchView txtBuscar;
+    RecyclerView rcv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -39,7 +51,9 @@ public class MainActivity extends AppCompatActivity
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         cargarDatos();
+        init();
     }
+
     @Override
     public boolean onSupportNavigateUp()
     {
@@ -64,6 +78,43 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.search_menu, menu);
+        txtBuscar=findViewById(R.id.SearchView);
+        //txtBuscar.setOnQueryTextListener(this);
         return true;
+    }
+    public void init()
+    {
+        ArrayList<producto> listaProducto;
+        Metodo x= new Metodo();
+        producto prod=null;
+        db conexionUsuario=new db(getApplicationContext(),"elRaton.db",null,1);
+        SQLiteDatabase basedato=x.Conectar(conexionUsuario);
+        listaProducto = new ArrayList<>();
+        Cursor cursor=basedato.rawQuery("select * from producto",null);
+        while (cursor.moveToNext())
+        {
+            prod=new producto();
+            prod.setId(cursor.getInt(0));
+            prod.setTitulo(cursor.getString(1));
+            prod.setDescripcion(cursor.getString(2));
+            prod.setPrecio(+cursor.getInt(3));
+            prod.setCantidad(cursor.getInt(4));
+            listaProducto.add(prod);
+        }
+        rcv=findViewById(R.id.listRecyclerView);
+        rcv.setLayoutManager(new LinearLayoutManager(this));
+        ListAdapter listAdapter=new ListAdapter(listaProducto, this);
+        rcv.setHasFixedSize(true);
+        rcv.setAdapter(listAdapter);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        return false;
     }
 }
