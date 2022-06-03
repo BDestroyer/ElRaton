@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         if (!(cursor.moveToFirst()))
         {
             ContentValues r=new ContentValues();
-            r.put("email", "N.Araya");
+            r.put("email", "admin");
             r.put("nombre", "admin");
             r.put("apellido", "admin");
             r.put("contrasenna", "admin");
