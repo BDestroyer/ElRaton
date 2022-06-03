@@ -8,13 +8,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Material3.Dark.NoActionBar">
         <activity
-            android:name=".VerProductoActivity"
+            android:name=".AdminActivity.VerProductoActivity"
             android:exported="false" />
         <activity
-            android:name=".ModificarActivity"
+            android:name=".AdminActivity.ModificarProductoActivity"
             android:exported="false" />
         <activity
-            android:name=".AgregarActivity"
+            android:name=".AdminActivity.AgregarProductoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdminActivity.EliminarProductoActivity"
             android:exported="false" />
         <activity
             android:name=".AdminActivity.EntradaAdminActivity"
