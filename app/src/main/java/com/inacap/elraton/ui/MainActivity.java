@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     private ActivityMainBinding binding;
     SearchView txtBuscar;
     RecyclerView rcv;
+    ListAdapter listAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -55,6 +57,16 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu)
+    {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.search_menu, menu);
+        txtBuscar=findViewById(R.id.SearchView);
+        //txtBuscar.setOnQueryTextListener(this);
+        return true;
+
+    }
+    @Override
     public boolean onSupportNavigateUp()
     {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -75,13 +87,13 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             txtCorr.setText(correo);
         }
     }
+/*
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.search_menu, menu);
-        txtBuscar=findViewById(R.id.SearchView);
-        //txtBuscar.setOnQueryTextListener(this);
         return true;
-    }
+    }*/
+
     public void init()
     {
         ArrayList<producto> listaProducto;
@@ -103,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         }
         rcv=findViewById(R.id.listRecyclerView);
         rcv.setLayoutManager(new LinearLayoutManager(this));
-        ListAdapter listAdapter=new ListAdapter(listaProducto, this);
+        listAdapter=new ListAdapter(listaProducto, this);
         rcv.setHasFixedSize(true);
         rcv.setAdapter(listAdapter);
     }
@@ -114,7 +126,9 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     }
 
     @Override
-    public boolean onQueryTextChange(String newText) {
+    public boolean onQueryTextChange(String newText)
+    {
+        listAdapter.filtrado(newText);
         return false;
     }
 }

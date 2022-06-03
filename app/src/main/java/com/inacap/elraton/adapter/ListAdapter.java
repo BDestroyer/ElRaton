@@ -12,11 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.inacap.elraton.R;
 import com.inacap.elraton.clase.producto;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
 {
     private List<producto> mData;
+    ArrayList<producto> mOriginal;
     private LayoutInflater mInflater;
     private Context context;
 
@@ -25,6 +28,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
         this.mInflater = LayoutInflater.from(context);
         this.context = context;
         this.mData=itemList;
+        mOriginal =new ArrayList<>();
+        mOriginal.addAll(mData);
     }
 
     @Override
@@ -38,6 +43,20 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
     {
         View view=mInflater.inflate(R.layout.list_element,null);
         return new ListAdapter.ViewHolder(view);
+    }
+    public void filtrado(String txtBuscar)
+    {
+        int longitud=txtBuscar.length();
+        if (longitud == 0)
+        {
+            mData.clear();
+            mData.addAll(mOriginal);
+        }
+        else
+        {
+            List<producto> coleccion = mData.stream().filter(i -> i.getTitulo().toLowerCase().contains(txtBuscar.toLowerCase())).collect(Collectors.toList());
+        }
+        notifyDataSetChanged();
     }
 
     @Override

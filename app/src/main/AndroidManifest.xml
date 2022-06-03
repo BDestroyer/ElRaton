@@ -8,7 +8,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Material3.Dark.NoActionBar">
         <activity
-            android:name=".ui.EntradaAdminActivity"
+            android:name=".VerProductoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ModificarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AgregarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdminActivity.EntradaAdminActivity"
             android:exported="false" />
         <activity
             android:name=".RegistroActivity"
