@@ -1,13 +1,12 @@
 package com.inacap.elraton.ui;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,11 +29,10 @@ import com.inacap.elraton.db;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener
+public class MainActivity extends AppCompatActivity
 {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
-    SearchView txtBuscar;
     RecyclerView rcv;
     ListAdapter listAdapter;
 
@@ -47,8 +45,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         setSupportActionBar(binding.appBarMain.toolbar);
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_Inicio, R.id.nav_Buscar, R.id.nav_Contacto).setOpenableLayout(drawer).build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
@@ -57,14 +53,21 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         init();
     }
 
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu)
+    public boolean onCreateOptionsMenu(Menu menu)
     {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.search_menu, menu);
-        txtBuscar=findViewById(R.id.SearchView);
-        //txtBuscar.setOnQueryTextListener(this);
+        getMenuInflater().inflate(R.menu.cerrar_menu,menu);
         return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        int id = item.getItemId();
+        if(id == R.id.menuCerrarSesion)
+        {
+            Intent i=new Intent(getApplicationContext(),LoginActivity.class);
+            startActivity(i);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -73,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)|| super.onSupportNavigateUp();
     }
+
     public void cargarDatos()
     {
         String nombre, correo;
@@ -120,17 +124,5 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         listAdapter=new ListAdapter(listaProducto, this);
         rcv.setHasFixedSize(true);
         rcv.setAdapter(listAdapter);
-    }
-
-    @Override
-    public boolean onQueryTextSubmit(String query) {
-        return false;
-    }
-
-    @Override
-    public boolean onQueryTextChange(String newText)
-    {
-        listAdapter.filtrado(newText);
-        return false;
     }
 }

@@ -84,8 +84,6 @@ public class LoginActivity extends AppCompatActivity {
                                         String ape=cursor.getString(2);
                                         bundle.putString("nombre_completo",nom+" "+ape);
                                         bundle.putString("correo",email);
-                                        //a.putExtra("nombre completo",nom+" "+ape);
-                                        //a.putExtra("correo",email);
                                         a.putExtras(bundle);
                                         startActivity(a);
                                     }while (cursor.moveToNext());

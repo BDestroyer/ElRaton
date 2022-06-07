@@ -4,10 +4,9 @@
     tools:context=".HomeActivity">
 
     <item
-        android:id="@+id/SearchView"
-        android:icon="@android:drawable/ic_menu_search"
-        android:title="Search"
-        app:actionViewClass="android.widget.SearchView"
+        android:id="@+id/menuCerrarSesion"
+        android:icon="@drawable/ic_baseline_exit_to_app_24"
+        android:title="@string/menu_cerrarSession"
         app:showAsAction="always" />
 
 </menu>

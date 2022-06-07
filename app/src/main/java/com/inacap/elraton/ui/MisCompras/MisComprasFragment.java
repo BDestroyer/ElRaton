@@ -1,4 +1,4 @@
-package com.inacap.elraton.ui.Buscar;
+package com.inacap.elraton.ui.MisCompras;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import com.inacap.elraton.R;
 
-public class buscarFragment extends Fragment {
+public class MisComprasFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState)
