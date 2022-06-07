@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -24,8 +23,6 @@ import android.widget.Toast;
 import com.inacap.elraton.Metodo;
 import com.inacap.elraton.R;
 import com.inacap.elraton.db;
-import com.inacap.elraton.ui.LoginActivity;
-import com.inacap.elraton.ui.MainActivity;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -53,6 +50,7 @@ public class AgregarProductoActivity extends AppCompatActivity {
             public void onClick(View view)
             {
                 cargarImagen();
+                createDirectoryAndSaveFile(bmap, "a");
             }
         });
         btnInsertarProd.setOnClickListener(new View.OnClickListener() {
@@ -67,9 +65,6 @@ public class AgregarProductoActivity extends AppCompatActivity {
                     String DescripcionIng=txtDescripcion.getText().toString();
                     int PrecioIng=Integer.parseInt(txtPrecio.getText().toString());
                     int CantidadIng=Integer.parseInt(txtCantidad.getText().toString());
-                    imgAdd.buildDrawingCache();
-                    Bitmap bmap = imgAdd.getDrawingCache();
-                    createDirectoryAndSaveFile(bmap, "a");
                     if (TituloIng.equals("") || DescripcionIng.equals("") || PrecioIng==0 ||CantidadIng==0)
                     {
                         Toast.makeText(AgregarProductoActivity.this, "Debe rellenar los campos antes de continuar", Toast.LENGTH_SHORT).show();
@@ -97,8 +92,8 @@ public class AgregarProductoActivity extends AppCompatActivity {
         });
 
     }
-    private void createDirectoryAndSaveFile(Bitmap imageToSave, String fileName) {
-
+    private void createDirectoryAndSaveFile(Bitmap imageToSave, String fileName)
+    {
         File direct = new File(Environment.getExternalStorageDirectory() + "/DirImg");
         if (!direct.exists()) {
             File wallpaperDirectory = new File("/sdcard/DirName/");

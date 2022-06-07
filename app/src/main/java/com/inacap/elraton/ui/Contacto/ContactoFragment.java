@@ -14,7 +14,6 @@ import android.widget.Toast;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.os.BundleKt;
 import androidx.fragment.app.Fragment;
 
 import com.inacap.elraton.Metodo;

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
@@ -17,7 +16,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.inacap.elraton.R;
-import com.inacap.elraton.adapter.ListAdapter;
 import com.inacap.elraton.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity
