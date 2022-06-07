@@ -80,10 +80,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
     public void onBindViewHolder(final ListAdapter.ViewHolder holder, final int position)
     {
         holder.bindData(mData.get(position));
-        /*holder.iconImage.setImageResource(mData.get(position).getFoto());
-        holder.nombre.setText(mData.get(position).getTitulo());
-        holder.descripcion.setText(mData.get(position).getDescripcion());
-        holder.precio.setText(mData.get(position).getPrecio());*/
     }
 
     public void setItems(List<producto> items)

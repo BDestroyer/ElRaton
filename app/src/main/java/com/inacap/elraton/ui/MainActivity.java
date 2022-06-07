@@ -1,15 +1,12 @@
 package com.inacap.elraton.ui;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import androidx.navigation.NavController;
@@ -18,25 +15,15 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.inacap.elraton.Metodo;
 import com.inacap.elraton.R;
 import com.inacap.elraton.adapter.ListAdapter;
-import com.inacap.elraton.clase.producto;
 import com.inacap.elraton.databinding.ActivityMainBinding;
-import com.inacap.elraton.db;
 
-import java.util.ArrayList;
-
-public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener
+public class MainActivity extends AppCompatActivity
 {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
-    RecyclerView rcv;
-    ListAdapter listAdapter;
-    SearchView Busqueda;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -50,10 +37,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-        Busqueda=findViewById(R.id.txtBuscar);
         cargarDatos();
-
-        Busqueda.setOnQueryTextListener(this);
     }
 
     public boolean onCreateOptionsMenu(Menu menu)
@@ -94,16 +78,5 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             txtNombr.setText(nombre);
             txtCorr.setText(correo);
         }
-    }
-
-    @Override
-    public boolean onQueryTextSubmit(String query) {
-        return false;
-    }
-
-    @Override
-    public boolean onQueryTextChange(String newText) {
-        listAdapter.filtrado(newText);
-        return false;
     }
 }

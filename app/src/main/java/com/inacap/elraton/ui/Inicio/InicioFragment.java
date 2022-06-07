@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.annotation.MainThread;
@@ -26,11 +27,13 @@ import com.inacap.elraton.ui.CarritoActivity;
 
 import java.util.ArrayList;
 
-public class InicioFragment extends Fragment
+public class InicioFragment extends Fragment implements SearchView.OnQueryTextListener
 {
     RecyclerView rcv;
     FloatingActionButton fab;
     ListAdapter listAdapter;
+    SearchView Busqueda;
+
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         return inflater.inflate(R.layout.fragment_inicio,container,false);
@@ -41,6 +44,8 @@ public class InicioFragment extends Fragment
     {
         fab=view.findViewById(R.id.fab);
         init();
+        Busqueda=view.findViewById(R.id.txtBuscar);
+        Busqueda.setOnQueryTextListener(this);
         fab.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -83,5 +88,16 @@ public class InicioFragment extends Fragment
         listAdapter=new ListAdapter(listaProducto, getContext());
         rcv.setHasFixedSize(true);
         rcv.setAdapter(listAdapter);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        listAdapter.filtrado(newText);
+        return false;
     }
 }

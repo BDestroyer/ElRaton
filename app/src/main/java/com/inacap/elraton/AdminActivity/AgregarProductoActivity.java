@@ -13,6 +13,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +27,8 @@ import com.inacap.elraton.db;
 import com.inacap.elraton.ui.LoginActivity;
 import com.inacap.elraton.ui.MainActivity;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class AgregarProductoActivity extends AppCompatActivity {
@@ -64,6 +67,9 @@ public class AgregarProductoActivity extends AppCompatActivity {
                     String DescripcionIng=txtDescripcion.getText().toString();
                     int PrecioIng=Integer.parseInt(txtPrecio.getText().toString());
                     int CantidadIng=Integer.parseInt(txtCantidad.getText().toString());
+                    imgAdd.buildDrawingCache();
+                    Bitmap bmap = imgAdd.getDrawingCache();
+                    createDirectoryAndSaveFile(bmap, "a");
                     if (TituloIng.equals("") || DescripcionIng.equals("") || PrecioIng==0 ||CantidadIng==0)
                     {
                         Toast.makeText(AgregarProductoActivity.this, "Debe rellenar los campos antes de continuar", Toast.LENGTH_SHORT).show();
@@ -71,6 +77,7 @@ public class AgregarProductoActivity extends AppCompatActivity {
                     else
                     {
                         ContentValues r = new ContentValues();
+                        r.put("rutaImg","/sdcard/DirName/");
                         r.put("titulo",TituloIng);
                         r.put("descripcion", DescripcionIng);
                         r.put("precio",PrecioIng );
@@ -89,6 +96,26 @@ public class AgregarProductoActivity extends AppCompatActivity {
             }
         });
 
+    }
+    private void createDirectoryAndSaveFile(Bitmap imageToSave, String fileName) {
+
+        File direct = new File(Environment.getExternalStorageDirectory() + "/DirImg");
+        if (!direct.exists()) {
+            File wallpaperDirectory = new File("/sdcard/DirName/");
+            wallpaperDirectory.mkdirs();
+        }
+        File file = new File("/sdcard/DirName/", fileName);
+        if (file.exists()) {
+            file.delete();
+        }
+        try {
+            FileOutputStream out = new FileOutputStream(file);
+            imageToSave.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void cargarImagen()
