@@ -91,13 +91,13 @@ public class AgregarProductoActivity extends AppCompatActivity {
 
     }
 
-    private void cargarImagen() {
+    private void cargarImagen()
+    {
         Intent intent=new Intent();
         intent.setType("image/");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         launchSomeActivity.launch(intent);
     }
-
     ActivityResultLauncher<Intent> launchSomeActivity= registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),result ->
     {
                 if (result.getResultCode() == Activity.RESULT_OK)
