@@ -10,7 +10,7 @@ import android.widget.Button;
 import com.inacap.elraton.R;
 
 public class EntradaAdminActivity extends AppCompatActivity {
-    Button btnIngresar, btnModificar, btnEliminar, btnVer;
+    Button btnIngresar, btnModificar, btnEliminar, btnVer, btnRecomend;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +19,7 @@ public class EntradaAdminActivity extends AppCompatActivity {
     btnEliminar=findViewById(R.id.btnAEliminar);
     btnModificar=findViewById(R.id.btnAModificar);
     btnVer=findViewById(R.id.btnAVer);
+    btnRecomend=findViewById(R.id.btnRecomendaciones);
     btnIngresar.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -47,6 +48,13 @@ public class EntradaAdminActivity extends AppCompatActivity {
         public void onClick(View v)
         {
             Intent a=new Intent(getApplicationContext(), VerProductoActivity.class);
+            startActivity(a);
+        }
+    });
+    btnRecomend.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent a=new Intent(getApplicationContext(), RecomendacionesAdminActivity.class);
             startActivity(a);
         }
     });

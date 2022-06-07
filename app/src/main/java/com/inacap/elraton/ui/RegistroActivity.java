@@ -67,7 +67,8 @@ public class RegistroActivity extends AppCompatActivity {
                         long i;
                         i = basedato.insert("usuario", null, r);
                         Cursor cursor = basedato.rawQuery("select email, contrasenna from usuario where email='" + e + "' and contrasenna='" + p + "'", null);
-                        if (cursor.moveToFirst()) {
+                        if (cursor.moveToFirst())
+                        {
                             Toast.makeText(RegistroActivity.this, "Usuario ingresado correctamente", Toast.LENGTH_SHORT).show();
                             Intent a = new Intent(getApplicationContext(), LoginActivity.class);
                             startActivity(a);

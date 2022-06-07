@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import androidx.navigation.NavController;
@@ -87,12 +88,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             txtCorr.setText(correo);
         }
     }
-/*
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.search_menu, menu);
-        return true;
-    }*/
 
     public void init()
     {
@@ -103,15 +98,22 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         SQLiteDatabase basedato=x.Conectar(conexionUsuario);
         listaProducto = new ArrayList<>();
         Cursor cursor=basedato.rawQuery("select * from producto",null);
-        while (cursor.moveToNext())
+        if (cursor.moveToFirst())
         {
-            prod=new producto();
-            prod.setId(cursor.getInt(0));
-            prod.setTitulo(cursor.getString(1));
-            prod.setDescripcion(cursor.getString(2));
-            prod.setPrecio(+cursor.getInt(3));
-            prod.setCantidad(cursor.getInt(4));
-            listaProducto.add(prod);
+            while (cursor.moveToNext())
+            {
+                prod=new producto();
+                prod.setId(cursor.getInt(0));
+                prod.setTitulo(cursor.getString(1));
+                prod.setDescripcion(cursor.getString(2));
+                prod.setPrecio(+cursor.getInt(3));
+                prod.setCantidad(cursor.getInt(4));
+                listaProducto.add(prod);
+            }
+        }
+        else
+        {
+            Toast.makeText(this, "No se han encontrado productos en la base de datos", Toast.LENGTH_SHORT).show();
         }
         rcv=findViewById(R.id.listRecyclerView);
         rcv.setLayoutManager(new LinearLayoutManager(this));

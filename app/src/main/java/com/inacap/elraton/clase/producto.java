@@ -3,17 +3,18 @@ package com.inacap.elraton.clase;
 public class producto
 {
     private String titulo, descripcion;
-    private int id, precio, cantidad;
+    private int id, precio, cantidad, foto;
 
     public producto() {
     }
 
-    public producto(String titulo, String descripcion, int id, int precio, int cantidad) {
+    public producto(String titulo, String descripcion, int id, int precio, int cantidad, int foto) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.id = id;
         this.precio = precio;
         this.cantidad = cantidad;
+        this.foto = foto;
     }
 
     public String getTitulo() {
@@ -54,5 +55,13 @@ public class producto
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public int getFoto() {
+        return foto;
+    }
+
+    public void setFoto(int foto) {
+        this.foto = foto;
     }
 }

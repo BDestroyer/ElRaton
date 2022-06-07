@@ -62,7 +62,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
     @Override
     public void onBindViewHolder(final ListAdapter.ViewHolder holder, final int position)
     {
-        holder.bindData(mData.get(position));
+        holder.iconImage.setImageResource(mData.get(position).getFoto());
+        holder.nombre.setText(mData.get(position).getTitulo());
+        holder.descripcion.setText(mData.get(position).getDescripcion());
+        holder.precio.setText(mData.get(position).getPrecio());
     }
 
     public void setItems(List<producto> items)
@@ -73,26 +76,16 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
     public class ViewHolder extends RecyclerView.ViewHolder
     {
         ImageView iconImage;
-        TextView id, nombre, descripcion, precio, cantidad;
+        TextView nombre, descripcion, precio;
 
         ViewHolder(View itemView)
         {
             super(itemView);
-            id=itemView.findViewById(R.id.txtId);
             iconImage = itemView.findViewById(R.id.ImagenProd);
             nombre=itemView.findViewById(R.id.txtNombreProd);
             descripcion = itemView.findViewById(R.id.txtDescripcion);
             precio=itemView.findViewById(R.id.txtPrecio);
-            cantidad=itemView.findViewById(R.id.txtCantidad);
         }
 
-        void bindData(final producto item)
-        {
-            id.setText(String.valueOf(item.getId()));
-            nombre.setText(item.getTitulo());
-            descripcion.setText(item.getDescripcion());
-            precio.setText(String.valueOf(item.getPrecio()));
-            cantidad.setText(String.valueOf(    item.getCantidad()));
-        }
     }
 }
