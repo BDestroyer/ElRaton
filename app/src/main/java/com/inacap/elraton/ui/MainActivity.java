@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             View vistaHeader=binding.navView.getHeaderView(0);
             final TextView txtNombr = vistaHeader.findViewById(R.id.txtNombre);
             final TextView txtCorr = vistaHeader.findViewById(R.id.txtCorreo);
-            nombre = bundle.getString("nombre completo");
+            nombre = bundle.getString("nombre_completo");
             correo = bundle.getString("correo");
             txtNombr.setText(nombre);
             txtCorr.setText(correo);

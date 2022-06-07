@@ -33,17 +33,8 @@ public class ContactoFragment extends Fragment {
     @MainThread
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
-        String nombre="", correo="";
         txtConsulta=view.findViewById(R.id.edtConsulta);
         btnEnviar=view.findViewById(R.id.btnEnviar);
-        Bundle bundle=getArguments();
-        if (bundle!=null)
-        {
-            nombre=bundle.getString("nombre completo");
-            correo= bundle.getString("correo");
-        }
-        String finalNombre = nombre;
-        String finalCorreo = correo;
         btnEnviar.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -58,26 +49,20 @@ public class ContactoFragment extends Fragment {
                     if(!(Consulta.equals("")))
                     {
                         Toast.makeText(getContext(), "Datos envíados al administrador", Toast.LENGTH_SHORT).show();
-                        r.put("nombre", finalNombre);
-                        r.put("email", finalCorreo);
                         r.put("dato",Consulta);
                         long i;
                         i=basedato.insert("contacto",null,r);
-                        txtConsulta.setText("");
                     }
                     else
                     {
                         Toast.makeText(getContext(), "Debe ingresar los datos válidos", Toast.LENGTH_SHORT).show();
                     }
+                    txtConsulta.setText("");
                 }catch (SQLException ex)
                 {
                     Toast.makeText(getContext(), "Error "+ex, Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
-
-
     }
-
 }

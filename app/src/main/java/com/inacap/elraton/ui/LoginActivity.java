@@ -18,12 +18,11 @@ import com.inacap.elraton.Metodo;
 import com.inacap.elraton.R;
 import com.inacap.elraton.db;
 
-
-
 public class LoginActivity extends AppCompatActivity {
     Button btnIngresar;
     TextView redireccion, ingUsuario,ingContrasenna;
     String usuarioIng,contraIng;
+    Bundle bundle=new Bundle();
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -83,8 +82,11 @@ public class LoginActivity extends AppCompatActivity {
                                         String email=cursor.getString(0);
                                         String nom=cursor.getString(1);
                                         String ape=cursor.getString(2);
-                                        a.putExtra("nombre completo",nom+" "+ape);
-                                        a.putExtra("correo",email);
+                                        bundle.putString("nombre_completo",nom+" "+ape);
+                                        bundle.putString("correo",email);
+                                        //a.putExtra("nombre completo",nom+" "+ape);
+                                        //a.putExtra("correo",email);
+                                        a.putExtras(bundle);
                                         startActivity(a);
                                     }while (cursor.moveToNext());
                                 }
