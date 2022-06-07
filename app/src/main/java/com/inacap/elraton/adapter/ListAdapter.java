@@ -1,6 +1,7 @@
 package com.inacap.elraton.adapter;
 
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +46,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
         return new ListAdapter.ViewHolder(view);
     }
 
-    /*public void filtrado(String txtBuscar)
+    public void filtrado(String txtBuscar)
     {
         int longitud=txtBuscar.length();
         if (longitud == 0)
@@ -55,10 +56,25 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
         }
         else
         {
-            List<producto> coleccion = mData.stream().filter(i -> i.getTitulo().toLowerCase().contains(txtBuscar.toLowerCase())).collect(Collectors.toList());
+            if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.N)
+            {
+                List<producto> coleccion = mData.stream()
+                        .filter(i -> i.getTitulo().toLowerCase().contains(txtBuscar.toLowerCase()))
+                        .collect(Collectors.toList());
+                mData.clear();
+                mData.addAll(coleccion);
+            }else {
+                for (producto p:mOriginal)
+                {
+                    if (p.getTitulo().toLowerCase().contains(txtBuscar.toLowerCase()))
+                    {
+                        mData.add(p);
+                    }
+                }
+            }
         }
         notifyDataSetChanged();
-    }*/
+    }
 
     @Override
     public void onBindViewHolder(final ListAdapter.ViewHolder holder, final int position)
@@ -93,7 +109,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
             iconImage.setImageResource(item.getFoto());
             nombre.setText(item.getTitulo());
             descripcion.setText(item.getDescripcion());
-            precio.setText(item.getPrecio());
+            precio.setText(String.valueOf(item.getPrecio()));
         }
     }
 

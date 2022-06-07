@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">El ratón se viste a la moda</string>
     <string name="menu_inicio">Inicio</string>
-    <string name="menu_buscar">Buscar</string>
+    <string name="menu_mis_compras">Mis Compras</string>
     <string name="menu_contacto">Contacto</string>
     <string name="menu_cerrarSession">Cerrar Sesion</string>
     <string name="ingNom_Registrar">Ingrese su nombre:</string>

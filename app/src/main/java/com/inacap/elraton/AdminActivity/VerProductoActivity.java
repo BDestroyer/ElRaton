@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.inacap.elraton.Metodo;
 import com.inacap.elraton.R;
 import com.inacap.elraton.adapter.ListAdapter;
+import com.inacap.elraton.adapter.ListAdapterAdmin;
 import com.inacap.elraton.clase.producto;
 import com.inacap.elraton.db;
 
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 
 public class VerProductoActivity extends AppCompatActivity {
     RecyclerView rcv;
-    ListAdapter listAdapter;
+    ListAdapterAdmin listAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +56,7 @@ public class VerProductoActivity extends AppCompatActivity {
         }
         rcv=findViewById(R.id.RecyclerView);
         rcv.setLayoutManager(new LinearLayoutManager(this));
-        listAdapter=new ListAdapter(listaProducto, this);
+        listAdapter=new ListAdapterAdmin(listaProducto, this);
         rcv.setHasFixedSize(true);
         rcv.setAdapter(listAdapter);
     }

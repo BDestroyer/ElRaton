@@ -12,9 +12,9 @@
         tools:layout="@layout/fragment_inicio" />
 
     <fragment
-        android:id="@+id/nav_Buscar"
+        android:id="@+id/nav_Mis_Compras"
         android:name="com.inacap.elraton.ui.MisCompras.MisComprasFragment"
-        android:label="@string/menu_buscar"
+        android:label="@string/menu_mis_compras"
         tools:layout="@layout/fragment_buscar" />
 
     <fragment

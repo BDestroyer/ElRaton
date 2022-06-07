@@ -7,9 +7,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.navigation.NavigationView;
 import androidx.navigation.NavController;
@@ -30,13 +30,13 @@ import com.inacap.elraton.db;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener
 {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
     RecyclerView rcv;
     ListAdapter listAdapter;
-
+    SearchView Busqueda;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -46,12 +46,14 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(binding.appBarMain.toolbar);
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
-        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_Inicio, R.id.nav_Buscar, R.id.nav_Contacto).setOpenableLayout(drawer).build();
+        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_Inicio, R.id.nav_Mis_Compras, R.id.nav_Contacto).setOpenableLayout(drawer).build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        Busqueda=findViewById(R.id.txtBuscar);
         cargarDatos();
         init();
+        Busqueda.setOnQueryTextListener(this);
     }
 
     public boolean onCreateOptionsMenu(Menu menu)
@@ -125,5 +127,16 @@ public class MainActivity extends AppCompatActivity
         listAdapter=new ListAdapter(listaProducto, this);
         rcv.setHasFixedSize(true);
         rcv.setAdapter(listAdapter);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        listAdapter.filtrado(newText);
+        return false;
     }
 }

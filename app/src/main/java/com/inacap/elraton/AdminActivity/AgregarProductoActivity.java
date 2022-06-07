@@ -73,7 +73,7 @@ public class AgregarProductoActivity extends AppCompatActivity {
                         ContentValues r = new ContentValues();
                         r.put("titulo",TituloIng);
                         r.put("descripcion", DescripcionIng);
-                        r.put("precio","$"+PrecioIng );
+                        r.put("precio",PrecioIng );
                         r.put("cantidad", CantidadIng);
                         long i;
                         i = basedato.insert("producto", null, r);
