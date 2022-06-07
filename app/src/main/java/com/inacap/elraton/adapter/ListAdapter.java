@@ -44,7 +44,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
         View view=mInflater.inflate(R.layout.list_element,null);
         return new ListAdapter.ViewHolder(view);
     }
-    public void filtrado(String txtBuscar)
+
+    /*public void filtrado(String txtBuscar)
     {
         int longitud=txtBuscar.length();
         if (longitud == 0)
@@ -57,15 +58,16 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
             List<producto> coleccion = mData.stream().filter(i -> i.getTitulo().toLowerCase().contains(txtBuscar.toLowerCase())).collect(Collectors.toList());
         }
         notifyDataSetChanged();
-    }
+    }*/
 
     @Override
     public void onBindViewHolder(final ListAdapter.ViewHolder holder, final int position)
     {
-        holder.iconImage.setImageResource(mData.get(position).getFoto());
+        holder.bindData(mData.get(position));
+        /*holder.iconImage.setImageResource(mData.get(position).getFoto());
         holder.nombre.setText(mData.get(position).getTitulo());
         holder.descripcion.setText(mData.get(position).getDescripcion());
-        holder.precio.setText(mData.get(position).getPrecio());
+        holder.precio.setText(mData.get(position).getPrecio());*/
     }
 
     public void setItems(List<producto> items)
@@ -86,6 +88,13 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
             descripcion = itemView.findViewById(R.id.txtDescripcion);
             precio=itemView.findViewById(R.id.txtPrecio);
         }
-
+        void bindData(final producto item)
+        {
+            iconImage.setImageResource(item.getFoto());
+            nombre.setText(item.getTitulo());
+            descripcion.setText(item.getDescripcion());
+            precio.setText(item.getPrecio());
+        }
     }
+
 }

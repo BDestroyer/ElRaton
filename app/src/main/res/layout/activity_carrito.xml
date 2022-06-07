@@ -4,11 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.CarritoActivity" >
+    android:paddingLeft="8dp"
+    tools:context=".ui.CarritoActivity">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ola un culo" />
+        android:text="Carrito"
+        android:textAlignment="center" />
 </RelativeLayout>

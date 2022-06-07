@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.navigation.NavigationView;
 import androidx.navigation.NavController;
@@ -110,7 +111,7 @@ public class MainActivity extends AppCompatActivity
                 prod.setId(cursor.getInt(0));
                 prod.setTitulo(cursor.getString(1));
                 prod.setDescripcion(cursor.getString(2));
-                prod.setPrecio(+cursor.getInt(3));
+                prod.setPrecio(cursor.getInt(3));
                 prod.setCantidad(cursor.getInt(4));
                 listaProducto.add(prod);
             }
