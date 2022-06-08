@@ -39,7 +39,7 @@ public class RecomendacionesAdminActivity extends AppCompatActivity {
         {
             do
             {
-                Mostrar.add(cursor.getString(3));
+                Mostrar.add(cursor.getString(1));
             }while (cursor.moveToNext());
         }
         else

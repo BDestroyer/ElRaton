@@ -8,6 +8,7 @@ public class producto
     public producto() {
     }
 
+
     public producto(String titulo, String descripcion, int id, int precio, int cantidad, int foto) {
         this.titulo = titulo;
         this.descripcion = descripcion;

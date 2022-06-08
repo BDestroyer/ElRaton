@@ -89,20 +89,20 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
 
     public class ViewHolder extends RecyclerView.ViewHolder
     {
-        ImageView iconImage;
+        ImageView imagen;
         TextView nombre, descripcion, precio;
 
         ViewHolder(View itemView)
         {
             super(itemView);
-            iconImage = itemView.findViewById(R.id.ImagenProd);
+            imagen = itemView.findViewById(R.id.ImagenProd);
             nombre=itemView.findViewById(R.id.txtNombreProd);
             descripcion = itemView.findViewById(R.id.txtDescripcion);
             precio=itemView.findViewById(R.id.txtPrecio);
         }
         void bindData(final producto item)
         {
-            iconImage.setImageResource(item.getFoto());
+            imagen.setImageResource(item.getFoto());
             nombre.setText(item.getTitulo());
             descripcion.setText(item.getDescripcion());
             precio.setText(String.valueOf(item.getPrecio()));

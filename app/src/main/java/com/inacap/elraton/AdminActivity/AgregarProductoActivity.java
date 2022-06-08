@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -43,74 +45,46 @@ public class AgregarProductoActivity extends AppCompatActivity {
         txtDescripcion = findViewById(R.id.edtDescripcion);
         txtPrecio = findViewById(R.id.edtPrecio);
         txtCantidad = findViewById(R.id.edtCantidad);
-        btnInsertarProd=findViewById(R.id.btnAgregarCRUD);
-        imgAdd.setOnClickListener(new View.OnClickListener()
-        {
+        btnInsertarProd = findViewById(R.id.btnAgregarCRUD);
+        imgAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
                 cargarImagen();
-                createDirectoryAndSaveFile(bmap, "a");
             }
         });
+
         btnInsertarProd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try
-                {
-                    db conexionUsuario=new db(getApplicationContext(),"elRaton.db",null,1);
-                    Metodo x= new Metodo();
-                    SQLiteDatabase basedato=x.Conectar(conexionUsuario);
-                    String TituloIng=txtTitulo.getText().toString();
-                    String DescripcionIng=txtDescripcion.getText().toString();
-                    int PrecioIng=Integer.parseInt(txtPrecio.getText().toString());
-                    int CantidadIng=Integer.parseInt(txtCantidad.getText().toString());
-                    if (TituloIng.equals("") || DescripcionIng.equals("") || PrecioIng==0 ||CantidadIng==0)
-                    {
+                try {
+                    db conexionUsuario = new db(getApplicationContext(), "elRaton.db", null, 1);
+                    Metodo x = new Metodo();
+                    SQLiteDatabase basedato = x.Conectar(conexionUsuario);
+                    String TituloIng = txtTitulo.getText().toString();
+                    String DescripcionIng = txtDescripcion.getText().toString();
+                    int PrecioIng = Integer.parseInt(txtPrecio.getText().toString());
+                    int CantidadIng = Integer.parseInt(txtCantidad.getText().toString());
+                    if (TituloIng.equals("") || DescripcionIng.equals("") || PrecioIng == 0 || CantidadIng == 0) {
                         Toast.makeText(AgregarProductoActivity.this, "Debe rellenar los campos antes de continuar", Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                    {
+                    } else {
                         ContentValues r = new ContentValues();
-                        r.put("rutaImg","/sdcard/DirName/");
-                        r.put("titulo",TituloIng);
+                        r.put("rutaImg", "a");
+                        r.put("titulo", TituloIng);
                         r.put("descripcion", DescripcionIng);
-                        r.put("precio",PrecioIng );
+                        r.put("precio", PrecioIng);
                         r.put("cantidad", CantidadIng);
                         long i;
                         i = basedato.insert("producto", null, r);
                         Toast.makeText(getApplicationContext(), "Producto insertado", Toast.LENGTH_SHORT).show();
                     }
-                    Intent intent=new Intent(getApplicationContext(), EntradaAdminActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), EntradaAdminActivity.class);
                     startActivity(intent);
-                }
-                catch (SQLException ex)
-                {
-                    Toast.makeText(AgregarProductoActivity.this, "Error de la base de datos"+ex, Toast.LENGTH_SHORT).show();
+                } catch (SQLException ex) {
+                    Toast.makeText(AgregarProductoActivity.this, "Error de la base de datos " + ex, Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
-    }
-    private void createDirectoryAndSaveFile(Bitmap imageToSave, String fileName)
-    {
-        File direct = new File(Environment.getExternalStorageDirectory() + "/DirImg");
-        if (!direct.exists()) {
-            File wallpaperDirectory = new File("/sdcard/DirName/");
-            wallpaperDirectory.mkdirs();
-        }
-        File file = new File("/sdcard/DirName/", fileName);
-        if (file.exists()) {
-            file.delete();
-        }
-        try {
-            FileOutputStream out = new FileOutputStream(file);
-            imageToSave.compress(Bitmap.CompressFormat.JPEG, 100, out);
-            out.flush();
-            out.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     private void cargarImagen()
