@@ -6,15 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.ContentValues;
-import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
@@ -26,8 +23,6 @@ import com.inacap.elraton.Metodo;
 import com.inacap.elraton.R;
 import com.inacap.elraton.db;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class AgregarProductoActivity extends AppCompatActivity {
@@ -69,7 +64,7 @@ public class AgregarProductoActivity extends AppCompatActivity {
                         Toast.makeText(AgregarProductoActivity.this, "Debe rellenar los campos antes de continuar", Toast.LENGTH_SHORT).show();
                     } else {
                         ContentValues r = new ContentValues();
-                        r.put("rutaImg", "a");
+                        r.put("rutaImg", 1);
                         r.put("titulo", TituloIng);
                         r.put("descripcion", DescripcionIng);
                         r.put("precio", PrecioIng);
@@ -81,7 +76,7 @@ public class AgregarProductoActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), EntradaAdminActivity.class);
                     startActivity(intent);
                 } catch (SQLException ex) {
-                    Toast.makeText(AgregarProductoActivity.this, "Error de la base de datos " + ex, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AgregarProductoActivity.this, "Error de la base de datos  " + ex, Toast.LENGTH_SHORT).show();
                 }
             }
         });

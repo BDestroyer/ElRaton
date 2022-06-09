@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
@@ -42,8 +41,8 @@ public class InicioFragment extends Fragment implements SearchView.OnQueryTextLi
     @MainThread
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
-        fab=view.findViewById(R.id.fab);
         init();
+        fab=view.findViewById(R.id.fab);
         Busqueda=view.findViewById(R.id.txtBuscar);
         Busqueda.setOnQueryTextListener(this);
         fab.setOnClickListener(new View.OnClickListener()
@@ -71,7 +70,7 @@ public class InicioFragment extends Fragment implements SearchView.OnQueryTextLi
             while (cursor.moveToNext())
             {
                 prod=new producto();
-                //prod.setFoto(Integer.parseInt(cursor.getString(1)));
+                //prod.setFoto(cursor.getInt(1));
                 prod.setTitulo(cursor.getString(2));
                 prod.setDescripcion(cursor.getString(3));
                 prod.setPrecio(cursor.getInt(4));

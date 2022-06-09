@@ -63,7 +63,7 @@ public class ListAdapterAdmin extends RecyclerView.Adapter<ListAdapterAdmin.View
             void bindData(final producto item)
             {
                 id.setText(String.valueOf(item.getId()));
-                //iconImage.setImageResource(Integer.parseInt(item.getFoto()));
+                iconImage.setImageResource(R.drawable.ic_baseline_person_24);
                 nombre.setText(item.getTitulo());
                 descripcion.setText(item.getDescripcion());
                 precio.setText(String.valueOf(item.getPrecio()));

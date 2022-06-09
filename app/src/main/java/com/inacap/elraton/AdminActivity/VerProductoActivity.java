@@ -43,7 +43,7 @@ public class VerProductoActivity extends AppCompatActivity {
             {
                 prod=new producto();
                 prod.setId(cursor.getInt(0));
-                prod.setFoto(Integer.parseInt(cursor.getString(1)));
+                prod.setFoto(Integer.parseInt(String.valueOf(cursor.getInt(1))));
                 prod.setTitulo(cursor.getString(2));
                 prod.setDescripcion(cursor.getString(3));
                 prod.setPrecio(+cursor.getInt(4));

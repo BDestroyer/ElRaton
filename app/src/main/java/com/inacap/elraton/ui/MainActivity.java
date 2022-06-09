@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.inacap.elraton.R;
 import com.inacap.elraton.databinding.ActivityMainBinding;
 
+
 public class MainActivity extends AppCompatActivity
 {
     private AppBarConfiguration mAppBarConfiguration;

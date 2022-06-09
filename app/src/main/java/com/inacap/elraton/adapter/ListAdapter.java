@@ -5,6 +5,7 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,6 +24,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
     ArrayList<producto> mOriginal;
     private LayoutInflater mInflater;
     private Context context;
+
 
     public ListAdapter(List<producto> itemList, Context context)
     {
@@ -80,6 +82,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
     public void onBindViewHolder(final ListAdapter.ViewHolder holder, final int position)
     {
         holder.bindData(mData.get(position));
+
     }
 
     public void setItems(List<producto> items)
@@ -87,7 +90,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
         mData=items;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder
+    public static class ViewHolder extends RecyclerView.ViewHolder
     {
         ImageView imagen;
         TextView nombre, descripcion, precio;
@@ -102,11 +105,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
         }
         void bindData(final producto item)
         {
-            imagen.setImageResource(item.getFoto());
+            imagen.setImageResource(R.drawable.ic_baseline_camera_alt_24);
             nombre.setText(item.getTitulo());
             descripcion.setText(item.getDescripcion());
             precio.setText(String.valueOf(item.getPrecio()));
         }
     }
-
 }
