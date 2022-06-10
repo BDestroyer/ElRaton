@@ -9,8 +9,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +25,7 @@ import com.inacap.elraton.R;
 import com.inacap.elraton.db;
 
 import java.io.File;
+import java.io.FileOutputStream;
 
 public class AgregarProductoActivity extends AppCompatActivity {
 
@@ -113,6 +116,17 @@ public class AgregarProductoActivity extends AppCompatActivity {
             case COD_SELECCIONA:
                 Uri miPath = data.getData();
                 imgAdd.setImageURI(miPath);
+                imgAdd.setDrawingCacheEnabled(true);
+                Bitmap bitmap = imgAdd.getDrawingCache();
+                try
+                {
+                    MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, "img.jpg" , "");
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+//pictures/img.jpg
                 break;
         }
     }
