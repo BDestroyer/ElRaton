@@ -1,25 +1,17 @@
 package com.inacap.elraton.AdminActivity;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -31,7 +23,6 @@ import com.inacap.elraton.R;
 import com.inacap.elraton.db;
 
 import java.io.File;
-import java.io.IOException;
 
 public class AgregarProductoActivity extends AppCompatActivity {
 
@@ -40,7 +31,6 @@ public class AgregarProductoActivity extends AppCompatActivity {
     ImageView imgAdd;
     TextView txtTitulo, txtDescripcion, txtPrecio, txtCantidad;
     Button btnInsertarProd;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,4 +117,3 @@ public class AgregarProductoActivity extends AppCompatActivity {
         }
     }
 }
-

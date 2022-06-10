@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import com.inacap.elraton.Metodo;
 import com.inacap.elraton.R;
-import com.inacap.elraton.adapter.ListAdapter;
 import com.inacap.elraton.adapter.ListAdapterAdmin;
 import com.inacap.elraton.clase.producto;
 import com.inacap.elraton.db;
@@ -32,7 +31,7 @@ public class VerProductoActivity extends AppCompatActivity {
     {
         ArrayList<producto> listaProducto;
         Metodo x= new Metodo();
-        producto prod=null;
+        producto prod;
         db conexionUsuario=new db(getApplicationContext(),"elRaton.db",null,1);
         SQLiteDatabase basedato=x.Conectar(conexionUsuario);
         listaProducto = new ArrayList<>();
@@ -43,10 +42,10 @@ public class VerProductoActivity extends AppCompatActivity {
             {
                 prod=new producto();
                 prod.setId(cursor.getInt(0));
-                prod.setFoto(Integer.parseInt(String.valueOf(cursor.getInt(1))));
+                prod.setFoto(cursor.getInt(1));
                 prod.setTitulo(cursor.getString(2));
                 prod.setDescripcion(cursor.getString(3));
-                prod.setPrecio(+cursor.getInt(4));
+                prod.setPrecio(cursor.getInt(4));
                 prod.setCantidad(cursor.getInt(5));
                 listaProducto.add(prod);
             }
