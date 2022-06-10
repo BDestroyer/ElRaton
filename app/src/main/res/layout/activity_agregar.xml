@@ -18,7 +18,6 @@
         android:id="@+id/imgAdd"
         android:layout_width="match_parent"
         android:layout_height="240dp"
-        android:background="#D8A3BF"
         app:srcCompat="@drawable/raton" />
 
     <LinearLayout
