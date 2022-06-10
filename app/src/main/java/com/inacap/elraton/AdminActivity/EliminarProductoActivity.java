@@ -41,10 +41,11 @@ public class EliminarProductoActivity extends AppCompatActivity {
             {
                 prod=new producto();
                 prod.setId(cursor.getInt(0));
-                prod.setTitulo(cursor.getString(1));
-                prod.setDescripcion(cursor.getString(2));
-                prod.setPrecio(+cursor.getInt(3));
-                prod.setCantidad(cursor.getInt(4));
+                prod.setFoto(cursor.getInt(1));
+                prod.setTitulo(cursor.getString(2));
+                prod.setDescripcion(cursor.getString(3));
+                prod.setPrecio(+cursor.getInt(4));
+                prod.setCantidad(cursor.getInt(5));
                 listaProducto.add(prod);
             }
         }

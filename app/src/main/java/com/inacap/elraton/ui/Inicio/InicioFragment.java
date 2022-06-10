@@ -70,7 +70,7 @@ public class InicioFragment extends Fragment implements SearchView.OnQueryTextLi
             while (cursor.moveToNext())
             {
                 prod=new producto();
-                //prod.setFoto(cursor.getInt(1));
+                prod.setFoto(cursor.getInt(1));
                 prod.setTitulo(cursor.getString(2));
                 prod.setDescripcion(cursor.getString(3));
                 prod.setPrecio(cursor.getInt(4));

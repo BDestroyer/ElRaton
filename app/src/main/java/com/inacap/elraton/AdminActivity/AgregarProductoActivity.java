@@ -2,17 +2,24 @@ package com.inacap.elraton.AdminActivity;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,13 +30,17 @@ import com.inacap.elraton.Metodo;
 import com.inacap.elraton.R;
 import com.inacap.elraton.db;
 
+import java.io.File;
 import java.io.IOException;
 
 public class AgregarProductoActivity extends AppCompatActivity {
 
+    private static final int COD_SELECCIONA = 10;
+
     ImageView imgAdd;
     TextView txtTitulo, txtDescripcion, txtPrecio, txtCantidad;
     Button btnInsertarProd;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +56,7 @@ public class AgregarProductoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                cargarImagen();
+                mostrarDialog();
             }
         });
 
@@ -82,32 +93,38 @@ public class AgregarProductoActivity extends AppCompatActivity {
         });
     }
 
-    private void cargarImagen()
+    private void mostrarDialog()
     {
-        Intent intent=new Intent();
-        intent.setType("image/");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        launchSomeActivity.launch(intent);
-    }
-    ActivityResultLauncher<Intent> launchSomeActivity= registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),result ->
-    {
-                if (result.getResultCode() == Activity.RESULT_OK)
-                {
-                    Intent data = result.getData();
-                    if (data != null && data.getData() != null)
+        final CharSequence[] opciones={"Elegir de la galería","Cancelar"};
+        final AlertDialog.Builder builder = new AlertDialog.Builder(AgregarProductoActivity.this);
+        builder.setTitle("Elige una opción");
+        builder.setItems(opciones, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                    if (opciones[which].equals("Elegir de la galería"))
                     {
-                        Uri selectedImageUri = data.getData();
-                        Bitmap selectedImageBitmap = null;
-                        try {
-                            selectedImageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(),selectedImageUri);
-                        }
-                        catch (IOException e)
-                        {
-                            e.printStackTrace();
-                        }
-                        imgAdd.setImageBitmap(selectedImageBitmap);
+                        Intent intent=new Intent(Intent.ACTION_GET_CONTENT, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        intent.setType("image/");
+                        startActivityForResult(intent.createChooser(intent,"Seleccione"),COD_SELECCIONA);
+                    }
+                    else
+                    {
+                        dialog.dismiss();
                     }
                 }
-            });
+        });
+        builder.show();
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case COD_SELECCIONA:
+                Uri miPath = data.getData();
+                imgAdd.setImageURI(miPath);
+                break;
+        }
+    }
 }
+
