@@ -104,7 +104,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
         }
         void bindData(final producto item)
         {
-            imagen.setImageResource(R.drawable.ic_baseline_camera_alt_24);
+            imagen.setImageResource(item.getFoto());
             nombre.setText(item.getTitulo());
             descripcion.setText(item.getDescripcion());
             precio.setText(String.valueOf(item.getPrecio()));

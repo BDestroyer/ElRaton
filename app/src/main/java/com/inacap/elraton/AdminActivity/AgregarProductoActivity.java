@@ -59,6 +59,8 @@ public class AgregarProductoActivity extends AppCompatActivity {
                 try {
                     db conexionUsuario = new db(getApplicationContext(), "elRaton.db", null, 1);
                     Metodo x = new Metodo();
+                    String nombre=obtenerNombre();
+                    String ruta="pictures/"+nombre;
                     SQLiteDatabase basedato = x.Conectar(conexionUsuario);
                     String TituloIng = txtTitulo.getText().toString();
                     String DescripcionIng = txtDescripcion.getText().toString();
@@ -68,7 +70,7 @@ public class AgregarProductoActivity extends AppCompatActivity {
                         Toast.makeText(AgregarProductoActivity.this, "Debe rellenar los campos antes de continuar", Toast.LENGTH_SHORT).show();
                     } else {
                         ContentValues r = new ContentValues();
-                        r.put("rutaImg", 1);
+                        r.put("rutaImg", ruta);
                         r.put("titulo", TituloIng);
                         r.put("descripcion", DescripcionIng);
                         r.put("precio", PrecioIng);
@@ -112,22 +114,31 @@ public class AgregarProductoActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
+        switch (requestCode)
+        {
             case COD_SELECCIONA:
+                String nombre;
                 Uri miPath = data.getData();
                 imgAdd.setImageURI(miPath);
                 imgAdd.setDrawingCacheEnabled(true);
                 Bitmap bitmap = imgAdd.getDrawingCache();
                 try
                 {
-                    MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, "img.jpg" , "");
+                    nombre=obtenerNombre();
+                    MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, nombre , null);
                 }
                 catch (Exception e)
                 {
                     e.printStackTrace();
                 }
-//pictures/img.jpg
                 break;
         }
+    }
+
+    private String obtenerNombre()
+    {
+        Long consecutivo= System.currentTimeMillis()/1000;
+        String nombre=consecutivo.toString()+".jpg";
+        return nombre;
     }
 }
