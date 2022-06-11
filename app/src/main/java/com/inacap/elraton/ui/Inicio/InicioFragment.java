@@ -5,10 +5,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
@@ -17,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.inacap.elraton.Metodo;
 import com.inacap.elraton.R;
@@ -71,7 +74,7 @@ public class InicioFragment extends Fragment implements SearchView.OnQueryTextLi
             while (cursor.moveToNext())
             {
                 prod=new producto();
-                prod.setFoto(cursor.getInt(1));
+                prod.setFoto(getResources().getIdentifier(cursor.getString(1),null,null));
                 prod.setTitulo(cursor.getString(2));
                 prod.setDescripcion(cursor.getString(3));
                 prod.setPrecio(cursor.getInt(4));
@@ -82,7 +85,7 @@ public class InicioFragment extends Fragment implements SearchView.OnQueryTextLi
         else
         {
             prod=new producto();
-            prod.setFoto(1);
+            prod.setFoto(getResources().getIdentifier("android.resource://com.inacap.elraton/res/drawable/raton.png",null,null));
             prod.setTitulo("Ropa");
             prod.setDescripcion("lorem ipsum");
             prod.setPrecio(15000);

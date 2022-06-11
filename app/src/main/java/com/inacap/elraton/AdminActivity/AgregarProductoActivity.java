@@ -31,7 +31,7 @@ public class AgregarProductoActivity extends AppCompatActivity {
     ImageView imgAdd;
     TextView txtTitulo, txtDescripcion, txtPrecio, txtCantidad;
     Button btnInsertarProd;
-
+    String nombre=obtenerNombre();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,8 +56,7 @@ public class AgregarProductoActivity extends AppCompatActivity {
                 try {
                     db conexionUsuario = new db(getApplicationContext(), "elRaton.db", null, 1);
                     Metodo x = new Metodo();
-                    String nombre=obtenerNombre();
-                    String ruta="pictures/"+nombre;
+                    String ruta="/sdcard/pictures/"+nombre;
                     SQLiteDatabase basedato = x.Conectar(conexionUsuario);
                     String TituloIng = txtTitulo.getText().toString();
                     String DescripcionIng = txtDescripcion.getText().toString();
@@ -114,14 +113,12 @@ public class AgregarProductoActivity extends AppCompatActivity {
         switch (requestCode)
         {
             case COD_SELECCIONA:
-                String nombre;
                 Uri miPath = data.getData();
                 imgAdd.setImageURI(miPath);
                 imgAdd.setDrawingCacheEnabled(true);
                 Bitmap bitmap = imgAdd.getDrawingCache();
                 try
                 {
-                    nombre=obtenerNombre();
                     MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, nombre , null);
                 }
                 catch (Exception e)
@@ -134,7 +131,7 @@ public class AgregarProductoActivity extends AppCompatActivity {
 
     private String obtenerNombre()
     {
-        Long consecutivo= System.currentTimeMillis()/1000;
+        Long consecutivo= System.currentTimeMillis()/10000;
         String nombre=consecutivo.toString()+".jpg";
         return nombre;
     }

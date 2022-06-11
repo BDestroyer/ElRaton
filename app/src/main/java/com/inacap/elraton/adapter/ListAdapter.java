@@ -11,8 +11,10 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.inacap.elraton.R;
 import com.inacap.elraton.clase.producto;
+import com.inacap.elraton.ui.Inicio.InicioFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +83,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
     @Override
     public void onBindViewHolder(final ListAdapter.ViewHolder holder, final int position)
     {
+        producto item= mData.get(position);
         holder.bindData(mData.get(position));
+        Glide.with(context).load(item.getFoto()).into(holder.imagen);
     }
 
     public void setItems(List<producto> items)
@@ -104,7 +108,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
         }
         void bindData(final producto item)
         {
-            imagen.setImageResource(item.getFoto());
             nombre.setText(item.getTitulo());
             descripcion.setText(item.getDescripcion());
             precio.setText(String.valueOf(item.getPrecio()));
