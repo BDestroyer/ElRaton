@@ -24,6 +24,8 @@ import com.inacap.elraton.Metodo;
 import com.inacap.elraton.R;
 import com.inacap.elraton.db;
 
+import java.io.File;
+
 public class AgregarProductoActivity extends AppCompatActivity {
 
     private static final int COD_SELECCIONA = 10;
@@ -120,7 +122,8 @@ public class AgregarProductoActivity extends AppCompatActivity {
                 Bitmap bitmap = imgAdd.getDrawingCache();
                 try
                 {
-                    MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, nombre , null);
+                    File file= new File();
+                    file = MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, nombre, null)
                 }
                 catch (Exception e)
                 {
