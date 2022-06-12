@@ -5,9 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +35,7 @@ public class InicioFragment extends Fragment implements SearchView.OnQueryTextLi
     FloatingActionButton fab;
     ListAdapter listAdapter;
     SearchView Busqueda;
+    ArrayList<producto> listaProducto;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -59,16 +58,20 @@ public class InicioFragment extends Fragment implements SearchView.OnQueryTextLi
                 startActivity(a);
             }
         });
-
+        listAdapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Seleccion: "+listaProducto.get(rcv.getChildAdapterPosition(view)).getTitulo(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
     public void init()
     {
-        ArrayList<producto> listaProducto;
+        listaProducto = new ArrayList<>();
         Metodo x= new Metodo();
         producto prod=null;
         db conexionUsuario=new db(getContext(),"elRaton.db",null,1);
         SQLiteDatabase basedato=x.Conectar(conexionUsuario);
-        listaProducto = new ArrayList<>();
         Cursor cursor=basedato.rawQuery("select * from producto",null);
         if (cursor.moveToFirst())
         {
@@ -86,9 +89,8 @@ public class InicioFragment extends Fragment implements SearchView.OnQueryTextLi
         }
         else
         {
+            Toast.makeText(getContext(), "No se han encontrado productos en la base de datos, este producto es solo referencial", Toast.LENGTH_LONG).show();
             prod=new producto();
-            Bitmap bmap= BitmapFactory.decodeFile(String.valueOf(R.drawable.logo_blanco));
-            prod.setFoto(bmap);
             prod.setTitulo("Ropa");
             prod.setDescripcion("lorem ipsum");
             prod.setPrecio(15000);
@@ -99,6 +101,7 @@ public class InicioFragment extends Fragment implements SearchView.OnQueryTextLi
         rcv.setLayoutManager(new LinearLayoutManager(getContext()));
         listAdapter=new ListAdapter(listaProducto, getContext());
         rcv.setHasFixedSize(true);
+
         rcv.setAdapter(listAdapter);
     }
 

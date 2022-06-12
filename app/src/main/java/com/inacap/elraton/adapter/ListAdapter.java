@@ -5,7 +5,6 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,19 +12,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.inacap.elraton.R;
 import com.inacap.elraton.clase.producto;
-import com.inacap.elraton.ui.Inicio.InicioFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
+public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> implements View.OnClickListener
 {
     private List<producto> mData;
     ArrayList<producto> mOriginal;
     private LayoutInflater mInflater;
     private Context context;
-
+    private View.OnClickListener listener;
 
     public ListAdapter(List<producto> itemList, Context context)
     {
@@ -46,6 +44,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
     public ListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
         View view=mInflater.inflate(R.layout.list_element,null);
+        view.setOnClickListener(this);
         return new ListAdapter.ViewHolder(view);
     }
 
@@ -83,12 +82,26 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
     public void onBindViewHolder(final ListAdapter.ViewHolder holder, final int position)
     {
         producto item= mData.get(position);
-        holder.bindData(mData.get(position));
+        holder.imagen.setImageBitmap(item.getFoto());
+        holder.nombre.setText(item.getTitulo());
+        holder.descripcion.setText(item.getDescripcion());
+        holder.precio.setText(String.valueOf(item.getPrecio()));
     }
 
     public void setItems(List<producto> items)
     {
         mData=items;
+    }
+
+    public void setOnClickListener(View.OnClickListener listener){
+        this.listener=listener;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(listener!=null){
+            listener.onClick(v);
+        }
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder
@@ -103,13 +116,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
             nombre=itemView.findViewById(R.id.txtNombreProd);
             descripcion = itemView.findViewById(R.id.txtDescripcion);
             precio=itemView.findViewById(R.id.txtPrecio);
-        }
-        void bindData(final producto item)
-        {
-            imagen.setImageBitmap(item.getFoto());
-            nombre.setText(item.getTitulo());
-            descripcion.setText(item.getDescripcion());
-            precio.setText(String.valueOf(item.getPrecio()));
         }
     }
 }

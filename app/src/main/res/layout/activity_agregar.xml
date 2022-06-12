@@ -18,7 +18,7 @@
         android:id="@+id/imgAdd"
         android:layout_width="match_parent"
         android:layout_height="240dp"
-        app:srcCompat="@drawable/raton" />
+        app:srcCompat="@drawable/side_nav_bar" />
 
     <LinearLayout
         android:layout_width="match_parent"

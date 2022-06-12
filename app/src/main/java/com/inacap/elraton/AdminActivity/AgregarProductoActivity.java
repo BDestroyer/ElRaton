@@ -56,15 +56,16 @@ public class AgregarProductoActivity extends AppCompatActivity {
                 try {
                     db conexionUsuario = new db(getApplicationContext(), "elRaton.db", null, 1);
                     Metodo x = new Metodo();
-                    String ruta="/sdcard/pictures/"+nombre;
                     SQLiteDatabase basedato = x.Conectar(conexionUsuario);
-                    String TituloIng = txtTitulo.getText().toString();
-                    String DescripcionIng = txtDescripcion.getText().toString();
-                    int PrecioIng = Integer.parseInt(txtPrecio.getText().toString());
-                    int CantidadIng = Integer.parseInt(txtCantidad.getText().toString());
-                    if (TituloIng.equals("") || DescripcionIng.equals("") || PrecioIng == 0 || CantidadIng == 0) {
+                    if (txtTitulo.getText().toString().equals("") || txtDescripcion.getText().toString().equals("") || txtPrecio.getText().toString().equals("") || txtCantidad.getText().toString().equals("")) {
                         Toast.makeText(AgregarProductoActivity.this, "Debe rellenar los campos antes de continuar", Toast.LENGTH_SHORT).show();
                     } else {
+                        //Uri uri = Uri.parse(getPackageName());
+                        String ruta= "/sdcard/pictures/"+nombre;
+                        String TituloIng = txtTitulo.getText().toString();
+                        String DescripcionIng = txtDescripcion.getText().toString();
+                        int PrecioIng = Integer.parseInt(txtPrecio.getText().toString());
+                        int CantidadIng = Integer.parseInt(txtCantidad.getText().toString());
                         ContentValues r = new ContentValues();
                         r.put("rutaImg", ruta);
                         r.put("titulo", TituloIng);
@@ -74,9 +75,9 @@ public class AgregarProductoActivity extends AppCompatActivity {
                         long i;
                         i = basedato.insert("producto", null, r);
                         Toast.makeText(getApplicationContext(), "Producto insertado", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(), EntradaAdminActivity.class);
+                        startActivity(intent);
                     }
-                    Intent intent = new Intent(getApplicationContext(), EntradaAdminActivity.class);
-                    startActivity(intent);
                 } catch (SQLException ex) {
                     Toast.makeText(AgregarProductoActivity.this, "Error de la base de datos  " + ex, Toast.LENGTH_SHORT).show();
                 }
@@ -131,7 +132,7 @@ public class AgregarProductoActivity extends AppCompatActivity {
 
     private String obtenerNombre()
     {
-        Long consecutivo= System.currentTimeMillis()/100000000;
+        Long consecutivo= System.currentTimeMillis()/1000000;
         String nombre=consecutivo.toString()+".jpg";
         return nombre;
     }
