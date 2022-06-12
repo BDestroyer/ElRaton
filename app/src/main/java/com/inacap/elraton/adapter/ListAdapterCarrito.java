@@ -69,7 +69,7 @@ public class ListAdapterCarrito extends RecyclerView.Adapter<ListAdapterCarrito.
         }
         void bindData(final producto item)
         {
-            //imagen.setImageResource(item.getFoto());
+            imagen.setImageBitmap(item.getFoto());
             nombre.setText(item.getTitulo());
             descripcion.setText(item.getDescripcion());
             precio.setText(String.valueOf(item.getPrecio()));

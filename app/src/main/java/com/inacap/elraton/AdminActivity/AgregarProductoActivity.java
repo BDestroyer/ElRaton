@@ -131,7 +131,7 @@ public class AgregarProductoActivity extends AppCompatActivity {
 
     private String obtenerNombre()
     {
-        Long consecutivo= System.currentTimeMillis()/10000;
+        Long consecutivo= System.currentTimeMillis()/100000000;
         String nombre=consecutivo.toString()+".jpg";
         return nombre;
     }

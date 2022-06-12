@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -41,7 +43,8 @@ public class EliminarProductoActivity extends AppCompatActivity {
             {
                 prod=new producto();
                 prod.setId(cursor.getInt(0));
-                prod.setFoto(cursor.getInt(1));
+                Bitmap bmap= BitmapFactory.decodeFile(cursor.getString(1));
+                prod.setFoto(bmap);
                 prod.setTitulo(cursor.getString(2));
                 prod.setDescripcion(cursor.getString(3));
                 prod.setPrecio(+cursor.getInt(4));

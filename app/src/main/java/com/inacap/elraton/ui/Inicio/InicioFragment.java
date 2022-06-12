@@ -3,6 +3,8 @@ package com.inacap.elraton.ui.Inicio;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -19,7 +21,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.inacap.elraton.Metodo;
 import com.inacap.elraton.R;
@@ -74,7 +75,8 @@ public class InicioFragment extends Fragment implements SearchView.OnQueryTextLi
             while (cursor.moveToNext())
             {
                 prod=new producto();
-                prod.setFoto(getResources().getIdentifier(cursor.getString(1),null,null));
+                Bitmap bmap= BitmapFactory.decodeFile(cursor.getString(1));
+                prod.setFoto(bmap);
                 prod.setTitulo(cursor.getString(2));
                 prod.setDescripcion(cursor.getString(3));
                 prod.setPrecio(cursor.getInt(4));
@@ -85,7 +87,8 @@ public class InicioFragment extends Fragment implements SearchView.OnQueryTextLi
         else
         {
             prod=new producto();
-            prod.setFoto(getResources().getIdentifier("android.resource://com.inacap.elraton/res/drawable/raton.png",null,null));
+            Bitmap bmap= BitmapFactory.decodeFile(String.valueOf(R.drawable.logo_blanco));
+            prod.setFoto(bmap);
             prod.setTitulo("Ropa");
             prod.setDescripcion("lorem ipsum");
             prod.setPrecio(15000);

@@ -1,15 +1,17 @@
 package com.inacap.elraton.clase;
 
+import android.graphics.Bitmap;
+
 public class producto
 {
     private String titulo, descripcion;
-    private int id, precio, cantidad, foto;
+    private int id, precio, cantidad;
+    private Bitmap foto;
 
     public producto() {
     }
 
-
-    public producto(String titulo, String descripcion, int id, int precio, int cantidad, int foto) {
+    public producto(String titulo, String descripcion, int id, int precio, int cantidad, Bitmap foto) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.id = id;
@@ -58,11 +60,11 @@ public class producto
         this.cantidad = cantidad;
     }
 
-    public int getFoto() {
+    public Bitmap getFoto() {
         return foto;
     }
 
-    public void setFoto(int foto) {
+    public void setFoto(Bitmap foto) {
         this.foto = foto;
     }
 }
