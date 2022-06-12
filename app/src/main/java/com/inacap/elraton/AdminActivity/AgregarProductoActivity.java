@@ -13,6 +13,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
@@ -29,7 +30,7 @@ import java.io.File;
 public class AgregarProductoActivity extends AppCompatActivity {
 
     private static final int COD_SELECCIONA = 10;
-
+    final String relativeLocation = Environment.DIRECTORY_DCIM + File.separator+"imgElRaton"+File.separator;
     ImageView imgAdd;
     TextView txtTitulo, txtDescripcion, txtPrecio, txtCantidad;
     Button btnInsertarProd;
@@ -62,8 +63,7 @@ public class AgregarProductoActivity extends AppCompatActivity {
                     if (txtTitulo.getText().toString().equals("") || txtDescripcion.getText().toString().equals("") || txtPrecio.getText().toString().equals("") || txtCantidad.getText().toString().equals("")) {
                         Toast.makeText(AgregarProductoActivity.this, "Debe rellenar los campos antes de continuar", Toast.LENGTH_SHORT).show();
                     } else {
-                        //Uri uri = Uri.parse(getPackageName());
-                        String ruta= "/sdcard/pictures/"+nombre;
+                        String ruta= relativeLocation+nombre;
                         String TituloIng = txtTitulo.getText().toString();
                         String DescripcionIng = txtDescripcion.getText().toString();
                         int PrecioIng = Integer.parseInt(txtPrecio.getText().toString());
@@ -122,13 +122,16 @@ public class AgregarProductoActivity extends AppCompatActivity {
                 Bitmap bitmap = imgAdd.getDrawingCache();
                 try
                 {
-                    File file= new File();
-                    file = MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, nombre, null)
+                    //File file= new File();
+                    //file =
+                    MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, nombre, null);
                 }
                 catch (Exception e)
                 {
                     e.printStackTrace();
                 }
+                //https://stackoverflow.com/questions/56904485/how-to-save-an-image-in-android-q-using-mediastore
+                //https://stackoverflow.com/questions/59511147/create-copy-file-in-android-q-using-mediastore
                 break;
         }
     }
