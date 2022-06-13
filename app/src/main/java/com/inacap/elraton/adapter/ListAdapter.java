@@ -111,6 +111,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
 
         ViewHolder(View itemView)
         {
+            //https://stackoverflow.com/questions/27617693/java-lang-classcastexception-android-widget-relativelayoutlayoutparams-cannot
             super(itemView);
             imagen = itemView.findViewById(R.id.ImagenProd);
             nombre=itemView.findViewById(R.id.txtNombreProd);

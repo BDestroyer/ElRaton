@@ -65,6 +65,7 @@ public class InicioFragment extends Fragment implements SearchView.OnQueryTextLi
             }
         });
     }
+
     public void init()
     {
         listaProducto = new ArrayList<>();
@@ -101,7 +102,6 @@ public class InicioFragment extends Fragment implements SearchView.OnQueryTextLi
         rcv.setLayoutManager(new LinearLayoutManager(getContext()));
         listAdapter=new ListAdapter(listaProducto, getContext());
         rcv.setHasFixedSize(true);
-
         rcv.setAdapter(listAdapter);
     }
 
