@@ -37,6 +37,10 @@ public class MainActivity extends AppCompatActivity
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         cargarDatos();
+        //https://es.stackoverflow.com/questions/10142/obtener-posición-de-un-listview-en-android
+        //https://youtu.be/thtdGMk2SD8
+        //https://es.stackoverflow.com/questions/40400/abrir-una-nueva-activity-al-hacer-click-en-un-cardview
+        //https://stackoverflow.com/questions/27617693/java-lang-classcastexception-android-widget-relativelayoutlayoutparams-cannot
     }
 
     public boolean onCreateOptionsMenu(Menu menu)
