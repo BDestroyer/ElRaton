@@ -1,9 +1,11 @@
 package com.inacap.elraton.AdminActivity;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,6 +13,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import android.os.Environment;
@@ -26,15 +29,19 @@ import com.inacap.elraton.R;
 import com.inacap.elraton.db;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.Objects;
 
 public class AgregarProductoActivity extends AppCompatActivity {
 
     private static final int COD_SELECCIONA = 10;
-    final String relativeLocation = Environment.DIRECTORY_DCIM + File.separator+"imgElRaton"+File.separator;
     ImageView imgAdd;
     TextView txtTitulo, txtDescripcion, txtPrecio, txtCantidad;
     Button btnInsertarProd;
     String nombre=obtenerNombre();
+    String ruta, a;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,11 +66,11 @@ public class AgregarProductoActivity extends AppCompatActivity {
                 try {
                     db conexionUsuario = new db(getApplicationContext(), "elRaton.db", null, 1);
                     Metodo x = new Metodo();
+                    ruta= a+File.separator+nombre;
                     SQLiteDatabase basedato = x.Conectar(conexionUsuario);
                     if (txtTitulo.getText().toString().equals("") || txtDescripcion.getText().toString().equals("") || txtPrecio.getText().toString().equals("") || txtCantidad.getText().toString().equals("")) {
                         Toast.makeText(AgregarProductoActivity.this, "Debe rellenar los campos antes de continuar", Toast.LENGTH_SHORT).show();
                     } else {
-                        String ruta= relativeLocation+nombre;
                         String TituloIng = txtTitulo.getText().toString();
                         String DescripcionIng = txtDescripcion.getText().toString();
                         int PrecioIng = Integer.parseInt(txtPrecio.getText().toString());
@@ -122,9 +129,11 @@ public class AgregarProductoActivity extends AppCompatActivity {
                 Bitmap bitmap = imgAdd.getDrawingCache();
                 try
                 {
+                    a=saveImage(bitmap,nombre);
                     //File file= new File();
-                    //file =
-                    MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, nombre, null);
+                    //final Uri contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+                    //uri = resolver.insert(contentUri, values);
+                    //MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, nombre, null);
                 }
                 catch (Exception e)
                 {
@@ -138,8 +147,35 @@ public class AgregarProductoActivity extends AppCompatActivity {
 
     private String obtenerNombre()
     {
-        Long consecutivo= System.currentTimeMillis()/1000000;
+        Long consecutivo= System.currentTimeMillis()/1000;
         String nombre=consecutivo.toString()+".jpg";
         return nombre;
+    }
+
+    private String saveImage(Bitmap bitmap, @NonNull String name) throws IOException {
+        OutputStream fos;
+        String ruta;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+        {
+            ContentResolver resolver = getContentResolver();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME,name);
+            contentValues.put(MediaStore.MediaColumns.MIME_TYPE,"image/");
+            contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DCIM+File.separator);
+            String imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM+File.separator).toString();
+            Uri imageUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+            fos = resolver.openOutputStream(Objects.requireNonNull(imageUri));
+            ruta=imagesDir;
+        }
+        else
+        {
+            String imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM+File.separator).toString();
+            File image = new File(imagesDir, name);
+            ruta=imagesDir+name;
+            fos = new FileOutputStream(image);
+        }
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 10, fos);
+        Objects.requireNonNull(fos).close();
+        return ruta;
     }
 }
