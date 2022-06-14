@@ -42,6 +42,7 @@ public class AgregarProductoActivity extends AppCompatActivity {
     Button btnInsertarProd;
     String nombre=obtenerNombre();
     String ruta, a;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -130,17 +131,11 @@ public class AgregarProductoActivity extends AppCompatActivity {
                 try
                 {
                     a=saveImage(bitmap,nombre);
-                    //File file= new File();
-                    //final Uri contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-                    //uri = resolver.insert(contentUri, values);
-                    //MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, nombre, null);
                 }
                 catch (Exception e)
                 {
                     e.printStackTrace();
                 }
-                //https://stackoverflow.com/questions/56904485/how-to-save-an-image-in-android-q-using-mediastore
-                //https://stackoverflow.com/questions/59511147/create-copy-file-in-android-q-using-mediastore
                 break;
         }
     }

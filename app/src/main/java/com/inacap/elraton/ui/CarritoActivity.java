@@ -6,7 +6,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -22,10 +25,12 @@ import java.util.ArrayList;
 public class CarritoActivity extends AppCompatActivity {
     RecyclerView rcv;
     ListAdapterCarrito listAdapterCarrito;
+    Button btnComprar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carrito);
+        btnComprar=findViewById(R.id.btnComprarCarrito);
         init();
     }
     public void init()
@@ -43,7 +48,8 @@ public class CarritoActivity extends AppCompatActivity {
             {
                 prod=new producto();
                 prod.setId(cursor.getInt(0));
-                //prod.setFoto(Integer.parseInt(cursor.getString(1)));
+                Bitmap bmap= BitmapFactory.decodeFile(cursor.getString(1));
+                prod.setFoto(bmap);
                 prod.setTitulo(cursor.getString(2));
                 prod.setDescripcion(cursor.getString(3));
                 prod.setPrecio(+cursor.getInt(4));
@@ -53,7 +59,13 @@ public class CarritoActivity extends AppCompatActivity {
         }
         else
         {
-            Toast.makeText(this, "No se han encontrado productos en el carrito de compras", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No se han encontrado productos en la base de datos, este producto es solo referencial", Toast.LENGTH_LONG).show();
+            prod=new producto();
+            prod.setTitulo("Ropa");
+            prod.setDescripcion("lorem ipsum");
+            prod.setPrecio(15000);
+            prod.setCantidad(1);
+            listaProducto.add(prod);
         }
         rcv=findViewById(R.id.rcvCarrito);
         rcv.setLayoutManager(new LinearLayoutManager(this));
