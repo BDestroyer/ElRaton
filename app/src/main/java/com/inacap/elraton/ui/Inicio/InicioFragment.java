@@ -61,7 +61,7 @@ public class InicioFragment extends Fragment implements SearchView.OnQueryTextLi
         listAdapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Seleccion: "+listaProducto.get(rcv.getChildAdapterPosition(view)).getTitulo(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Seleccion: "+listaProducto.get(rcv.getChildAdapterPosition(v)).getTitulo(), Toast.LENGTH_SHORT).show();
             }
         });
     }
