@@ -85,13 +85,7 @@ public class InicioFragment extends Fragment implements SearchView.OnQueryTextLi
         }
         else
         {
-            Toast.makeText(getContext(), "No se han encontrado productos en la base de datos, este producto es solo referencial", Toast.LENGTH_LONG).show();
-            prod=new producto();
-            prod.setTitulo("Ropa");
-            prod.setDescripcion("lorem ipsum");
-            prod.setPrecio(15000);
-            prod.setCantidad(1);
-            listaProducto.add(prod);
+            Toast.makeText(getContext(), "No se han encontrado productos disponibles", Toast.LENGTH_SHORT).show();
         }
         rcv=getView().findViewById(R.id.listRecyclerView);
         rcv.setLayoutManager(new LinearLayoutManager(getContext()));

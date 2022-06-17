@@ -121,7 +121,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
         {
             btnAgregar.setTag(id);
             btnAgregar.setOnClickListener(this);
-
         }
 
         @Override

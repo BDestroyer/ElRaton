@@ -64,16 +64,8 @@ public class CarritoActivity extends AppCompatActivity {
         }
         else
         {
-            Toast.makeText(this, "No se han encontrado productos en la base de datos, este producto es solo referencial", Toast.LENGTH_LONG).show();
-            prod=new producto();
-            prod.setTitulo("Ropa");
-            prod.setDescripcion("lorem ipsum");
-            prod.setPrecio(15000);
-            prod.setCantidad(1);
-            listaProducto.add(prod);
+            Toast.makeText(this, "El carrito de compras se encuentra vacio", Toast.LENGTH_LONG).show();
         }
-
-
         rcv=findViewById(R.id.rcvCarrito);
         rcv.setLayoutManager(new LinearLayoutManager(this));
         listAdapterCarrito=new ListAdapterCarrito(listaProducto, this);
