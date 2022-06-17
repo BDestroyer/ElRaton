@@ -63,13 +63,12 @@
                 android:id="@+id/txtPrecio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="$1000"
+                android:text="1000"
                 android:textAlignment="center"
-                android:textColor="#2E7D32"
+                android:textColor="#388E3C"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView39"
                 app:layout_constraintTop_toBottomOf="@+id/txtNombreProd" />
 
             <Button
@@ -106,6 +105,19 @@
                 android:textColor="#000000"
                 app:layout_constraintBottom_toTopOf="@+id/btnAgregar"
                 app:layout_constraintEnd_toStartOf="@+id/spCantidad" />
+
+            <TextView
+                android:id="@+id/textView39"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="$"
+                android:textAlignment="center"
+                android:textColor="#388E3C"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtNombreProd" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>

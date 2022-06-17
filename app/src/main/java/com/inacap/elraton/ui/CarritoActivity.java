@@ -10,13 +10,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.inacap.elraton.Metodo;
 import com.inacap.elraton.R;
-import com.inacap.elraton.adapter.ListAdapterAdmin;
 import com.inacap.elraton.adapter.ListAdapterCarrito;
+import com.inacap.elraton.clase.carrito;
 import com.inacap.elraton.clase.producto;
 import com.inacap.elraton.db;
 
@@ -41,21 +40,28 @@ public class CarritoActivity extends AppCompatActivity {
         db conexionUsuario=new db(getApplicationContext(),"elRaton.db",null,1);
         SQLiteDatabase basedato=x.Conectar(conexionUsuario);
         listaProducto = new ArrayList<>();
-        Cursor cursor=basedato.rawQuery("select * from carrito",null);
-        if (cursor.moveToFirst())
+        Cursor c=basedato.rawQuery("select * from carrito",null);
+        //Preguntar
+        if (c.moveToFirst())
         {
-            while (cursor.moveToNext())
-            {
-                prod=new producto();
-                prod.setId(cursor.getInt(0));
-                Bitmap bmap= BitmapFactory.decodeFile(cursor.getString(1));
-                prod.setFoto(bmap);
-                prod.setTitulo(cursor.getString(2));
-                prod.setDescripcion(cursor.getString(3));
-                prod.setPrecio(+cursor.getInt(4));
-                prod.setCantidad(cursor.getInt(5));
-                listaProducto.add(prod);
-            }
+            do {
+                int id=c.getInt(0);
+                Cursor cursor=basedato.rawQuery("select * from producto where id='"+id+"'",null);
+                if (cursor.moveToFirst())
+                {
+                    do
+                    {
+                        prod=new producto();
+                        Bitmap bmap= BitmapFactory.decodeFile(cursor.getString(1));
+                        prod.setFoto(bmap);
+                        prod.setTitulo(cursor.getString(2));
+                        prod.setDescripcion(cursor.getString(3));
+                        prod.setPrecio(cursor.getInt(4));
+                        prod.setCantidad(c.getInt(1));
+                        listaProducto.add(prod);
+                    }while (cursor.moveToNext());
+                }
+            }while (c.moveToNext());
         }
         else
         {
@@ -67,6 +73,8 @@ public class CarritoActivity extends AppCompatActivity {
             prod.setCantidad(1);
             listaProducto.add(prod);
         }
+
+
         rcv=findViewById(R.id.rcvCarrito);
         rcv.setLayoutManager(new LinearLayoutManager(this));
         listAdapterCarrito=new ListAdapterCarrito(listaProducto, this);
