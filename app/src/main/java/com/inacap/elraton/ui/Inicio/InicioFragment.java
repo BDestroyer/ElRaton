@@ -58,12 +58,6 @@ public class InicioFragment extends Fragment implements SearchView.OnQueryTextLi
                 startActivity(a);
             }
         });
-        listAdapter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "Seleccion: "+listaProducto.get(rcv.getChildAdapterPosition(view)).getTitulo(), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     public void init()
@@ -76,9 +70,10 @@ public class InicioFragment extends Fragment implements SearchView.OnQueryTextLi
         Cursor cursor=basedato.rawQuery("select * from producto",null);
         if (cursor.moveToFirst())
         {
-            while (cursor.moveToNext())
+            do
             {
                 prod=new producto();
+                prod.setId(cursor.getInt(0));
                 Bitmap bmap= BitmapFactory.decodeFile(cursor.getString(1));
                 prod.setFoto(bmap);
                 prod.setTitulo(cursor.getString(2));
@@ -86,7 +81,7 @@ public class InicioFragment extends Fragment implements SearchView.OnQueryTextLi
                 prod.setPrecio(cursor.getInt(4));
                 prod.setCantidad(cursor.getInt(5));
                 listaProducto.add(prod);
-            }
+            }while (cursor.moveToNext());
         }
         else
         {

@@ -124,13 +124,13 @@ public class AgregarProductoActivity extends AppCompatActivity {
         switch (requestCode)
         {
             case COD_SELECCIONA:
+                try
+                {
                 Uri miPath = data.getData();
                 imgAdd.setImageURI(miPath);
                 imgAdd.setDrawingCacheEnabled(true);
                 Bitmap bitmap = imgAdd.getDrawingCache();
-                try
-                {
-                    a=saveImage(bitmap,nombre);
+                a=saveImage(bitmap,nombre);
                 }
                 catch (Exception e)
                 {
