@@ -59,6 +59,7 @@ public class Metodo {
             bd.delete("carrito", "id='" + idBusq+"'", null);
             Toast.makeText(v.getContext(), "Producto eliminado del carrito", Toast.LENGTH_SHORT).show();
             bd.close();
+
         }
         catch (Exception e)
         {
