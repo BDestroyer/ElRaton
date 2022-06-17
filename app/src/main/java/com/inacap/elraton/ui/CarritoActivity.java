@@ -15,7 +15,6 @@ import android.widget.Toast;
 import com.inacap.elraton.Metodo;
 import com.inacap.elraton.R;
 import com.inacap.elraton.adapter.ListAdapterCarrito;
-import com.inacap.elraton.clase.carrito;
 import com.inacap.elraton.clase.producto;
 import com.inacap.elraton.db;
 
