@@ -88,6 +88,7 @@ public class ListAdapterCarrito extends RecyclerView.Adapter<ListAdapterCarrito.
         {
             Metodo x=new Metodo();
             int id=(int) v.getTag();
+            Toast.makeText(context, "id a "+id, Toast.LENGTH_SHORT).show();
             x.EliminarCarrito(id, v);
         }
     }

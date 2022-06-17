@@ -31,6 +31,7 @@ public class CarritoActivity extends AppCompatActivity {
         btnComprar=findViewById(R.id.btnComprarCarrito);
         init();
     }
+
     public void init()
     {
         ArrayList<producto> listaProducto;

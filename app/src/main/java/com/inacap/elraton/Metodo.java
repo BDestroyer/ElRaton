@@ -53,10 +53,11 @@ public class Metodo {
     public void EliminarCarrito(int idBusq, View v)
     {
         try {
+            //Toast.makeText(v.getContext(), "id "+idBusq, Toast.LENGTH_SHORT).show();
             //https://www.sqlitetutorial.net/sqlite-delete/
             db cU = new db(v.getContext(), "elRaton.db", null, 1);
             SQLiteDatabase bd = Conectar(cU);
-            bd.delete("carrito", "id='" + idBusq+"'", null);
+            bd.rawQuery("delete from carrito where id='"+idBusq+"'",null);
             Toast.makeText(v.getContext(), "Producto eliminado del carrito", Toast.LENGTH_SHORT).show();
             bd.close();
 
