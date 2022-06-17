@@ -44,9 +44,9 @@ public class Metodo {
     public void EliminarCarrito(int idBusq, View v)
     {
         try {
+            //https://www.sqlitetutorial.net/sqlite-delete/
             db cU = new db(v.getContext(), "elRaton.db", null, 1);
             SQLiteDatabase bd = Conectar(cU);
-            //String[] a=new String[]{String.valueOf(id)};
             bd.delete("carrito", "id='" + idBusq+"'", null);
             Toast.makeText(v.getContext(), "Producto eliminado del carrito", Toast.LENGTH_SHORT).show();
             bd.close();
