@@ -24,6 +24,7 @@ public class db extends SQLiteOpenHelper
         db.execSQL("drop table if exists usuario");
         db.execSQL("drop table if exists producto");
         db.execSQL("drop table if exists carrito");
+        db.execSQL("drop table if exists miscompras");
         db.execSQL("drop table if exists contacto");
         db.execSQL("CREATE TABLE contacto(id integer primary key autoincrement not null, dato text not null)");
         db.execSQL("CREATE TABLE usuario(email email primary key not null, email email not null, apellido text not null, rol boolean not null)");
