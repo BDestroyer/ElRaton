@@ -34,6 +34,15 @@ public class Metodo {
                     bd.close();
                 }
             }
+            else
+            {
+                ContentValues r = new ContentValues();
+                r.put("id", id);
+                r.put("cantidad", cantidad);
+                bd.insert("carrito", null, r);
+                Toast.makeText(v.getContext(), "Producto agregado correctamente al carrito", Toast.LENGTH_SHORT).show();
+                bd.close();
+            }
         }
         catch (SQLiteConstraintException e)
         {
