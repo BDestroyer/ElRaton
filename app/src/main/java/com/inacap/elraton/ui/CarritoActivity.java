@@ -52,6 +52,7 @@ public class CarritoActivity extends AppCompatActivity {
                     do
                     {
                         prod=new producto();
+                        prod.setId(cursor.getInt(0));
                         Bitmap bmap= BitmapFactory.decodeFile(cursor.getString(1));
                         prod.setFoto(bmap);
                         prod.setTitulo(cursor.getString(2));

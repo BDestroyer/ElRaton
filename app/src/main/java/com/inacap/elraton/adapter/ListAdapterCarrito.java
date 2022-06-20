@@ -47,12 +47,12 @@ public class ListAdapterCarrito extends RecyclerView.Adapter<ListAdapterCarrito.
     public void onBindViewHolder(final ListAdapterCarrito.ViewHolder holder, final int position)
     {
         producto item= mData.get(position);
+        int id=item.getId();
         holder.cantidad.setText(String.valueOf(item.getCantidad()));
         holder.imagen.setImageBitmap(item.getFoto());
         holder.nombre.setText(item.getTitulo());
         holder.descripcion.setText(item.getDescripcion());
         holder.precio.setText(String.valueOf(item.getPrecio()));
-        int id=item.getId();
         holder.setOnClick(id);
     }
 
@@ -88,7 +88,6 @@ public class ListAdapterCarrito extends RecyclerView.Adapter<ListAdapterCarrito.
         {
             Metodo x=new Metodo();
             int id=(int) v.getTag();
-            Toast.makeText(context, "id a "+id, Toast.LENGTH_SHORT).show();
             x.EliminarCarrito(id, v);
         }
     }
