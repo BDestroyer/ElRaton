@@ -36,10 +36,11 @@ public class CarritoActivity extends AppCompatActivity {
     {
         ArrayList<producto> listaProducto;
         Metodo x= new Metodo();
-        producto prod=null;
+        producto prod;
         db conexionUsuario=new db(getApplicationContext(),"elRaton.db",null,1);
         SQLiteDatabase basedato=x.Conectar(conexionUsuario);
         listaProducto = new ArrayList<>();
+        //aqui where con id de cliente
         Cursor c=basedato.rawQuery("select * from carrito",null);
         //Preguntar
         if (c.moveToFirst())

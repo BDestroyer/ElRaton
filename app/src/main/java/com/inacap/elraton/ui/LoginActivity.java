@@ -6,7 +6,6 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -32,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     int REQUEST_CODER=200;
     int REQUEST_CODEW=300;
     int REQUEST_CODEM=400;
+
     @RequiresApi(api=Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState)
