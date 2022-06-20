@@ -1,12 +1,18 @@
 package com.inacap.elraton.ui;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,9 +29,14 @@ public class LoginActivity extends AppCompatActivity {
     TextView redireccion, ingUsuario,ingContrasenna;
     String usuarioIng,contraIng;
     Bundle bundle=new Bundle();
+    int REQUEST_CODER=200;
+    int REQUEST_CODEW=300;
+    int REQUEST_CODEM=400;
+    @RequiresApi(api=Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        verificarPermisos();
         db conexionUsuario=new db(getApplicationContext(),"elRaton.db",null,1);
         Metodo x= new Metodo();
         SQLiteDatabase basedato=x.Conectar(conexionUsuario);
@@ -110,6 +121,24 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(a);
             }
         });
+    }
+
+    @RequiresApi(api= Build.VERSION_CODES.M)
+    private void verificarPermisos()
+    {
+        int permisoReadExternal = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+        int permisoWriteExtenal = ContextCompat.checkSelfPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int permisoManageExtenal = ContextCompat.checkSelfPermission(this,Manifest.permission.MANAGE_EXTERNAL_STORAGE);
+        if(permisoReadExternal == PackageManager.PERMISSION_DENIED && permisoWriteExtenal == PackageManager.PERMISSION_DENIED && permisoManageExtenal == PackageManager.PERMISSION_DENIED)
+        {
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},REQUEST_CODER);
+            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},REQUEST_CODEW);
+            requestPermissions(new String[]{Manifest.permission.MANAGE_EXTERNAL_STORAGE},REQUEST_CODEM);
+        }
+        else
+        {
+            Toast.makeText(this, "No se han obtenido todos los permisos", Toast.LENGTH_SHORT).show();
+        }
     }
 
 
