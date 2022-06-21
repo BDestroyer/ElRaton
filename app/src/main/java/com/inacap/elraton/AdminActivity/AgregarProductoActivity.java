@@ -64,31 +64,43 @@ public class AgregarProductoActivity extends AppCompatActivity {
         btnInsertarProd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
+                try
+                {
                     db conexionUsuario = new db(getApplicationContext(), "elRaton.db", null, 1);
                     Metodo x = new Metodo();
                     ruta= a+File.separator+nombre;
                     SQLiteDatabase basedato = x.Conectar(conexionUsuario);
                     if (txtTitulo.getText().toString().equals("") || txtDescripcion.getText().toString().equals("") || txtPrecio.getText().toString().equals("") || txtCantidad.getText().toString().equals("")) {
                         Toast.makeText(AgregarProductoActivity.this, "Debe rellenar los campos antes de continuar", Toast.LENGTH_SHORT).show();
-                    } else {
-                        String TituloIng = txtTitulo.getText().toString();
-                        String DescripcionIng = txtDescripcion.getText().toString();
-                        int PrecioIng = Integer.parseInt(txtPrecio.getText().toString());
-                        int CantidadIng = Integer.parseInt(txtCantidad.getText().toString());
-                        ContentValues r = new ContentValues();
-                        r.put("rutaImg", ruta);
-                        r.put("titulo", TituloIng);
-                        r.put("descripcion", DescripcionIng);
-                        r.put("precio", PrecioIng);
-                        r.put("cantidad", CantidadIng);
-                        long i;
-                        i = basedato.insert("producto", null, r);
-                        Toast.makeText(getApplicationContext(), "Producto insertado", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(), EntradaAdminActivity.class);
-                        startActivity(intent);
                     }
-                } catch (SQLException ex) {
+                    else
+                    {
+                        if (Integer.parseInt(txtCantidad.getText().toString()) <= 99 && Integer.parseInt(txtCantidad.getText().toString()) >= 1 )
+                        {
+                            String TituloIng = txtTitulo.getText().toString();
+                            String DescripcionIng = txtDescripcion.getText().toString();
+                            int PrecioIng = Integer.parseInt(txtPrecio.getText().toString());
+                            int CantidadIng = Integer.parseInt(txtCantidad.getText().toString());
+                            ContentValues r = new ContentValues();
+                            r.put("rutaImg", ruta);
+                            r.put("titulo", TituloIng);
+                            r.put("descripcion", DescripcionIng);
+                            r.put("precio", PrecioIng);
+                            r.put("cantidad", CantidadIng);
+                            long i;
+                            i = basedato.insert("producto", null, r);
+                            Toast.makeText(getApplicationContext(), "Producto insertado", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(), EntradaAdminActivity.class);
+                            startActivity(intent);
+                        }
+                        else
+                        {
+                            Toast.makeText(AgregarProductoActivity.this, "Debe ingresar una cantidad mayor o igual a 1 y menor a 100", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+                catch (SQLException ex)
+                {
                     Toast.makeText(AgregarProductoActivity.this, "Error de la base de datos  " + ex, Toast.LENGTH_SHORT).show();
                 }
             }

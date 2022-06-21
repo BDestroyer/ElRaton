@@ -4,19 +4,21 @@ import android.graphics.Bitmap;
 
 public class producto
 {
-    private String titulo, descripcion;
-    private int id, precio, cantidad;
+    private String titulo, descripcion, correo;
+    private int id, precio, cantidad, precioTotal;
     private Bitmap foto;
 
     public producto() {
     }
 
-    public producto(String titulo, String descripcion, int id, int precio, int cantidad, Bitmap foto) {
+    public producto(String titulo, String descripcion, String correo, int id, int precio, int cantidad, int precioTotal, Bitmap foto) {
         this.titulo = titulo;
         this.descripcion = descripcion;
+        this.correo = correo;
         this.id = id;
         this.precio = precio;
         this.cantidad = cantidad;
+        this.precioTotal = precioTotal;
         this.foto = foto;
     }
 
@@ -34,6 +36,14 @@ public class producto
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public int getId() {
@@ -58,6 +68,14 @@ public class producto
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public int getPrecioTotal() {
+        return precioTotal;
+    }
+
+    public void setPrecioTotal(int precioTotal) {
+        this.precioTotal = precioTotal;
     }
 
     public Bitmap getFoto() {

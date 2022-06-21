@@ -1,6 +1,5 @@
 package com.inacap.elraton.ui.Inicio;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -19,22 +18,20 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.inacap.elraton.Metodo;
 import com.inacap.elraton.R;
 import com.inacap.elraton.adapter.ListAdapter;
 import com.inacap.elraton.clase.producto;
 import com.inacap.elraton.db;
-import com.inacap.elraton.ui.CarritoActivity;
 
 import java.util.ArrayList;
 
 public class InicioFragment extends Fragment implements SearchView.OnQueryTextListener
 {
-    RecyclerView rcv;
-    FloatingActionButton fab;
-    ListAdapter listAdapter;
     SearchView Busqueda;
+    String correo;
+    ListAdapter listAdapter;
+    RecyclerView rcv;
     ArrayList<producto> listaProducto;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -45,26 +42,30 @@ public class InicioFragment extends Fragment implements SearchView.OnQueryTextLi
     @MainThread
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
+        if (getArguments()!=null)
+        {
+            correo=getArguments().getString("mail");
+        }
         init();
-        fab=view.findViewById(R.id.fab);
         Busqueda=view.findViewById(R.id.txtBuscar);
         Busqueda.setOnQueryTextListener(this);
-        fab.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                Intent a=new Intent(getContext(), CarritoActivity.class);
-                startActivity(a);
-            }
-        });
     }
 
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        listAdapter.filtrado(newText);
+        return false;
+    }
     public void init()
     {
+        producto prod;
         listaProducto = new ArrayList<>();
         Metodo x= new Metodo();
-        producto prod=null;
         db conexionUsuario=new db(getContext(),"elRaton.db",null,1);
         SQLiteDatabase basedato=x.Conectar(conexionUsuario);
         Cursor cursor=basedato.rawQuery("select * from producto",null);
@@ -74,6 +75,7 @@ public class InicioFragment extends Fragment implements SearchView.OnQueryTextLi
             {
                 prod=new producto();
                 prod.setId(cursor.getInt(0));
+                prod.setCorreo(correo);
                 Bitmap bmap= BitmapFactory.decodeFile(cursor.getString(1));
                 prod.setFoto(bmap);
                 prod.setTitulo(cursor.getString(2));
@@ -92,16 +94,5 @@ public class InicioFragment extends Fragment implements SearchView.OnQueryTextLi
         listAdapter=new ListAdapter(listaProducto, getContext());
         rcv.setHasFixedSize(true);
         rcv.setAdapter(listAdapter);
-    }
-
-    @Override
-    public boolean onQueryTextSubmit(String query) {
-        return false;
-    }
-
-    @Override
-    public boolean onQueryTextChange(String newText) {
-        listAdapter.filtrado(newText);
-        return false;
     }
 }

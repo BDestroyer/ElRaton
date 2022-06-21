@@ -25,7 +25,7 @@
 
             <ImageView
                 android:id="@+id/ImagenProd"
-                android:layout_width="400dp"
+                android:layout_width="410dp"
                 android:layout_height="200dp"
                 android:layout_gravity="center"
                 android:background="#FFFFFF"

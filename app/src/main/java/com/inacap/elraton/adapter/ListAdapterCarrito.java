@@ -52,6 +52,7 @@ public class ListAdapterCarrito extends RecyclerView.Adapter<ListAdapterCarrito.
         holder.nombre.setText(item.getTitulo());
         holder.descripcion.setText(item.getDescripcion());
         holder.precio.setText(String.valueOf(item.getPrecio()));
+        holder.precioTotal.setText(String.valueOf(item.getPrecioTotal()));
         holder.setOnClick(id);
     }
 
@@ -62,7 +63,7 @@ public class ListAdapterCarrito extends RecyclerView.Adapter<ListAdapterCarrito.
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imagen;
-        TextView nombre, descripcion, precio, cantidad;
+        TextView nombre, descripcion, precio, cantidad, precioTotal;
         Button btnEliminar;
 
         ViewHolder(View itemView)
@@ -73,6 +74,7 @@ public class ListAdapterCarrito extends RecyclerView.Adapter<ListAdapterCarrito.
             nombre=itemView.findViewById(R.id.txtNombreProd);
             descripcion = itemView.findViewById(R.id.txtDescripcion);
             precio=itemView.findViewById(R.id.txtPrecio);
+            precioTotal=itemView.findViewById(R.id.txtPrecioTotal);
             btnEliminar=itemView.findViewById(R.id.btnEliminarCarrito);
         }
 

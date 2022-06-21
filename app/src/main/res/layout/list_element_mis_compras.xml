@@ -12,7 +12,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="463dp"
+        android:layout_height="642dp"
         android:animateLayoutChanges="true"
         android:background="@color/background_inicio"
         android:orientation="vertical">
@@ -25,11 +25,10 @@
 
             <ImageView
                 android:id="@+id/ImagenProd"
-                android:layout_width="368dp"
-                android:layout_height="141dp"
+                android:layout_width="400dp"
+                android:layout_height="400dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:paddingLeft="14dp"
                 android:paddingRight="14dp"
@@ -73,37 +72,27 @@
                 app:layout_constraintStart_toEndOf="@+id/textView19"
                 app:layout_constraintTop_toBottomOf="@+id/txtNombreProd" />
 
-            <Button
-                android:id="@+id/btnEliminarCarrito"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/btn_agregar"
-                android:paddingLeft="17dp"
-                app:icon="@android:drawable/ic_menu_close_clear_cancel"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:ignore="SpeakableTextPresentCheck" />
-
             <TextView
-                android:id="@+id/txtCantidadCarrito"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:textColor="@color/teal_200"
-                app:layout_constraintStart_toEndOf="@+id/textView18"
-                app:layout_constraintTop_toBottomOf="@+id/txtDescripcion" />
-
-            <TextView
-                android:id="@+id/textView18"
+                android:id="@+id/textView16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="Cantidad solicitada:"
-                android:textColor="@color/black"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtDescripcion" />
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:text="Cantidad:"
+                app:layout_constraintStart_toEndOf="@+id/txtNombreProd"
+                app:layout_constraintTop_toBottomOf="@+id/ImagenProd" />
+
+            <TextView
+                android:id="@+id/txtCantidad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/textView16"
+                app:layout_constraintTop_toBottomOf="@+id/ImagenProd" />
 
             <TextView
                 android:id="@+id/textView19"
@@ -119,40 +108,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/txtNombreProd" />
 
             <TextView
-                android:id="@+id/textView17"
+                android:id="@+id/textView23"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginBottom="16dp"
-                android:text="Precio Total:"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:id="@+id/textView22"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="16dp"
-                android:text="$"
-                android:textAlignment="viewEnd"
-                android:textColor="#388E3C"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView17" />
-
-            <TextView
-                android:id="@+id/txtPrecioTotal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:textAlignment="viewStart"
-                android:textColor="#388E3C"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView22" />
+                android:text="Pagado"
+                android:textAlignment="center"
+                android:textColor="#00796B"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtDescripcion" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>

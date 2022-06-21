@@ -15,9 +15,9 @@ public class db extends SQLiteOpenHelper
     {
         db.execSQL("CREATE TABLE usuario(email email primary key not null, contrasenna text not null, nombre text not null, apellido text not null, rol boolean not null)");
         db.execSQL("CREATE TABLE producto(id integer primary key autoincrement not null, rutaImg text not null, titulo text not null, descripcion text not null, precio integer not null, cantidad integer not null)");
-        //carrito lleva id de cliente, pasarlo en codigo;
-        db.execSQL("CREATE TABLE carrito(id integer primary key not null, cantidad integer not null)");
-        db.execSQL("CREATE TABLE miscompras(id integer primary key not null)");
+        //carrito lleva id de cliente, pasarlo en codigo
+        db.execSQL("CREATE TABLE carrito(id integer not null, cantidad integer not null, emailUsuario email not null)");
+        db.execSQL("CREATE TABLE miscompras(id integer primary key not null, rutaImg text not null, nombreProducto text not null, precioProducto integer not null, DescripcionProducto text not null, cantidadProducto integer not null, emailUsuario email not null)");
         db.execSQL("CREATE TABLE contacto(id integer primary key autoincrement not null, dato text not null)");
     }
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
@@ -30,8 +30,8 @@ public class db extends SQLiteOpenHelper
         db.execSQL("CREATE TABLE contacto(id integer primary key autoincrement not null, dato text not null)");
         db.execSQL("CREATE TABLE usuario(email email primary key not null, email email not null, apellido text not null, rol boolean not null)");
         db.execSQL("CREATE TABLE producto(id integer primary key autoincrement not null, rutaImg text not null, titulo text not null, descripcion text not null, precio integer not null, cantidad integer not null)");
-        db.execSQL("CREATE TABLE miscompras(id integer primary key not null)");
-        db.execSQL("CREATE TABLE carrito(id integer primary key not null)");
+        db.execSQL("CREATE TABLE carrito(id integer primary key not null, cantidad integer not null, emailUsuario email not null)");
+        db.execSQL("CREATE TABLE miscompras(id integer primary key not null, nombreProducto text not null, precioProducto integer not null, DescripcionProducto text not null, cantidadProducto integer not null, emailUsuario email not null)");
         onCreate(db);
     }
 

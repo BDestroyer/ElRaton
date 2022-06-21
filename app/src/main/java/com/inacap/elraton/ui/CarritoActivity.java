@@ -3,13 +3,16 @@ package com.inacap.elraton.ui;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.inacap.elraton.Metodo;
@@ -20,56 +23,54 @@ import com.inacap.elraton.db;
 
 import java.util.ArrayList;
 
-public class CarritoActivity extends AppCompatActivity {
+public class CarritoActivity extends AppCompatActivity
+{
+    SwipeRefreshLayout swipeRefreshLayout;
     RecyclerView rcv;
     ListAdapterCarrito listAdapterCarrito;
     Button btnComprar;
+    TextView txtResumen;
+    String correo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carrito);
         btnComprar=findViewById(R.id.btnComprarCarrito);
-        init();
-    }
-
-    public void init()
-    {
-        ArrayList<producto> listaProducto;
-        Metodo x= new Metodo();
-        producto prod;
-        db conexionUsuario=new db(getApplicationContext(),"elRaton.db",null,1);
-        SQLiteDatabase basedato=x.Conectar(conexionUsuario);
-        listaProducto = new ArrayList<>();
-        //aqui where con id de cliente
-        Cursor c=basedato.rawQuery("select * from carrito",null);
-        //Preguntar
-        if (c.moveToFirst())
+        swipeRefreshLayout=findViewById(R.id.swipeLayout);
+        rcv=findViewById(R.id.rcvCarrito);
+        txtResumen=findViewById(R.id.txtResumenCompra);
+        Bundle bundle=getIntent().getExtras();
+        if(bundle!=null)
         {
-            do {
-                int id=c.getInt(0);
-                Cursor cursor=basedato.rawQuery("select * from producto where id='"+id+"'",null);
-                if (cursor.moveToFirst())
-                {
-                    do
-                    {
-                        prod=new producto();
-                        prod.setId(cursor.getInt(0));
-                        Bitmap bmap= BitmapFactory.decodeFile(cursor.getString(1));
-                        prod.setFoto(bmap);
-                        prod.setTitulo(cursor.getString(2));
-                        prod.setDescripcion(cursor.getString(3));
-                        prod.setPrecio(cursor.getInt(4));
-                        prod.setCantidad(c.getInt(1));
-                        listaProducto.add(prod);
-                    }while (cursor.moveToNext());
-                }
-            }while (c.moveToNext());
+            correo=bundle.getString("corr");
         }
         else
         {
-            Toast.makeText(this, "El carrito de compras se encuentra vacio", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Error al obtener datos carrito ", Toast.LENGTH_SHORT).show();
         }
-        rcv=findViewById(R.id.rcvCarrito);
+        init(correo);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh()
+            {
+                swipeRefreshLayout.setRefreshing(false);
+                init(correo);
+            }
+        });
+        btnComprar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+    }
+
+    public void init(String correo)
+    {
+        Metodo x= new Metodo();
+        ArrayList<producto> listaProducto;
+        listaProducto=x.cargarCarrito(getApplicationContext(),correo);
         rcv.setLayoutManager(new LinearLayoutManager(this));
         listAdapterCarrito=new ListAdapterCarrito(listaProducto, this);
         rcv.setHasFixedSize(true);

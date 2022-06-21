@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -88,6 +89,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
         holder.nombre.setText(item.getTitulo());
         holder.descripcion.setText(item.getDescripcion());
         holder.precio.setText(String.valueOf(item.getPrecio()));
+        String correo=item.getCorreo();
         int id=item.getId();
         List<Integer> Cant = new ArrayList<>();
         for (int i=1; i<=item.getCantidad(); i++)
@@ -96,39 +98,38 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
         }
         ArrayAdapter<Integer> adapter= new ArrayAdapter(context, android.R.layout.simple_spinner_item, Cant);
         holder.spCantidad.setAdapter(adapter);
-        holder.setOnClick(id);
+        holder.btnAgregar.setTag(R.id.CorreoListAdapter,correo);
+        holder.btnAgregar.setTag(R.id.IDListAdapter,id);
+        holder.setOnClick();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
-    {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imagen;
         TextView nombre, descripcion, precio;
         Spinner spCantidad;
         Button btnAgregar;
 
-        ViewHolder(View itemView)
-        {
+        ViewHolder(View itemView) {
             super(itemView);
             imagen = itemView.findViewById(R.id.ImagenProd);
-            nombre=itemView.findViewById(R.id.txtNombreProd);
+            nombre = itemView.findViewById(R.id.txtNombreProd);
             descripcion = itemView.findViewById(R.id.txtDescripcion);
-            precio=itemView.findViewById(R.id.txtPrecio);
-            spCantidad=itemView.findViewById(R.id.spCantidad);
-            btnAgregar=itemView.findViewById(R.id.btnAgregar);
-        }
-        void setOnClick(int id)
-        {
-            btnAgregar.setTag(id);
-            btnAgregar.setOnClickListener(this);
+            precio = itemView.findViewById(R.id.txtPrecio);
+            spCantidad = itemView.findViewById(R.id.spCantidad);
+            btnAgregar = itemView.findViewById(R.id.btnAgregar);
         }
 
-        @Override
-        public void onClick(View v)
-        {
-            Metodo x=new Metodo();
-            int id= (int) v.getTag();
-            int cantidad= (int) spCantidad.getSelectedItem();
-            x.AgregarACarrito(cantidad, v, id);
+        void setOnClick() {
+            btnAgregar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Metodo x = new Metodo();
+                    String correo = (String) v.getTag(R.id.CorreoListAdapter);
+                    int id = (int) v.getTag(R.id.IDListAdapter);
+                    int cantidad = (int) spCantidad.getSelectedItem();
+                    x.AgregarACarrito(cantidad, v, id, correo);
+                }
+            });
         }
     }
 }
