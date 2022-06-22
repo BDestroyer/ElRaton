@@ -31,6 +31,7 @@ public class CarritoActivity extends AppCompatActivity
     Button btnComprar;
     TextView txtResumen;
     String correo;
+    Metodo x= new Metodo();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class CarritoActivity extends AppCompatActivity
         rcv=findViewById(R.id.rcvCarrito);
         txtResumen=findViewById(R.id.txtResumenCompra);
         Bundle bundle=getIntent().getExtras();
+
         if(bundle!=null)
         {
             correo=bundle.getString("corr");
@@ -50,12 +52,14 @@ public class CarritoActivity extends AppCompatActivity
             Toast.makeText(this, "Error al obtener datos carrito ", Toast.LENGTH_SHORT).show();
         }
         init(correo);
+        txtResumen.setText(String.valueOf(x.calculoResumen(correo, getApplicationContext())));
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh()
             {
                 swipeRefreshLayout.setRefreshing(false);
                 init(correo);
+                txtResumen.setText(String.valueOf(x.calculoResumen(correo,getApplicationContext())));
             }
         });
         btnComprar.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +72,6 @@ public class CarritoActivity extends AppCompatActivity
 
     public void init(String correo)
     {
-        Metodo x= new Metodo();
         ArrayList<producto> listaProducto;
         listaProducto=x.cargarCarrito(getApplicationContext(),correo);
         rcv.setLayoutManager(new LinearLayoutManager(this));

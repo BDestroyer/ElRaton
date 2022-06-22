@@ -87,8 +87,7 @@ public class AgregarProductoActivity extends AppCompatActivity {
                             r.put("descripcion", DescripcionIng);
                             r.put("precio", PrecioIng);
                             r.put("cantidad", CantidadIng);
-                            long i;
-                            i = basedato.insert("producto", null, r);
+                            basedato.insert("producto", null, r);
                             Toast.makeText(getApplicationContext(), "Producto insertado", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), EntradaAdminActivity.class);
                             startActivity(intent);

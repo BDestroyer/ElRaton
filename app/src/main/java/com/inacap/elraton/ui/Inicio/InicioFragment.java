@@ -1,5 +1,8 @@
 package com.inacap.elraton.ui.Inicio;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -23,6 +26,7 @@ import com.inacap.elraton.R;
 import com.inacap.elraton.adapter.ListAdapter;
 import com.inacap.elraton.clase.producto;
 import com.inacap.elraton.db;
+import com.inacap.elraton.ui.CarritoActivity;
 
 import java.util.ArrayList;
 

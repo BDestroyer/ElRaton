@@ -1,44 +1,31 @@
 package com.inacap.elraton.ui;
 
+import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.SearchView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.inacap.elraton.Metodo;
 import com.inacap.elraton.R;
-import com.inacap.elraton.adapter.ListAdapter;
-import com.inacap.elraton.clase.producto;
 import com.inacap.elraton.databinding.ActivityMainBinding;
-import com.inacap.elraton.db;
 import com.inacap.elraton.ui.Inicio.InicioFragment;
-
-import java.util.ArrayList;
-
 
 public class MainActivity extends AppCompatActivity
 {
@@ -65,11 +52,15 @@ public class MainActivity extends AppCompatActivity
         if(bundle != null)
         {
             correo = bundle.getString("correo");
-            Fragment f=new InicioFragment();
+            //Fragment f= new Fragment();
             Bundle args=new Bundle();
             args.putString("mail",correo);
-            f.setArguments(args);
-            getSupportFragmentManager().beginTransaction().replace(R.id.relativeLayout2,f).addToBackStack(null).commit();
+            FragmentManager fm=getSupportFragmentManager();
+            final FragmentTransaction fragmentTransaction= fm.beginTransaction();
+            final InicioFragment newFragment= new InicioFragment();
+            newFragment.setArguments(args);
+            fragmentTransaction.addToBackStack(null).replace(R.id.relativeLayout2,newFragment).commit();
+            //getSupportFragmentManager().beginTransaction().replace(R.id.relativeLayout2,f).addToBackStack(null).commit();
         }
         else
         {
@@ -106,6 +97,7 @@ public class MainActivity extends AppCompatActivity
             builder.setMessage("¿Desea cerrar la sesión?").setPositiveButton("Si", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            //quiza al cerrar la sesion que trunque la tabla carrito???
                             Intent i=new Intent(getApplicationContext(),LoginActivity.class);
                             startActivity(i);
                             finish();

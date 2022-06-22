@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.inacap.elraton.clase.producto;
 import com.inacap.elraton.databinding.ActivityMainBinding;
 
+import java.io.Console;
 import java.util.ArrayList;
 
 public class Metodo
@@ -31,20 +33,30 @@ public class Metodo
         try {
             db cU = new db(v.getContext(), "elRaton.db", null, 1);
             SQLiteDatabase bd = Conectar(cU);
-            Cursor cursor = bd.rawQuery("select * from carrito where emailUsuario="+correo+"", null);
+            Cursor cursor = bd.rawQuery("select * from carrito where emailUsuario="+correo+" and id='"+id+"'", null);
             if (cursor.moveToFirst())
             {
                 Toast.makeText(v.getContext(), "Producto ya existe en el carrito", Toast.LENGTH_SHORT).show();
             }
             else
             {
-                ContentValues r = new ContentValues();
-                r.put("id", id);
-                r.put("cantidad", cantidad);
-                r.put("emailUsuario", correo);
-                bd.insert("carrito", null, r);
-                Toast.makeText(v.getContext(), "Producto agregado correctamente al carrito", Toast.LENGTH_SHORT).show();
-                bd.close();
+                Cursor c=bd.rawQuery("select precio from producto where id='"+id+"'",null);
+                if (c.moveToFirst())
+                {
+                    int precio=c.getInt(0);
+                    ContentValues r = new ContentValues();
+                    r.put("id", id);
+                    r.put("cantidad", cantidad);
+                    r.put("emailUsuario", correo);
+                    r.put("valorTotal",precio*cantidad);
+                    bd.insert("carrito", null, r);
+                    Toast.makeText(v.getContext(), "Producto agregado correctamente al carrito", Toast.LENGTH_SHORT).show();
+                    bd.close();
+                }
+                else
+                {
+                    Toast.makeText(v.getContext(), "Kie", Toast.LENGTH_SHORT).show();
+                }
             }
             cursor.close();
         } catch (SQLiteConstraintException e) {
@@ -69,7 +81,6 @@ public class Metodo
 
     public ArrayList cargarCarrito(Context a, String correo)
     {
-        //email bien
         ArrayList<producto> listaProducto;
         producto prod;
         db conexionUsuario = new db(a, "elRaton.db", null, 1);
@@ -119,4 +130,27 @@ public class Metodo
         }
     }
 
+    public int calculoResumen(String mail,Context v)
+    {
+        int valor=0;
+        try
+        {
+            db cU = new db(v, "elRaton.db", null, 1);
+            SQLiteDatabase bd = Conectar(cU);
+            Cursor cursor = bd.rawQuery("select valorTotal from carrito where emailUsuario="+mail+"", null);
+            if (cursor.moveToFirst())
+            {
+                do
+                {
+                    valor=cursor.getInt(0);
+
+                }while (cursor.moveToNext());
+            }
+        }
+        catch (SQLiteException exception)
+        {
+            Toast.makeText(v, "Error "+exception, Toast.LENGTH_SHORT).show();
+        }
+        return valor;
+    }
 }
