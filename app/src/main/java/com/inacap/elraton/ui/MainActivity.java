@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             //quiza al cerrar la sesion que trunque la tabla carrito???
+                            //delete from carrito;
                             Intent i=new Intent(getApplicationContext(),LoginActivity.class);
                             startActivity(i);
                             finish();
