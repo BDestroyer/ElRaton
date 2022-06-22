@@ -3,6 +3,7 @@ package com.inacap.elraton.ui;
 import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +26,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.inacap.elraton.Metodo;
 import com.inacap.elraton.R;
 import com.inacap.elraton.databinding.ActivityMainBinding;
+import com.inacap.elraton.db;
 import com.inacap.elraton.ui.Inicio.InicioFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity
         if(bundle != null)
         {
             correo = bundle.getString("correo");
-            //Fragment f= new Fragment();
+            /*Fragment f= new Fragment();
             Bundle args=new Bundle();
             args.putString("mail",correo);
             FragmentManager fm=getSupportFragmentManager();
@@ -60,7 +62,7 @@ public class MainActivity extends AppCompatActivity
             final InicioFragment newFragment= new InicioFragment();
             newFragment.setArguments(args);
             fragmentTransaction.addToBackStack(null).replace(R.id.relativeLayout2,newFragment).commit();
-            //getSupportFragmentManager().beginTransaction().replace(R.id.relativeLayout2,f).addToBackStack(null).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.relativeLayout2,f).addToBackStack(null).commit();*/
         }
         else
         {
@@ -99,6 +101,8 @@ public class MainActivity extends AppCompatActivity
                         public void onClick(DialogInterface dialog, int which) {
                             //quiza al cerrar la sesion que trunque la tabla carrito???
                             //delete from carrito;
+                            Metodo x=new Metodo();
+                            x.truncarTablaCarrito(getApplicationContext());
                             Intent i=new Intent(getApplicationContext(),LoginActivity.class);
                             startActivity(i);
                             finish();

@@ -22,6 +22,13 @@ import java.util.ArrayList;
 public class Metodo
 {
 
+    public void truncarTablaCarrito(Context a)
+    {
+        db cU = new db(a, "elRaton.db", null, 1);
+        SQLiteDatabase basedato=Conectar(cU);
+        Cursor cursor= basedato.rawQuery("delete from carrito",null);
+    }
+
     public SQLiteDatabase Conectar(db cn)
     {
         SQLiteDatabase b = cn.getWritableDatabase();
