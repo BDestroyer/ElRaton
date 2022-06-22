@@ -26,7 +26,8 @@ import com.inacap.elraton.db;
 
 import java.util.ArrayList;
 
-public class MisComprasFragment extends Fragment {
+public class
+MisComprasFragment extends Fragment {
 
     RecyclerView rcv;
     ArrayList<producto> listaMisCompras;
