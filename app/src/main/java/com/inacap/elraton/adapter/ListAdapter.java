@@ -89,7 +89,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
         holder.nombre.setText(item.getTitulo());
         holder.descripcion.setText(item.getDescripcion());
         holder.precio.setText(String.valueOf(item.getPrecio()));
-        String correo=item.getCorreo();
         int id=item.getId();
         List<Integer> Cant = new ArrayList<>();
         for (int i=1; i<=item.getCantidad(); i++)
@@ -98,7 +97,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
         }
         ArrayAdapter<Integer> adapter= new ArrayAdapter(context, android.R.layout.simple_spinner_item, Cant);
         holder.spCantidad.setAdapter(adapter);
-        holder.btnAgregar.setTag(R.id.CorreoListAdapter,correo);
         holder.btnAgregar.setTag(R.id.IDListAdapter,id);
         holder.setOnClick();
     }
@@ -124,10 +122,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
                 @Override
                 public void onClick(View v) {
                     Metodo x = new Metodo();
-                    String correo = (String) v.getTag(R.id.CorreoListAdapter);
                     int id = (int) v.getTag(R.id.IDListAdapter);
                     int cantidad = (int) spCantidad.getSelectedItem();
-                    x.AgregarACarrito(cantidad, v, id, correo);
+                    x.AgregarACarrito(cantidad, v, id);
                 }
             });
         }

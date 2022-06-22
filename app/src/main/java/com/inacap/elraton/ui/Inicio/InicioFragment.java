@@ -1,8 +1,5 @@
 package com.inacap.elraton.ui.Inicio;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -26,14 +23,12 @@ import com.inacap.elraton.R;
 import com.inacap.elraton.adapter.ListAdapter;
 import com.inacap.elraton.clase.producto;
 import com.inacap.elraton.db;
-import com.inacap.elraton.ui.CarritoActivity;
 
 import java.util.ArrayList;
 
 public class InicioFragment extends Fragment implements SearchView.OnQueryTextListener
 {
     SearchView Busqueda;
-    String correo;
     ListAdapter listAdapter;
     RecyclerView rcv;
     ArrayList<producto> listaProducto;
@@ -46,10 +41,6 @@ public class InicioFragment extends Fragment implements SearchView.OnQueryTextLi
     @MainThread
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
-        if (getArguments()!=null)
-        {
-            correo=getArguments().getString("mail");
-        }
         init();
         Busqueda=view.findViewById(R.id.txtBuscar);
         Busqueda.setOnQueryTextListener(this);
@@ -79,7 +70,6 @@ public class InicioFragment extends Fragment implements SearchView.OnQueryTextLi
             {
                 prod=new producto();
                 prod.setId(cursor.getInt(0));
-                prod.setCorreo(correo);
                 Bitmap bmap= BitmapFactory.decodeFile(cursor.getString(1));
                 prod.setFoto(bmap);
                 prod.setTitulo(cursor.getString(2));
