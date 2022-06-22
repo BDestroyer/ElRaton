@@ -16,7 +16,6 @@ import android.widget.Toast;
 import com.inacap.elraton.clase.producto;
 import com.inacap.elraton.databinding.ActivityMainBinding;
 
-import java.io.Console;
 import java.util.ArrayList;
 
 public class Metodo
@@ -24,9 +23,14 @@ public class Metodo
 
     public void truncarTablaCarrito(Context a)
     {
-        db cU = new db(a, "elRaton.db", null, 1);
-        SQLiteDatabase basedato=Conectar(cU);
-        Cursor cursor= basedato.rawQuery("delete from carrito",null);
+        try {
+            db cU = new db(a, "elRaton.db", null, 1);
+            SQLiteDatabase basedato = Conectar(cU);
+            basedato.rawQuery("delete from carrito", null);
+        }catch (Exception e)
+        {
+            Toast.makeText(a, "Error "+e, Toast.LENGTH_SHORT).show();
+        }
     }
 
     public SQLiteDatabase Conectar(db cn)
@@ -139,7 +143,8 @@ public class Metodo
 
     public int calculoResumen(Context v)
     {
-        int valor=0;
+        int valor;
+        int acum=0;
         try
         {
             db cU = new db(v, "elRaton.db", null, 1);
@@ -150,7 +155,7 @@ public class Metodo
                 do
                 {
                     valor=cursor.getInt(0);
-
+                    acum=acum+valor;
                 }while (cursor.moveToNext());
             }
         }
@@ -158,6 +163,6 @@ public class Metodo
         {
             Toast.makeText(v, "Error "+exception, Toast.LENGTH_SHORT).show();
         }
-        return valor;
+        return acum;
     }
 }
