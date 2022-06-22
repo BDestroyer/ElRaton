@@ -10,5 +10,7 @@
     <string name="ingContrasenna_Registrar">Ingrese su contraseña:</string>
     <string name="btnRegresar_Registrar">Regresar</string>
     <string name="btnInsertar">Insertar</string>
-    <string name="olvidar">¿Olvidó su contraseña?</string>
+    <string name="res">Resumen de compra:</string>
+    <item name="CorreoListAdapter" type="id"/>
+    <item name="IDListAdapter" type="id"/>
 </resources>

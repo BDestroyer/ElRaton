@@ -1,9 +1,12 @@
 package com.inacap.elraton.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -23,13 +26,16 @@ public class LoginActivity extends AppCompatActivity {
     TextView redireccion, ingUsuario,ingContrasenna;
     String usuarioIng,contraIng;
     Bundle bundle=new Bundle();
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+        verificarPermisos();
         db conexionUsuario=new db(getApplicationContext(),"elRaton.db",null,1);
         Metodo x= new Metodo();
         SQLiteDatabase basedato=x.Conectar(conexionUsuario);
-        long i;
         Cursor cursor=basedato.rawQuery("select email from usuario",null);
         if (!(cursor.moveToFirst()))
         {
@@ -39,10 +45,9 @@ public class LoginActivity extends AppCompatActivity {
             r.put("apellido", "admin");
             r.put("contrasenna", "admin");
             r.put("rol", "true");
-            i=basedato.insert("usuario",null,r);
+            basedato.insert("usuario",null,r);
         }
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        cursor.close();
         redireccion=findViewById(R.id.txtRegistrar);
         ingUsuario=findViewById(R.id.edt_Usuario);
         ingContrasenna=findViewById(R.id.edt_Contraseña);
@@ -54,39 +59,43 @@ public class LoginActivity extends AppCompatActivity {
             {
                 try
                 {
-                    usuarioIng=ingUsuario.getText().toString();
-                    contraIng=ingContrasenna.getText().toString();
-                    if (usuarioIng.equals("")||contraIng.equals(""))
+                    if (ingUsuario.getText().toString().equals("") || ingContrasenna.getText().toString().equals(""))
                     {
                         Toast.makeText(LoginActivity.this, "Debe rellenar los campos antes de continuar", Toast.LENGTH_SHORT).show();
                     }
                     else
                     {
+                        usuarioIng=ingUsuario.getText().toString();
+                        contraIng=ingContrasenna.getText().toString();
                         Cursor cursor=basedato.rawQuery("select email, contrasenna from usuario where email='"+usuarioIng+"' and contrasenna='"+contraIng+"'",null);
                         if (cursor.moveToFirst())
                         {
+                            cursor.close();
                             Cursor cursorAdmin=basedato.rawQuery("select email, contrasenna, rol from usuario where email='"+usuarioIng+"' and contrasenna='"+contraIng+"' and rol='true'",null);
                             if( cursorAdmin.moveToFirst())
                             {
+                                cursorAdmin.close();
                                 Intent a=new Intent(getApplicationContext(), EntradaAdminActivity.class);
                                 startActivity(a);
                             }
                             else
                             {
-                                cursor=basedato.rawQuery("select email, nombre, apellido from usuario",null);
+                                //cursor=basedato.rawQuery("select email, nombre, apellido from usuario ",null);
+                                cursor=basedato.rawQuery("select email, nombre, apellido from usuario where email='"+usuarioIng+"'",null);
                                 if (cursor.moveToFirst())
                                 {
                                     do
                                     {
-                                        Intent a=new Intent(getApplicationContext(),MainActivity.class);
                                         String email=cursor.getString(0);
                                         String nom=cursor.getString(1);
                                         String ape=cursor.getString(2);
                                         bundle.putString("nombre_completo",nom+" "+ape);
                                         bundle.putString("correo",email);
+                                        Intent a=new Intent(getApplicationContext(), MainActivity.class);
                                         a.putExtras(bundle);
                                         startActivity(a);
                                     }while (cursor.moveToNext());
+                                    cursor.close();
                                 }
                             }
                         }
@@ -110,6 +119,15 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(a);
             }
         });
+    }
+
+    private void verificarPermisos()
+    {
+        int permisoReadExternal = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+        if(permisoReadExternal == PackageManager.PERMISSION_DENIED)
+        {
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
+        }
     }
 
 

@@ -1,5 +1,7 @@
 package com.inacap.elraton.ui.Inicio;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -19,7 +21,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.inacap.elraton.Metodo;
 import com.inacap.elraton.R;
 import com.inacap.elraton.adapter.ListAdapter;
@@ -31,10 +32,10 @@ import java.util.ArrayList;
 
 public class InicioFragment extends Fragment implements SearchView.OnQueryTextListener
 {
-    RecyclerView rcv;
-    FloatingActionButton fab;
-    ListAdapter listAdapter;
     SearchView Busqueda;
+    String correo;
+    ListAdapter listAdapter;
+    RecyclerView rcv;
     ArrayList<producto> listaProducto;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -45,64 +46,13 @@ public class InicioFragment extends Fragment implements SearchView.OnQueryTextLi
     @MainThread
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
+        if (getArguments()!=null)
+        {
+            correo=getArguments().getString("mail");
+        }
         init();
-        fab=view.findViewById(R.id.fab);
         Busqueda=view.findViewById(R.id.txtBuscar);
         Busqueda.setOnQueryTextListener(this);
-        fab.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                Intent a=new Intent(getContext(), CarritoActivity.class);
-                startActivity(a);
-            }
-        });
-        listAdapter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "Seleccion: "+listaProducto.get(rcv.getChildAdapterPosition(v)).getTitulo(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    public void init()
-    {
-        listaProducto = new ArrayList<>();
-        Metodo x= new Metodo();
-        producto prod=null;
-        db conexionUsuario=new db(getContext(),"elRaton.db",null,1);
-        SQLiteDatabase basedato=x.Conectar(conexionUsuario);
-        Cursor cursor=basedato.rawQuery("select * from producto",null);
-        if (cursor.moveToFirst())
-        {
-            while (cursor.moveToNext())
-            {
-                prod=new producto();
-                Bitmap bmap= BitmapFactory.decodeFile(cursor.getString(1));
-                prod.setFoto(bmap);
-                prod.setTitulo(cursor.getString(2));
-                prod.setDescripcion(cursor.getString(3));
-                prod.setPrecio(cursor.getInt(4));
-                prod.setCantidad(cursor.getInt(5));
-                listaProducto.add(prod);
-            }
-        }
-        else
-        {
-            Toast.makeText(getContext(), "No se han encontrado productos en la base de datos, este producto es solo referencial", Toast.LENGTH_LONG).show();
-            prod=new producto();
-            prod.setTitulo("Ropa");
-            prod.setDescripcion("lorem ipsum");
-            prod.setPrecio(15000);
-            prod.setCantidad(1);
-            listaProducto.add(prod);
-        }
-        rcv=getView().findViewById(R.id.listRecyclerView);
-        rcv.setLayoutManager(new LinearLayoutManager(getContext()));
-        listAdapter=new ListAdapter(listaProducto, getContext());
-        rcv.setHasFixedSize(true);
-        rcv.setAdapter(listAdapter);
     }
 
     @Override
@@ -114,5 +64,39 @@ public class InicioFragment extends Fragment implements SearchView.OnQueryTextLi
     public boolean onQueryTextChange(String newText) {
         listAdapter.filtrado(newText);
         return false;
+    }
+    public void init()
+    {
+        producto prod;
+        listaProducto = new ArrayList<>();
+        Metodo x= new Metodo();
+        db conexionUsuario=new db(getContext(),"elRaton.db",null,1);
+        SQLiteDatabase basedato=x.Conectar(conexionUsuario);
+        Cursor cursor=basedato.rawQuery("select * from producto",null);
+        if (cursor.moveToFirst())
+        {
+            do
+            {
+                prod=new producto();
+                prod.setId(cursor.getInt(0));
+                prod.setCorreo(correo);
+                Bitmap bmap= BitmapFactory.decodeFile(cursor.getString(1));
+                prod.setFoto(bmap);
+                prod.setTitulo(cursor.getString(2));
+                prod.setDescripcion(cursor.getString(3));
+                prod.setPrecio(cursor.getInt(4));
+                prod.setCantidad(cursor.getInt(5));
+                listaProducto.add(prod);
+            }while (cursor.moveToNext());
+        }
+        else
+        {
+            Toast.makeText(getContext(), "No se han encontrado productos disponibles", Toast.LENGTH_SHORT).show();
+        }
+        rcv=getView().findViewById(R.id.listRecyclerView);
+        rcv.setLayoutManager(new LinearLayoutManager(getContext()));
+        listAdapter=new ListAdapter(listaProducto, getContext());
+        rcv.setHasFixedSize(true);
+        rcv.setAdapter(listAdapter);
     }
 }

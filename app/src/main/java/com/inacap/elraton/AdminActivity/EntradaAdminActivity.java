@@ -10,7 +10,7 @@ import android.widget.Button;
 import com.inacap.elraton.R;
 import com.inacap.elraton.ui.LoginActivity;
 
-public class EntradaAdminActivity extends AppCompatActivity {
+public class  EntradaAdminActivity extends AppCompatActivity {
     Button btnIngresar, btnModificar, btnEliminar, btnVer, btnRecomend, btnCerrar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

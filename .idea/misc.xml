@@ -60,6 +60,25 @@
         <entry key="..\:/Users/informatica7/Desktop/ElRaton-a/app/src/main/res/layout/fragment_gallery.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/informatica7/Desktop/ElRaton-a/app/src/main/res/layout/fragment_home.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/informatica7/Desktop/ElRaton-a/app/src/main/res/layout/fragment_slideshow.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/informatica7/StudioProjects/ElRatonOfiApli/app/src/main/res/layout/activity_agregar.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/informatica7/StudioProjects/ElRatonOfiApli/app/src/main/res/layout/activity_carrito.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/informatica7/StudioProjects/ElRatonOfiApli/app/src/main/res/layout/activity_eliminar_producto.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/informatica7/StudioProjects/ElRatonOfiApli/app/src/main/res/layout/activity_entrada_admin.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/informatica7/StudioProjects/ElRatonOfiApli/app/src/main/res/layout/activity_login.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/informatica7/StudioProjects/ElRatonOfiApli/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/informatica7/StudioProjects/ElRatonOfiApli/app/src/main/res/layout/activity_modificar.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/informatica7/StudioProjects/ElRatonOfiApli/app/src/main/res/layout/activity_recomendaciones_admin.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/informatica7/StudioProjects/ElRatonOfiApli/app/src/main/res/layout/activity_registro.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/informatica7/StudioProjects/ElRatonOfiApli/app/src/main/res/layout/activity_ver_producto.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/informatica7/StudioProjects/ElRatonOfiApli/app/src/main/res/layout/app_bar_main.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/informatica7/StudioProjects/ElRatonOfiApli/app/src/main/res/layout/content_main.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/informatica7/StudioProjects/ElRatonOfiApli/app/src/main/res/layout/fragment_buscar.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/informatica7/StudioProjects/ElRatonOfiApli/app/src/main/res/layout/fragment_contacto.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/informatica7/StudioProjects/ElRatonOfiApli/app/src/main/res/layout/fragment_inicio.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/informatica7/StudioProjects/ElRatonOfiApli/app/src/main/res/layout/list_element.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/informatica7/StudioProjects/ElRatonOfiApli/app/src/main/res/layout/list_element_admin.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/informatica7/StudioProjects/ElRatonOfiApli/app/src/main/res/layout/list_element_carrito.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/informatica7/StudioProjects/ElRatonOfiApli/app/src/main/res/layout/nav_header_main.xml" value="0.358695652173913" />
         <entry key="..\:/Users/nko19/AndroidStudioProjects/ElRaton/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.292" />
         <entry key="..\:/Users/nko19/AndroidStudioProjects/ElRaton/app/src/main/res/drawable/ic_carrito2_background.xml" value="0.292" />
         <entry key="..\:/Users/nko19/AndroidStudioProjects/ElRaton/app/src/main/res/drawable/ic_carrito2_foreground.xml" value="0.292" />
@@ -109,13 +128,23 @@
         <entry key="..\:/Users/nko19/Documents/ElRatonSeViste/app/src/main/res/drawable/background_login.xml" value="0.291" />
         <entry key="..\:/Users/nko19/Documents/ElRatonSeViste/app/src/main/res/drawable/side_nav_bar.xml" value="0.291" />
         <entry key="..\:/Users/nko19/Documents/ElRatonSeViste/app/src/main/res/layout/activity_agregar.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/nko19/Documents/ElRatonSeViste/app/src/main/res/layout/activity_carrito.xml" value="0.3009833262077811" />
+        <entry key="..\:/Users/nko19/Documents/ElRatonSeViste/app/src/main/res/layout/activity_carrito.xml" value="0.5" />
         <entry key="..\:/Users/nko19/Documents/ElRatonSeViste/app/src/main/res/layout/activity_description.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/nko19/Documents/ElRatonSeViste/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/nko19/Documents/ElRatonSeViste/app/src/main/res/layout/activity_main.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/nko19/Documents/ElRatonSeViste/app/src/main/res/layout/activity_ver_producto.xml" value="0.18802083333333333" />
-        <entry key="..\:/Users/nko19/Documents/ElRatonSeViste/app/src/main/res/layout/list_element.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/nko19/Documents/ElRatonSeViste/app/src/main/res/layout/list_element_admin.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/nko19/Documents/ElRatonSeViste/app/src/main/res/layout/app_bar_main.xml" value="0.2991840435176791" />
+        <entry key="..\:/Users/nko19/Documents/ElRatonSeViste/app/src/main/res/layout/content_main.xml" value="0.3009833262077811" />
+        <entry key="..\:/Users/nko19/Documents/ElRatonSeViste/app/src/main/res/layout/fragment_buscar.xml" value="0.2991840435176791" />
+        <entry key="..\:/Users/nko19/Documents/ElRatonSeViste/app/src/main/res/layout/fragment_inicio.xml" value="0.2991840435176791" />
+        <entry key="..\:/Users/nko19/Documents/ElRatonSeViste/app/src/main/res/layout/fragment_mis_compras.xml" value="0.3009833262077811" />
+        <entry key="..\:/Users/nko19/Documents/ElRatonSeViste/app/src/main/res/layout/list_element.xml" value="0.25" />
+        <entry key="..\:/Users/nko19/Documents/ElRatonSeViste/app/src/main/res/layout/list_element_admin.xml" value="0.2538860103626943" />
         <entry key="..\:/Users/nko19/Documents/ElRatonSeViste/app/src/main/res/layout/list_element_carrito.xml" value="0.33" />
+        <entry key="..\:/Users/nko19/Documents/ElRatonSeViste/app/src/main/res/layout/list_element_mis_compras.xml" value="0.30012825994014536" />
+        <entry key="..\:/Users/nko19/Documents/ElRatonSeViste/app/src/main/res/layout/nav_header_main.xml" value="0.2991840435176791" />
+        <entry key="..\:/Users/nko19/Documents/ElRatonSeViste/app/src/main/res/menu/activity_main_drawer.xml" value="0.3009833262077811" />
+        <entry key="..\:/Users/nko19/Documents/ElRatonSeViste/app/src/main/res/menu/cerrar_menu.xml" value="0.3009833262077811" />
       </map>
     </option>
   </component>

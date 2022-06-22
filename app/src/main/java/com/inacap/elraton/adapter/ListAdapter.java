@@ -5,11 +5,16 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.inacap.elraton.Metodo;
 import com.inacap.elraton.R;
 import com.inacap.elraton.clase.producto;
 
@@ -17,13 +22,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> implements View.OnClickListener
+public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
 {
     private List<producto> mData;
     ArrayList<producto> mOriginal;
     private LayoutInflater mInflater;
     private Context context;
-    private View.OnClickListener listener;
 
     public ListAdapter(List<producto> itemList, Context context)
     {
@@ -44,7 +48,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
     public ListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
         View view=mInflater.inflate(R.layout.list_element,null);
-        view.setOnClickListener(this);
         return new ListAdapter.ViewHolder(view);
     }
 
@@ -58,7 +61,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
         }
         else
         {
-            if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.N)
+            if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.N)
             {
                 List<producto> coleccion = mData.stream()
                         .filter(i -> i.getTitulo().toLowerCase().contains(txtBuscar.toLowerCase()))
@@ -86,37 +89,47 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
         holder.nombre.setText(item.getTitulo());
         holder.descripcion.setText(item.getDescripcion());
         holder.precio.setText(String.valueOf(item.getPrecio()));
-    }
-
-    public void setItems(List<producto> items)
-    {
-        mData=items;
-    }
-
-    public void setOnClickListener(View.OnClickListener listener){
-        this.listener=listener;
-    }
-
-    @Override
-    public void onClick(View v) {
-        if(listener!=null){
-            listener.onClick(v);
+        String correo=item.getCorreo();
+        int id=item.getId();
+        List<Integer> Cant = new ArrayList<>();
+        for (int i=1; i<=item.getCantidad(); i++)
+        {
+            Cant.add(i);
         }
+        ArrayAdapter<Integer> adapter= new ArrayAdapter(context, android.R.layout.simple_spinner_item, Cant);
+        holder.spCantidad.setAdapter(adapter);
+        holder.btnAgregar.setTag(R.id.CorreoListAdapter,correo);
+        holder.btnAgregar.setTag(R.id.IDListAdapter,id);
+        holder.setOnClick();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder
-    {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imagen;
         TextView nombre, descripcion, precio;
+        Spinner spCantidad;
+        Button btnAgregar;
 
-        ViewHolder(View itemView)
-        {
-            //https://stackoverflow.com/questions/27617693/java-lang-classcastexception-android-widget-relativelayoutlayoutparams-cannot
+        ViewHolder(View itemView) {
             super(itemView);
             imagen = itemView.findViewById(R.id.ImagenProd);
-            nombre=itemView.findViewById(R.id.txtNombreProd);
+            nombre = itemView.findViewById(R.id.txtNombreProd);
             descripcion = itemView.findViewById(R.id.txtDescripcion);
-            precio=itemView.findViewById(R.id.txtPrecio);
+            precio = itemView.findViewById(R.id.txtPrecio);
+            spCantidad = itemView.findViewById(R.id.spCantidad);
+            btnAgregar = itemView.findViewById(R.id.btnAgregar);
+        }
+
+        void setOnClick() {
+            btnAgregar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Metodo x = new Metodo();
+                    String correo = (String) v.getTag(R.id.CorreoListAdapter);
+                    int id = (int) v.getTag(R.id.IDListAdapter);
+                    int cantidad = (int) spCantidad.getSelectedItem();
+                    x.AgregarACarrito(cantidad, v, id, correo);
+                }
+            });
         }
     }
 }

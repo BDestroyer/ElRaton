@@ -40,7 +40,7 @@ public class VerProductoActivity extends AppCompatActivity {
         Cursor cursor=basedato.rawQuery("select * from producto",null);
         if (cursor.moveToFirst())
         {
-            while (cursor.moveToNext())
+            do
             {
                 prod=new producto();
                 prod.setId(cursor.getInt(0));
@@ -51,7 +51,7 @@ public class VerProductoActivity extends AppCompatActivity {
                 prod.setPrecio(cursor.getInt(4));
                 prod.setCantidad(cursor.getInt(5));
                 listaProducto.add(prod);
-            }
+            }while (cursor.moveToNext());
         }
         else
         {
