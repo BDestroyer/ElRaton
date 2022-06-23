@@ -11,6 +11,7 @@
     <string name="btnRegresar_Registrar">Regresar</string>
     <string name="btnInsertar">Insertar</string>
     <string name="res">Resumen de compra:</string>
-    <item name="CorreoListAdapter" type="id"/>
-    <item name="IDListAdapter" type="id"/>
+    <item name="CorreoListAdapter" type="id" />
+    <item name="IDListAdapter" type="id" />
+    <string name="btnModificar" type="id">Modificar</string>
 </resources>

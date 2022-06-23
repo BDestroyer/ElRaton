@@ -3,29 +3,26 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
 
     <application
-        android:requestLegacyExternalStorage="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_logo3"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.Material3.Dark.NoActionBar">
-        <activity
-            android:name=".AdminActivity.RecomendacionesAdminActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AdminActivity.VerProductoActivity"
-            android:exported="false" />
         <activity
             android:name=".AdminActivity.ModificarProductoActivity"
             android:exported="false" />
         <activity
-            android:name=".AdminActivity.AgregarProductoActivity"
+            android:name=".AdminActivity.RecomendacionesAdminActivity"
             android:exported="false" />
         <activity
-            android:name=".AdminActivity.EliminarProductoActivity"
+            android:name=".AdminActivity.AdministrarProductoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdminActivity.AgregarProductoActivity"
             android:exported="false" />
         <activity
             android:name=".AdminActivity.EntradaAdminActivity"
@@ -42,8 +39,8 @@
         <activity
             android:name=".ui.LoginActivity"
             android:exported="true"
-            android:launchMode="singleInstance"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

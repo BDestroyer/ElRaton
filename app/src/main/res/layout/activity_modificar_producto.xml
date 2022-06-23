@@ -7,19 +7,6 @@
     android:orientation="vertical"
     tools:context=".AdminActivity.AgregarProductoActivity">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Agregue una imagen a continuación:"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
-
-    <ImageView
-        android:id="@+id/imgAdd"
-        android:layout_width="match_parent"
-        android:layout_height="240dp"
-        app:srcCompat="@drawable/side_nav_bar" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -87,5 +74,5 @@
         android:id="@+id/btnModificarCRUD"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btnInsertar" />
+        android:text="@string/btnModificar" />
 </LinearLayout>

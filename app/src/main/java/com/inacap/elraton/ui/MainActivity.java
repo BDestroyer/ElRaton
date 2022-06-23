@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity
                         public void onClick(DialogInterface dialog, int which) {
                             Metodo x=new Metodo();
                             x.truncarTablaCarrito(getApplicationContext());
+                            x.truncarTablaMisCompras(getApplicationContext());
                             Intent i=new Intent(getApplicationContext(),LoginActivity.class);
                             startActivity(i);
                             finish();

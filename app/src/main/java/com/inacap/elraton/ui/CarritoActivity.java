@@ -49,6 +49,7 @@ public class CarritoActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
+                //Comprar
 
             }
         });

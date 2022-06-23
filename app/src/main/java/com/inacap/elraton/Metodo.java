@@ -26,8 +26,9 @@ public class Metodo
         try {
             db cU = new db(a, "elRaton.db", null, 1);
             SQLiteDatabase basedato = Conectar(cU);
-            basedato.rawQuery("delete from carrito", null);
-        }catch (Exception e)
+            basedato.execSQL("delete from carrito");
+        }
+        catch (Exception e)
         {
             Toast.makeText(a, "Error "+e, Toast.LENGTH_SHORT).show();
         }
@@ -35,8 +36,7 @@ public class Metodo
 
     public SQLiteDatabase Conectar(db cn)
     {
-        SQLiteDatabase b = cn.getWritableDatabase();
-        return b;
+        return cn.getWritableDatabase();
     }
 
     public void AgregarACarrito(int cantidad, View v, int id)
@@ -67,6 +67,7 @@ public class Metodo
                 {
                     Toast.makeText(v.getContext(), "Kie", Toast.LENGTH_SHORT).show();
                 }
+                c.close();
             }
             cursor.close();
         } catch (SQLiteConstraintException e) {
@@ -81,8 +82,6 @@ public class Metodo
             SQLiteDatabase bd = Conectar(cU);
             bd.execSQL("delete from carrito where id='" + idBusq + "'");
             Toast.makeText(v.getContext(), "Producto eliminado del carrito", Toast.LENGTH_SHORT).show();
-            bd.close();
-
         } catch (Exception e) {
             Toast.makeText(v.getContext(), "Algo ha salido mal, contactese con el administrador", Toast.LENGTH_LONG).show();
             Toast.makeText(v.getContext(), "Error " + e, Toast.LENGTH_SHORT).show();
@@ -158,6 +157,7 @@ public class Metodo
                     acum=acum+valor;
                 }while (cursor.moveToNext());
             }
+            cursor.close();
         }
         catch (SQLiteException exception)
         {
@@ -165,4 +165,33 @@ public class Metodo
         }
         return acum;
     }
+
+    public void truncarTablaMisCompras(Context a)
+    {
+        try {
+            db cU = new db(a, "elRaton.db", null, 1);
+            SQLiteDatabase basedato = Conectar(cU);
+            Cursor cursor=basedato.rawQuery("delete from miscompras", null);
+            cursor.close();
+        }catch (Exception e)
+        {
+            Toast.makeText(a, "Error "+e, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void EliminarProductoAdmin(int id, Context v)
+    {
+        try {
+            db cU = new db(v.getApplicationContext(), "elRaton.db", null, 1);
+            SQLiteDatabase bd = Conectar(cU);
+            bd.execSQL("delete from producto where id='" + id + "'");
+            Toast.makeText(v.getApplicationContext(), "Producto eliminado del carrito", Toast.LENGTH_SHORT).show();
+            bd.close();
+
+        } catch (Exception e) {
+            Toast.makeText(v.getApplicationContext(), "Algo ha salido mal, contactese con el administrador", Toast.LENGTH_LONG).show();
+            Toast.makeText(v.getApplicationContext(), "Error " + e, Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }

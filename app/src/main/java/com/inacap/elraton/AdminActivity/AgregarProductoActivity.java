@@ -48,11 +48,11 @@ public class AgregarProductoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar);
         imgAdd = findViewById(R.id.imgAdd);
-        txtTitulo = findViewById(R.id.edtTitulo);
-        txtDescripcion = findViewById(R.id.edtDescripcion);
-        txtPrecio = findViewById(R.id.edtPrecio);
-        txtCantidad = findViewById(R.id.edtCantidad);
-        btnInsertarProd = findViewById(R.id.btnAgregarCRUD);
+        txtTitulo = findViewById(R.id.txtTituloAdmin);
+        txtDescripcion = findViewById(R.id.txtDescripcionAdmin);
+        txtPrecio = findViewById(R.id.txtPrecioAdmin);
+        txtCantidad = findViewById(R.id.txtCantidadAdmin);
+        btnInsertarProd = findViewById(R.id.btnModificarCRUD);
         imgAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
