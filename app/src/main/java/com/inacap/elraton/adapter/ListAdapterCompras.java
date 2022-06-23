@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -41,6 +42,7 @@ public class ListAdapterCompras extends RecyclerView.Adapter<ListAdapterCompras.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position)
     {
         producto item=mData.get(position);
+        holder.imgAdd.setImageBitmap(item.getFoto());
         holder.NombreProductoCompras.setText(item.getTitulo());
         holder.Precio.setText(String.valueOf(item.getPrecio()));
         holder.Descripcion.setText(item.getDescripcion());
@@ -50,8 +52,11 @@ public class ListAdapterCompras extends RecyclerView.Adapter<ListAdapterCompras.
     public class ViewHolder extends RecyclerView.ViewHolder
     {
         TextView NombreProductoCompras, Precio, Descripcion, CantidadComprados;
+        ImageView imgAdd;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            imgAdd=itemView.findViewById(R.id.ImagenProd);
             NombreProductoCompras=itemView.findViewById(R.id.txtNombreProd);
             Precio=itemView.findViewById(R.id.txtPrecio);
             Descripcion=itemView.findViewById(R.id.txtDescripcion);

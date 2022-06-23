@@ -51,7 +51,6 @@ MisComprasFragment extends Fragment {
         Metodo x=new Metodo();
         db conexionUsuario=new db(getContext(),"elRaton.db",null,1);
         SQLiteDatabase basedato=x.Conectar(conexionUsuario);
-        //meter where con email usuario!!!!!!!!!!!!
         Cursor cursor=basedato.rawQuery("select * from miscompras",null);
         if (cursor.moveToFirst())
         {
@@ -62,6 +61,7 @@ MisComprasFragment extends Fragment {
                 prod.setFoto(bmap);
                 prod.setTitulo(cursor.getString(2));
                 prod.setPrecio(cursor.getInt(3));
+                prod.setPrecioTotal(cursor.getInt(4));
                 prod.setDescripcion(cursor.getString(4));
                 prod.setCantidad(cursor.getInt(5));
                 listaMisCompras.add(prod);

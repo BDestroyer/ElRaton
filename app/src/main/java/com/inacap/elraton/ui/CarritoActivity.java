@@ -2,7 +2,6 @@ package com.inacap.elraton.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -12,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.inacap.elraton.AdminActivity.EntradaAdminActivity;
 import com.inacap.elraton.Metodo;
 import com.inacap.elraton.R;
 import com.inacap.elraton.adapter.ListAdapterCarrito;
@@ -52,11 +50,13 @@ public class CarritoActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                //Comprar
-                //        db.execSQL("CREATE TABLE miscompras(id integer primary key not null,
-                //        rutaImg text not null, nombreProducto text not null, precioProducto integer not null,
-                //        DescripcionProducto text not null, cantidadProducto integer not null, emailUsuario email not null)
+                if (txtResumen.getText().toString().equals("")  Integer.parseInt(txtResumen.getText().toString())=0)
+                {
 
+                }
+                int valotTotal=Integer.parseInt(txtResumen.getText().toString());
+                x.AgregarAMisCompras(getApplicationContext(),valotTotal);
+                x.truncarTablaCarrito(getApplicationContext());
             }
         });
     }

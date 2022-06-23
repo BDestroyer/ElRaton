@@ -194,4 +194,51 @@ public class Metodo
         }
     }
 
+    public void AgregarAMisCompras(Context a, int valor)
+    {
+        try
+        {
+            db cU = new db(a, "elRaton.db", null, 1);
+            SQLiteDatabase bd = Conectar(cU);
+            String rutaImagen;
+            String titulo;
+            String descripcion;
+            int precioUnitario;
+            Cursor cursor=bd.rawQuery("select * from carrito",null);
+            if (cursor.moveToFirst())
+            {
+                do
+                {
+                    int id=cursor.getInt(0);
+                    int cantidad=cursor.getInt(1);
+                    Cursor c=bd.rawQuery("select * from producto where id='"+id+"'",null);
+                    if (c.moveToFirst())
+                    {
+                        do
+                        {
+                            rutaImagen=c.getString(1);
+                            titulo=c.getString(2);
+                            descripcion=c.getString(3);
+                            precioUnitario=c.getInt(4);
+                            ContentValues r=new ContentValues();
+                            r.put("id",id);
+                            r.put("rutaImg",rutaImagen);
+                            r.put("nombreProducto",titulo);
+                            r.put("precioUnitarioProducto",precioUnitario);
+                            r.put("precioTotalProducto", valor);
+                            r.put("DescripcionProducto",descripcion);
+                            r.put("cantidadProducto",cantidad);
+                            bd.insert("miscompras",null,r);
+                        }while (c.moveToNext());
+                    }
+                    c.close();
+                }while (cursor.moveToNext());
+            }
+            cursor.close();
+            Toast.makeText(a, "Producto comprado, puede verlo en Mis Compras", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(a, "Algo ha salido mal, contactese con el administrador", Toast.LENGTH_LONG).show();
+            Toast.makeText(a, "Error " + e, Toast.LENGTH_SHORT).show();
+        }
+    }
 }
