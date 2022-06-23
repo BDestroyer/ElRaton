@@ -80,7 +80,6 @@ public class LoginActivity extends AppCompatActivity {
                             }
                             else
                             {
-                                //cursor=basedato.rawQuery("select email, nombre, apellido from usuario ",null);
                                 cursor=basedato.rawQuery("select email, nombre, apellido from usuario where email='"+usuarioIng+"'",null);
                                 if (cursor.moveToFirst())
                                 {
@@ -103,6 +102,7 @@ public class LoginActivity extends AppCompatActivity {
                         {
                             Toast.makeText(LoginActivity.this, "Usuario no encontrado, por favor registrese", Toast.LENGTH_SHORT).show();
                         }
+
                     }
                 }
                 catch (SQLException ex)

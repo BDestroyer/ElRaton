@@ -8,11 +8,13 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.inacap.elraton.AdminActivity.EntradaAdminActivity;
 import com.inacap.elraton.Metodo;
 import com.inacap.elraton.R;
 import com.inacap.elraton.db;
@@ -80,8 +82,18 @@ public class RegistroActivity extends AppCompatActivity {
                 {
                     Toast.makeText(RegistroActivity.this, "Error "+e, Toast.LENGTH_LONG).show();
                 }
+                finish();
             }
         });
     }
-
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode==event.KEYCODE_BACK)
+        {
+            Intent a=new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(a);
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

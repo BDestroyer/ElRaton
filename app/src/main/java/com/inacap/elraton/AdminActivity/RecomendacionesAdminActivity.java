@@ -2,9 +2,11 @@ package com.inacap.elraton.AdminActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -47,5 +49,15 @@ public class RecomendacionesAdminActivity extends AppCompatActivity {
             Mostrar.add("No se han encontrado resultados");
         }
         return Mostrar;
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode==event.KEYCODE_BACK)
+        {
+            Intent a=new Intent(getApplicationContext(),EntradaAdminActivity.class);
+            startActivity(a);
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
