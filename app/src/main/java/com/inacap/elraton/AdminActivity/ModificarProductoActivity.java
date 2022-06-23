@@ -97,7 +97,7 @@ public class ModificarProductoActivity extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode==event.KEYCODE_BACK)
         {
-            Intent a=new Intent(getApplicationContext(),EntradaAdminActivity.class);
+            Intent a=new Intent(getApplicationContext(),AdministrarProductoActivity.class);
             startActivity(a);
             finish();
         }

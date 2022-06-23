@@ -53,6 +53,9 @@ public class CarritoActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 //Comprar
+                //        db.execSQL("CREATE TABLE miscompras(id integer primary key not null,
+                //        rutaImg text not null, nombreProducto text not null, precioProducto integer not null,
+                //        DescripcionProducto text not null, cantidadProducto integer not null, emailUsuario email not null)
 
             }
         });
@@ -66,14 +69,5 @@ public class CarritoActivity extends AppCompatActivity
         listAdapterCarrito=new ListAdapterCarrito(listaProducto, this);
         rcv.setHasFixedSize(true);
         rcv.setAdapter(listAdapterCarrito);
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode==event.KEYCODE_BACK)
-        {
-            finish();
-        }
-        return super.onKeyDown(keyCode, event);
     }
 }
