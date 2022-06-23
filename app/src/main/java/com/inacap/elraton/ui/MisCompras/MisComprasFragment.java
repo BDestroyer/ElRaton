@@ -60,15 +60,16 @@ MisComprasFragment extends Fragment {
                 Bitmap bmap= BitmapFactory.decodeFile(cursor.getString(1));
                 prod.setFoto(bmap);
                 prod.setTitulo(cursor.getString(2));
-                prod.setPrecio(cursor.getInt(3));
-                prod.setPrecioTotal(cursor.getInt(4));
-                prod.setDescripcion(cursor.getString(4));
-                prod.setCantidad(cursor.getInt(5));
+                prod.setPrecio(cursor.getInt(4));
+                prod.setPrecioTotal(cursor.getInt(3));
+                prod.setDescripcion(cursor.getString(5));
+                prod.setCantidad(cursor.getInt(6));
                 listaMisCompras.add(prod);
             } while (cursor.moveToNext());
         }
         else
         {
+            cursor.close();
             Toast.makeText(getContext(), "Usted aún no tiene compras registradas", Toast.LENGTH_SHORT).show();
         }
         rcv=getView().findViewById(R.id.rcvMisCompras);

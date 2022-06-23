@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -50,13 +51,16 @@ public class CarritoActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                if (txtResumen.getText().toString().equals("")  Integer.parseInt(txtResumen.getText().toString())=0)
+                if (txtResumen.getText().toString().equals("") )
                 {
-
+                    Toast.makeText(CarritoActivity.this, "El carrito de compras está vacío", Toast.LENGTH_SHORT).show();
                 }
-                int valotTotal=Integer.parseInt(txtResumen.getText().toString());
-                x.AgregarAMisCompras(getApplicationContext(),valotTotal);
-                x.truncarTablaCarrito(getApplicationContext());
+                else
+                {
+                    int valotTotal=Integer.parseInt(txtResumen.getText().toString());
+                    x.AgregarAMisCompras(getApplicationContext(),valotTotal);
+                    x.truncarTablaCarrito(getApplicationContext());
+                }
             }
         });
     }

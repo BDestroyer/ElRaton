@@ -45,13 +45,14 @@ public class ListAdapterCompras extends RecyclerView.Adapter<ListAdapterCompras.
         holder.imgAdd.setImageBitmap(item.getFoto());
         holder.NombreProductoCompras.setText(item.getTitulo());
         holder.Precio.setText(String.valueOf(item.getPrecio()));
+        holder.PrecioTotal.setText(String.valueOf(item.getPrecioTotal()));
         holder.Descripcion.setText(item.getDescripcion());
         holder.CantidadComprados.setText(String.valueOf(item.getCantidad()));
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder
     {
-        TextView NombreProductoCompras, Precio, Descripcion, CantidadComprados;
+        TextView NombreProductoCompras, Precio, Descripcion, CantidadComprados,PrecioTotal;
         ImageView imgAdd;
 
         public ViewHolder(@NonNull View itemView) {
@@ -59,6 +60,7 @@ public class ListAdapterCompras extends RecyclerView.Adapter<ListAdapterCompras.
             imgAdd=itemView.findViewById(R.id.ImagenProd);
             NombreProductoCompras=itemView.findViewById(R.id.txtNombreProd);
             Precio=itemView.findViewById(R.id.txtPrecio);
+            PrecioTotal=itemView.findViewById(R.id.txtPrecioTotalMC);
             Descripcion=itemView.findViewById(R.id.txtDescripcion);
             CantidadComprados=itemView.findViewById(R.id.txtCantidad);
         }

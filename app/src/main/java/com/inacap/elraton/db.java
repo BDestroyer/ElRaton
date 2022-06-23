@@ -26,11 +26,11 @@ public class db extends SQLiteOpenHelper
         db.execSQL("drop table if exists carrito");
         db.execSQL("drop table if exists miscompras");
         db.execSQL("drop table if exists contacto");
-        db.execSQL("CREATE TABLE contacto(id integer primary key autoincrement not null, dato text not null)");
-        db.execSQL("CREATE TABLE usuario(email email primary key not null, email email not null, apellido text not null, rol boolean not null)");
+        db.execSQL("CREATE TABLE usuario(email email primary key not null, contrasenna text not null, nombre text not null, apellido text not null, rol boolean not null)");
         db.execSQL("CREATE TABLE producto(id integer primary key autoincrement not null, rutaImg text not null, titulo text not null, descripcion text not null, precio integer not null, cantidad integer not null)");
         db.execSQL("CREATE TABLE carrito(id integer not null, cantidad integer not null, valorTotal integer not null)");
-        db.execSQL("CREATE TABLE miscompras(id integer primary key not null, rutaImg text not null, nombreProducto text not null,precioUnitarioProducto integer not null,  precioTotalProducto integer not null, DescripcionProducto text not null, cantidadProducto integer not null)");
+        db.execSQL("CREATE TABLE miscompras(id integer primary key not null, rutaImg text not null, nombreProducto text not null, precioTotalProducto integer not null, precioUnitarioProducto integer not null, DescripcionProducto text not null, cantidadProducto integer not null)");
+        db.execSQL("CREATE TABLE contacto(id integer primary key autoincrement not null, dato text not null)");
         onCreate(db);
     }
 
