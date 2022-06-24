@@ -32,9 +32,11 @@ public class LoginActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        verificarPermisos();
-        db conexionUsuario=new db(getApplicationContext(),"elRaton.db",null,1);
         Metodo x= new Metodo();
+        verificarPermisos();
+        x.truncarTablaCarrito(getApplicationContext());
+        x.truncarTablaMisCompras(getApplicationContext());
+        db conexionUsuario=new db(getApplicationContext(),"elRaton.db",null,1);
         SQLiteDatabase basedato=x.Conectar(conexionUsuario);
         Cursor cursor=basedato.rawQuery("select email from usuario",null);
         if (!(cursor.moveToFirst()))
@@ -117,6 +119,7 @@ public class LoginActivity extends AppCompatActivity {
             {
                 Intent a=new Intent(getApplicationContext(), RegistroActivity.class);
                 startActivity(a);
+                finish();
             }
         });
     }
@@ -129,6 +132,4 @@ public class LoginActivity extends AppCompatActivity {
             requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
         }
     }
-
-
 }

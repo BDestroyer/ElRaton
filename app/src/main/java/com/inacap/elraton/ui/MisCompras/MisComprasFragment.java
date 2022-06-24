@@ -61,7 +61,9 @@ MisComprasFragment extends Fragment {
                 prod.setFoto(bmap);
                 prod.setTitulo(cursor.getString(2));
                 prod.setPrecio(cursor.getInt(4));
-                prod.setPrecioTotal(cursor.getInt(3));
+                int precio=cursor.getInt(4);
+                int cantidad=cursor.getInt(6);
+                prod.setPrecioTotal(precio*cantidad);
                 prod.setDescripcion(cursor.getString(5));
                 prod.setCantidad(cursor.getInt(6));
                 listaMisCompras.add(prod);
@@ -69,7 +71,6 @@ MisComprasFragment extends Fragment {
         }
         else
         {
-            cursor.close();
             Toast.makeText(getContext(), "Usted aún no tiene compras registradas", Toast.LENGTH_SHORT).show();
         }
         rcv=getView().findViewById(R.id.rcvMisCompras);

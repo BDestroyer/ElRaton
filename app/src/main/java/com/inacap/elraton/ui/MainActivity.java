@@ -5,10 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -27,7 +25,6 @@ public class MainActivity extends AppCompatActivity
 {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
-    FloatingActionButton fab;
     String correo;
 
     @Override
@@ -54,16 +51,6 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(this, "Error al obtener datos", Toast.LENGTH_SHORT).show();
         }
         x.cargarDatosCliente(bundle, binding);
-        fab=findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                Intent a=new Intent(getApplicationContext(), CarritoActivity.class);
-                startActivity(a);
-            }
-        });
     }
 
     public boolean onCreateOptionsMenu(Menu menu)

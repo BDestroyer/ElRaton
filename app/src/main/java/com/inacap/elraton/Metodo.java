@@ -171,8 +171,7 @@ public class Metodo
         try {
             db cU = new db(a, "elRaton.db", null, 1);
             SQLiteDatabase basedato = Conectar(cU);
-            Cursor cursor=basedato.rawQuery("delete from miscompras", null);
-            cursor.close();
+            basedato.delete("miscompras", null,null);
         }catch (Exception e)
         {
             Toast.makeText(a, "Error "+e, Toast.LENGTH_SHORT).show();
@@ -186,8 +185,6 @@ public class Metodo
             SQLiteDatabase bd = Conectar(cU);
             bd.execSQL("delete from producto where id='" + id + "'");
             Toast.makeText(v.getApplicationContext(), "Producto eliminado del carrito", Toast.LENGTH_SHORT).show();
-            bd.close();
-
         } catch (Exception e) {
             Toast.makeText(v.getApplicationContext(), "Algo ha salido mal, contactese con el administrador", Toast.LENGTH_LONG).show();
             Toast.makeText(v.getApplicationContext(), "Error " + e, Toast.LENGTH_SHORT).show();

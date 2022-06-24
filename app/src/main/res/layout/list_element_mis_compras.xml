@@ -79,6 +79,8 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
                 android:text="Cantidad:"
+                android:textColor="#0288D1"
+                android:textSize="16sp"
                 app:layout_constraintStart_toEndOf="@+id/txtNombreProd"
                 app:layout_constraintTop_toBottomOf="@+id/ImagenProd" />
 
@@ -89,6 +91,8 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                android:textColor="#0288D1"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/textView16"
@@ -126,6 +130,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="64dp"
                 android:layout_marginBottom="16dp"
+                android:textColor="#D32F2F"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -137,9 +143,22 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
                 android:text="Precio total del producto:"
+                android:textColor="#D32F2F"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/txtPrecioTotalMC"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="$"
+                android:textColor="#D32F2F"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/txtPrecioTotalMC" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>

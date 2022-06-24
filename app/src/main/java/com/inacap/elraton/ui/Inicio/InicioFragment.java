@@ -20,12 +20,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.inacap.elraton.AdminActivity.EntradaAdminActivity;
 import com.inacap.elraton.Metodo;
 import com.inacap.elraton.R;
 import com.inacap.elraton.adapter.ListAdapter;
 import com.inacap.elraton.clase.producto;
 import com.inacap.elraton.db;
+import com.inacap.elraton.ui.CarritoActivity;
 
 import java.util.ArrayList;
 
@@ -34,6 +36,7 @@ public class InicioFragment extends Fragment implements SearchView.OnQueryTextLi
     SearchView Busqueda;
     ListAdapter listAdapter;
     RecyclerView rcv;
+    FloatingActionButton fab;
     ArrayList<producto> listaProducto;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -45,7 +48,17 @@ public class InicioFragment extends Fragment implements SearchView.OnQueryTextLi
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
         init();
+        fab=view.findViewById(R.id.fab);
         Busqueda=view.findViewById(R.id.txtBuscar);
+        fab.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent a=new Intent(getActivity(), CarritoActivity.class);
+                startActivity(a);
+            }
+        });
         Busqueda.setOnQueryTextListener(this);
     }
 
